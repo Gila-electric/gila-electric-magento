@@ -1,0 +1,71 @@
+//
+//  Pager
+//  _____________________________________
+
+//
+//  Imports
+//  -------------------------------------
+
+@import (reference) '../_mixins';
+
+//
+//  Common
+//  -------------------------------------
+
+& when (@media-common = true) {
+    .amqorder-pager-block {
+        & {
+            .amqorder-flex();
+        }
+
+        .amqorder-items {
+            .amqorder-flex(center, center);
+
+            margin: 0;
+            padding: 0 @amqorder__indent;
+            list-style: none;
+        }
+
+        .amqorder-item:not(.-dotted) {
+            & {
+                .amqorder-flex(center, center);
+                .amqorder-transition(.1);
+
+                box-sizing: border-box;
+                margin: 0;
+                width: 40px;
+                height: 40px;
+                border: 1px solid transparent;
+                border-radius: 3px;
+                cursor: pointer;
+            }
+
+            &:hover {
+                border: 1px solid @amqorder__color__primary;
+                background: #c8d7ff;
+                color: #4776f0;
+            }
+
+            &:active {
+                border-color: @amqorder__focus__color__primary;
+                background: @amqorder__focus__color__primary;
+            }
+        }
+
+        .amqorder-item.-dotted {
+            .amqorder-flex(center, center);
+
+            margin: 0;
+            width: 40px;
+            height: 40px;
+        }
+
+        .amqorder-item.-selected {
+            background: @amqorder__color__primary;
+            color: #fff;
+            font-weight: 700;
+            pointer-events: none;
+            user-select: none;
+        }
+    }
+}

@@ -1,0 +1,194 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package Quick Order for Magento 2
+ */-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="amasty_quickorder" translate="label" type="text" sortOrder="172115" showInDefault="1" showInWebsite="1" showInStore="1">
+            <resource>Amasty_QuickOrder::config</resource>
+            <class>separator-top</class>
+            <label>Quick Order</label>
+            <tab>amasty</tab>
+
+            <group id="amasty_information" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Information</label>
+                <frontend_model>Amasty\QuickOrder\Block\Adminhtml\System\Config\Information</frontend_model>
+            </group>
+
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="url_key" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>URL Key</label>
+                    <comment>Based on Website Base URL. If left empty, default ‘quick-order' is used.</comment>
+                    <backend_model>Amasty\QuickOrder\Model\Config\Backend\UrlKey</backend_model>
+                    <validate>validate-identifier</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="label" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Label</label>
+                    <comment>Here you can name the functionality the way you would like it to be displayed on the storefront. If left empty, default Quick Order is used.</comment>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="display_link_in" translate="label comment" type="multiselect" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display Link in</label>
+                    <comment>Choose where to display a link.</comment>
+                    <source_model>Amasty\QuickOrder\Model\Source\DisplayPlace</source_model>
+                    <frontend_model>Amasty\QuickOrder\Block\Adminhtml\System\Config\Field\Multiselect</frontend_model>
+                    <can_be_empty>1</can_be_empty>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="disabled_customer_groups" translate="label comment" type="multiselect" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Disable for Customer Groups</label>
+                    <comment>Chosen customer groups won't be able to Quick Order.</comment>
+                    <source_model>Amasty\QuickOrder\Model\Source\Group</source_model>
+                    <frontend_model>Amasty\QuickOrder\Block\Adminhtml\System\Config\Field\Multiselect</frontend_model>
+                    <can_be_empty>1</can_be_empty>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="search_max_results" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Max Search Results</label>
+                    <comment>Limit a maximum number of search results to show in autocomplete popup. For better performance we do not recommend to use large numbers here.</comment>
+                    <validate>required-entry validate-greater-than-zero</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="page_size" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Number of Items to Display Pager</label>
+                    <validate>required-entry validate-greater-than-zero</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="max_qty_add" translate="label comment" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="0">
+                    <label>Allowed QTY of Items to Add</label>
+                    <comment>Limit the quantity of items to be added to quick order grid. To avoid excess load on the server we recommend 100 as maximum qty.</comment>
+                    <validate>required-entry validate-greater-than-zero</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="customer_groups_disabled_file" translate="label comment" type="multiselect" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Disable File Upload for Customer Groups</label>
+                    <comment>Chosen customer groups won’t be able to add products to Quick Order grid from file. You can use this option to limit file uploading by not logged in users.</comment>
+                    <source_model>Amasty\QuickOrder\Model\Source\FileGroup</source_model>
+                    <frontend_model>Amasty\QuickOrder\Block\Adminhtml\System\Config\Field\Multiselect</frontend_model>
+                    <can_be_empty>1</can_be_empty>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="request_quote_button" translate="label comment" type="select" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Request a Quote Button</label>
+                    <comment>If enabled, customers will be able to request a quote for the list of added items right from Quick Order page.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <if_module_enabled>Amasty_RequestQuote</if_module_enabled>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="download_list" translate="label" type="select" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Allow Customer to Download the List</label>
+                    <comment>Set ‘Yes’ to let customers download the list of items added to Quick Order grid in .csv format.</comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+
+            <group id="category_mode" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Table Category Mode</label>
+
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="disabled_customer_groups" translate="label comment" type="multiselect" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Disable for Selected Customer Groups</label>
+                    <comment>Chosen customer groups will not be able to see and use Table Mode on category pages.</comment>
+                    <source_model>Amasty\QuickOrder\Model\Source\Group</source_model>
+                    <frontend_model>Amasty\QuickOrder\Block\Adminhtml\System\Config\Field\Multiselect</frontend_model>
+                    <can_be_empty>1</can_be_empty>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="disabled_categories" translate="label comment" type="multiselect" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Disable for Categories</label>
+                    <comment>Choose categories where Table Mode is unavailable.</comment>
+                    <source_model>Amasty\QuickOrder\Model\Source\Category</source_model>
+                    <frontend_model>Amasty\QuickOrder\Block\Adminhtml\System\Config\Field\Multiselect</frontend_model>
+                    <can_be_empty>1</can_be_empty>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="replace" translate="label comment" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Replace Default List Modes</label>
+                    <comment>Set ‘Yes’ to hide default List/Grid modes on chosen categories. With 'No (but use default settings)' the List Mode setting under Stores->Configuration->Catalog->Catalog->Storefront in priority.</comment>
+                    <source_model>Amasty\QuickOrder\Model\Source\CategoryMode</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="grid_per_page_values" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Products per Page Allowed Values</label>
+                    <comment>Comma-separated.</comment>
+                    <validate>validate-per-page-value-list required-entry</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="grid_per_page" translate="label comment" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Products per Page on Grid Default Value</label>
+                    <comment>Must be in the allowed values list.</comment>
+                    <validate>validate-per-page-value</validate>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+
+                <field id="enabled_on_search" translate="label" type="select" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Apply to Search Results Page</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

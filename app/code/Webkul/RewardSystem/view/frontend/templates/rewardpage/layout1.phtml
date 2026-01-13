@@ -1,0 +1,53 @@
+<?php
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_Marketplace
+ * @author    Webkul
+ * @copyright Copyright (c) Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+$rewardViewModel = $block->getRewardViewModel();
+$helper = $rewardViewModel->getRewardDataHelper();
+$rewardPageLabel1  =   $helper->getRewardPageLabel1();
+$bannerDisplay     =   $helper->getDisplayBanner();
+$bannerImage       =   $helper->getBannerImage();
+$bannerRectangle   =   $helper->getBannerRectangle();
+$bannerHeading     =   $helper->getBannerHeading();
+$bannerText        =   $helper->getBannerText();
+$pageContent       =   $helper->getRewardPageContent();
+$rewardFlowImage   =   $helper->getRewardFlowImage();
+?>
+<div class="wk-rs-design wk-rs-landingpage wk-rs-landingpage-layout1">
+    <?php if ($bannerDisplay): ?>
+        <div class="wk-rs-banner-container">
+            <div class="wk-rs-banner">
+                <div class="wk-rs-header">
+                    <div class="wk-rs-banner-heading">
+                        <?= /* @noEscape */  $block->getCmsFilterContent($bannerHeading)?>
+                    </div>
+                    <div class="wk-rs-banner-text">
+                        <?= /* @noEscape */  $block->getCmsFilterContent($bannerText)?>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+    <div class="wk-rs-rewardpage-label1"><?= $escaper->escapeHtml($rewardPageLabel1) ?></div>
+    <div class="wk-rs-rewardpage-content">
+        <?= /* @noEscape */  $block->getCmsFilterContent($pageContent)?>
+        <div class="wk-rs-rewardpage-content-middle">
+            <img src="<?= $escaper->escapeUrl($rewardFlowImage) ?>">
+        </div>
+    </div>
+</div>
+<script>
+    require([
+        "jquery"
+    ], function($){
+        $('.wk-rs-banner').css('background-image','url("<?= $escaper->escapeUrl($bannerImage) ?>")');
+        $('.wk-rs-header').css('background-image','url("<?= $escaper->escapeUrl($bannerRectangle) ?>")');
+        $('.wk-rs-rewardpage-content-upper').after($('.wk-rs-rewardpage-content-middle'));
+    });
+</script>

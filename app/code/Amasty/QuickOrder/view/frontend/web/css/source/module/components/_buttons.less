@@ -1,0 +1,345 @@
+//
+//  Buttons
+//  _____________________________________
+
+//
+//  Imports
+//  -------------------------------------
+
+@import (reference) '../_mixins';
+
+//
+//  Common
+//  -------------------------------------
+
+& when (@media-common = true) {
+    .amqorder-button:not(.primary) {
+        & {
+            .amqorder-flex(center, center);
+            .amqorder-transition(.1);
+
+            position: relative;
+            box-sizing: border-box;
+            padding: @amqorder__indent;
+            box-shadow: none;
+            font-weight: 400;
+            cursor: pointer;
+            pointer-events: auto;
+            user-select: none;
+        }
+
+        &:hover,
+        &:active,
+        &:focus {
+            background: none;
+            box-shadow: none;
+        }
+
+        &:before,
+        &:after {
+            .amqorder-transition(.1);
+        }
+
+        &.-disabled {
+            & {
+                pointer-events: none;
+            }
+
+            &:focus {
+                pointer-events: none;
+            }
+        }
+    }
+
+    .amqorder-button.-clear {
+        & {
+            padding: 0;
+            border: none;
+            background: transparent;
+            box-shadow: none;
+        }
+
+        &:active,
+        &:hover,
+        &:focus {
+            border: none;
+            background: transparent;
+            box-shadow: none;
+        }
+    }
+
+    .amqorder-button.-link {
+        & {
+            color: @amqorder__color__primary;
+        }
+
+        &:hover {
+            color: @amqorder__hover__color__primary;
+        }
+    }
+
+    .amqorder-button.-chevron {
+        &:after {
+            .amqorder-flex(center, center);
+            .amqorder-transition();
+
+            margin: 0 0 0 @amqorder__indent;
+            width: 15px;
+            height: 15px;
+            content: '>';
+            transform: scaleX(1.5) rotate(90deg);
+        }
+
+        &.-active:after {
+            transform: scaleX(1.5) rotate(-90deg);
+        }
+    }
+
+    .amqorder-button.-arrow {
+        & {
+            &:extend(.amqorder-button.-chevron all);
+
+            width: 40px;
+            height: 40px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            color: #000;
+        }
+
+        &:after {
+            margin: 0;
+            width: 12px;
+            height: 14px;
+        }
+
+        &.-prev:after {
+            transform: scaleY(1.5) rotate(-180deg);
+        }
+
+        &.-next:after {
+            transform: scaleY(1.5);
+        }
+
+        &.-disabled {
+            & {
+                border-color: #d0d5e1;
+                color: #d0d5e1;
+            }
+
+            &:focus {
+                border-color: #d0d5e1;
+                color: #d0d5e1;
+            }
+        }
+
+        &:hover {
+            border: 1px solid @amqorder__color__primary;
+            background: #c8d7ff;
+            color: @amqorder__color__primary;
+        }
+
+        &:active,
+        &:focus {
+            border: 1px solid @amqorder__focus__color__primary;
+            background: transparent;
+            color: @amqorder__focus__color__primary;
+        }
+    }
+
+    .amqorder-button.-remove {
+        &:after {
+            content: 'x';
+            transform: scale(1.5, 1);
+        }
+
+        &:hover:after {
+            color: @amqorder__hover__color__primary;
+        }
+    }
+
+    .amqorder-button.-basket {
+        & {
+            .amqorder-flex(none, center);
+
+            color: @amqorder__color__error;
+        }
+
+        &:before {
+            .amqorder-icon(@amqorder-basket-icon__background, 15px, 20px);
+
+            margin: 0 8px 0 0;
+            filter: invert(53%) sepia(94%) saturate(3301%) hue-rotate(332deg) brightness(108%) contrast(84%);
+        }
+
+        &:hover {
+            & {
+                color: darken(@amqorder__color__error, 20%);
+            }
+
+            &:before {
+                filter: invert(25%) sepia(63%) saturate(3758%) hue-rotate(349deg) brightness(104%) contrast(87%);
+            }
+        }
+
+        &:focus {
+            & {
+                color: darken(@amqorder__color__error, 30%);
+            }
+
+            &:before {
+                filter: invert(37%) sepia(96%) saturate(2921%) hue-rotate(340deg) brightness(76%) contrast(122%);
+            }
+        }
+    }
+
+    .amqorder-button.-search {
+        &:after {
+            .amqorder-icon(@amqorder-search-icon__background);
+
+            transition: none;
+        }
+
+        &:hover:after {
+            filter: invert(23%) sepia(90%) saturate(6191%) hue-rotate(227deg) brightness(100%) contrast(91%);
+        }
+    }
+
+    .amqorder-button.-empty:not(.-disabled) {
+        & {
+            min-width: 100px;
+            height: 40px;
+            border: 1px solid @amqorder__color__primary;
+            border-radius: 3px;
+            background: #fff;
+            color: @amqorder__color__primary;
+        }
+
+        &:hover {
+            background: linear-gradient(0deg, #c8d7ff, #c8d7ff);
+        }
+
+        &:focus {
+            border: 1px solid @amqorder__focus__color__primary;
+            background: transparent;
+            color: @amqorder__focus__color__primary;
+        }
+    }
+
+    .amqorder-button.-empty.-disabled {
+        box-sizing: border-box;
+        border: 1px solid #d0d5e1;
+        border-radius: 3px;
+        background: #fff;
+        color: #d0d5e1;
+    }
+
+    .amqorder-button.-reverse:not(.-disabled) {
+        & {
+            .amqorder-flex(center, center, wrap);
+
+            align-content: center;
+            box-sizing: border-box;
+            padding: 0;
+            min-width: @amqorder__indent__l * 2;
+            width: 40px;
+            height: 40px;
+            border: 0 solid transparent;
+            border-radius: 50%;
+            background: @amqorder__color__primary;
+            color: #fff;
+        }
+
+        &:hover {
+            background: @amqorder__hover__color__primary;
+        }
+
+        &:focus {
+            background: @amqorder__focus__color__primary;
+        }
+
+        &:before,
+        &:after {
+            .amqorder-icon(@amqorder-arrow-full-icon__background);
+
+            flex-basis: 100%;
+            height: 8px;
+            background-size: contain;
+        }
+
+        &:after {
+            transform: rotate(180deg);
+        }
+    }
+
+    .amqorder-button.-fill {
+        min-width: 100px;
+        height: 40px;
+        border: 1px solid;
+        border-radius: 3px;
+        background: #fff;
+        color: #fff;
+    }
+
+    .amqorder-button.-fill.-primary:not(.-disabled) {
+        & {
+            border-color: @amqorder__color__primary;
+            background: @amqorder__color__primary;
+        }
+
+        &:hover {
+            background: @amqorder__hover__color__primary;
+        }
+
+        &:focus {
+            background: @amqorder__focus__color__primary;
+            color: #fff;
+        }
+    }
+
+    .amqorder-button.-fill.-secondary:not(.-disabled) {
+        & {
+            border-color: @amqorder__color__secondary;
+            background-color: @amqorder__color__secondary;
+        }
+
+        &:hover {
+            background-color: @amqorder__hover__color__secondary;
+        }
+
+        &:focus {
+            background-color: @amqorder__focus__color__secondary;
+        }
+    }
+
+    .amqorder-button.-fill.-error:not(.-disabled) {
+        & {
+            border-color: @amqorder__color__error;
+            color: @amqorder__color__error;
+        }
+
+        &:hover {
+            background-color: #ffc8c8;
+        }
+
+        &:focus {
+            background-color: #fff;
+        }
+    }
+
+    .amqorder-button.-fill.-disabled {
+        border-color: #d0d5e1;
+        background-color: #d0d5e1;
+    }
+
+    .amqorder-button.-download:before {
+        .amqorder-icon(@amqorder-download-icon__background, 16px, 16px);
+
+        margin-right: @amqorder__indent / 2;
+    }
+
+    .modes .mode-quick-order:before {
+        width: 16px;
+        height: 16px;
+        content: @amqorder-list-icon__background;
+    }
+}

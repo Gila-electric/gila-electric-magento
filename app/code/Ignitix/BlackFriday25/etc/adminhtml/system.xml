@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="ignitix_blackfriday25"
+                 translate="label"
+                 type="text"
+                 sortOrder="999"
+                 showInDefault="1"
+                 showInWebsite="1"
+                 showInStore="1">
+            <label>Ignitix Black Friday 2025</label>
+            <tab>sales</tab>
+            <resource>Magento_Config::config</resource>
+
+            <!-- =================== GENERAL =================== -->
+            <group id="general" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="start" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Start (Y-m-d H:i:s)</label>
+                    <comment>Use store timezone</comment>
+                </field>
+
+                <field id="end" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>End (Y-m-d H:i:s)</label>
+                    <comment>Use store timezone</comment>
+                </field>
+
+                <!-- Baseline threshold (existing) -->
+                <field id="min_total" translate="label" type="text" sortOrder="35" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Minimum Cart Total (EGP)</label>
+                    <validate>validate-number validate-greater-than-zero</validate>
+                </field>
+
+                <!-- Legacy fallback -->
+                <field id="threshold" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Minimum Cart Total (EGP) [Legacy]</label>
+                    <validate>validate-number validate-greater-than-zero</validate>
+                </field>
+
+                <!-- New rule thresholds -->
+                <field id="high_tier_min_total" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>High-tier Minimum Cart Total (EGP)</label>
+                    <comment>When cart total ≥ this amount, include the High-tier prize in the draw with Baseline prizes.</comment>
+                    <validate>validate-number validate-greater-than-zero</validate>
+                </field>
+
+                <field id="category_tier_category_id" translate="label" type="text" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Category-tier Category ID</label>
+                    <comment>Default: 508. If subtotal of items in this category reaches the configured minimum, only Category-tier prizes are drawn.</comment>
+                    <validate>validate-number</validate>
+                </field>
+
+                <field id="category_tier_min_subtotal" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Category-tier Minimum Subtotal (EGP)</label>
+                    <comment>Sum of cart line totals for products in the above category to trigger Category-tier (highest priority).</comment>
+                    <validate>validate-number validate-greater-than-zero</validate>
+                </field>
+            </group>
+
+            <!-- ============== BASELINE PRIZES (4) ============== -->
+            <group id="prizes_baseline" translate="label" sortOrder="20" showInDefault="1" showInWebsite="1">
+                <label>Baseline Prizes (≥ Minimum Cart Total)</label>
+
+                <field id="sku_baseline_1" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1">
+                    <label>Baseline Prize #1 SKU</label>
+                </field>
+                <field id="weight_baseline_1" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1">
+                    <label>Baseline Prize #1 Weight</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+
+                <field id="sku_baseline_2" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1">
+                    <label>Baseline Prize #2 SKU</label>
+                </field>
+                <field id="weight_baseline_2" translate="label" type="text" sortOrder="21" showInDefault="1" showInWebsite="1">
+                    <label>Baseline Prize #2 Weight</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+
+                <field id="sku_baseline_3" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1">
+                    <label>Baseline Prize #3 SKU</label>
+                </field>
+                <field id="weight_baseline_3" translate="label" type="text" sortOrder="31" showInDefault="1" showInWebsite="1">
+                    <label>Baseline Prize #3 Weight</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+
+                <field id="sku_baseline_4" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1">
+                    <label>Baseline Prize #4 SKU</label>
+                </field>
+                <field id="weight_baseline_4" translate="label" type="text" sortOrder="41" showInDefault="1" showInWebsite="1">
+                    <label>Baseline Prize #4 Weight</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+            </group>
+
+            <!-- ============== HIGH-TIER PRIZE (≥ 20,000) ============== -->
+            <group id="prizes_high" translate="label" sortOrder="30" showInDefault="1" showInWebsite="1">
+                <label>High-tier Prize (Pooled with Baseline when Cart ≥ High-tier Minimum)</label>
+
+                <field id="sku_high" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1">
+                    <label>High-tier Prize SKU</label>
+                    <comment>Included in the draw with Baseline prizes only when cart total ≥ High-tier Minimum.</comment>
+                </field>
+                <field id="weight_high" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1">
+                    <label>High-tier Prize Weight</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+            </group>
+
+            <!-- ============== CATEGORY-TIER PRIZES (CAT 508, ≥ 12,000) ============== -->
+            <group id="prizes_category_tier" translate="label" sortOrder="40" showInDefault="1" showInWebsite="1">
+                <label>Category-tier Prizes (Highest Priority)</label>
+                <comment>When subtotal of items in Category-tier Category ID ≥ Category-tier Minimum Subtotal, ONLY these prizes are drawn.</comment>
+
+                <field id="sku_cat_1" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1">
+                    <label>Category-tier Prize #1 SKU</label>
+                </field>
+                <field id="weight_cat_1" translate="label" type="text" sortOrder="11" showInDefault="1" showInWebsite="1">
+                    <label>Category-tier Prize #1 Weight</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+
+                <field id="sku_cat_2" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1">
+                    <label>Category-tier Prize #2 SKU</label>
+                </field>
+                <field id="weight_cat_2" translate="label" type="text" sortOrder="21" showInDefault="1" showInWebsite="1">
+                    <label>Category-tier Prize #2 Weight</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+
+                <field id="sku_cat_3" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1">
+                    <label>Category-tier Prize #3 SKU</label>
+                </field>
+                <field id="weight_cat_3" translate="label" type="text" sortOrder="31" showInDefault="1" showInWebsite="1">
+                    <label>Category-tier Prize #3 Weight</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <type name="Magento\Checkout\Model\Cart">
+        <plugin name="ignitix_productaddons_add_to_cart"
+                type="Ignitix\ProductAddons\Plugin\CartAddProductPlugin"
+                sortOrder="10"/>
+    </type>
+
+    <type name="Magento\Quote\Model\Quote">
+        <plugin name="ignitix_productaddons_remove_linked"
+                type="Ignitix\ProductAddons\Plugin\QuoteRemoveItemPlugin"
+                sortOrder="10"/>
+        <plugin name="ignitix_productaddons_sort_items"
+                type="Ignitix\ProductAddons\Plugin\QuoteSortItemsPlugin"
+                sortOrder="20"/>
+    </type>
+
+</config>

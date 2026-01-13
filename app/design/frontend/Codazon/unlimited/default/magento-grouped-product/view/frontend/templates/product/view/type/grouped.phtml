@@ -1,0 +1,153 @@
+<?php
+/**
+ * Copyright © Magento, Inc. All rights reserved.
+ * See COPYING.txt for license details.
+ */
+
+/**
+ * Grouped product data template
+ *
+ * @var $block \Magento\Catalog\Block\Product\View\BaseImage
+ * @var $block \Magento\GroupedProduct\Block\Product\View\Type\Grouped
+ */
+?>
+<?php $block->setPreconfiguredValue(); ?>
+<?php $_product = $block->getProduct(); ?>
+<?php $_associatedProducts = $block->getAssociatedProducts(); ?>
+<?php $_hasAssociatedProducts = count($_associatedProducts) > 0; ?>
+
+<div class="table-wrapper grouped">
+    <table class="table data grouped"
+           id="super-product-table"
+           data-mage-init='{ "Magento_GroupedProduct/js/product-ids-resolver": {} }'>
+        <caption class="table-caption"><?= $block->escapeHtml(__('Grouped product items')) ?></caption>
+        <thead>
+        <tr>
+            <th class="col item" scope="col"><?= $block->escapeHtml(__('Product Name')) ?></th>
+            <?php if ($_product->isSaleable()) : ?>
+                <th class="col qty" scope="col"><?= $block->escapeHtml(__('Qty')) ?></th>
+            <?php endif; ?>
+            <th class="col total_price" scope="col"><?= $block->escapeHtml(__('Total Price Cell')) ?> </th>
+        </tr>
+        </thead>
+
+        <?php if ($_hasAssociatedProducts) : ?>
+            <tbody>
+            <?php foreach ($_associatedProducts as $_item) : ?>
+                <tr>
+                    <td data-th="<?= $block->escapeHtml(__('Product Name')) ?>" class="col item">
+                        <strong class="product-item-name"><?= $block->escapeHtml($_item->getName()) ?></strong>
+                        <?php if ($block->getCanShowProductPrice($_product)) : ?>
+                            <?php if ($block->getCanShowProductPrice($_item)) : ?>
+                                <?= /* @noEscape */ $block->getProductPrice($_item) ?>
+                            <?php endif; ?>
+                        <?php endif; ?>
+                    </td>
+                    <?php if ($_product->isSaleable()) : ?>
+                        <td data-th="<?= $block->escapeHtml(__('Qty')) ?>" class="col qty">
+                            <?php if ($_item->isSaleable()) : ?>
+                                <div class="control qty">
+                                        <div class="qty-ctl">
+                                            <button title="<?= __('Decrease') ?>" type="button" data-role="change_cart_qty" class="decrease" data-qty="-1" class="decrease"></button>
+                                        </div>
+                                        <input type="number" class="qty" name="qty" maxlength="12" value="<?= $themeHelper->getProductDefaultQty($_product, $block) * 1 ?>" title="<?php echo __('Qty') ?>" class="input-text qty" data-validate="<?= $qtyValidator ?>" />
+                                        <div class="qty-ctl">
+                                            <button aria-label="<?= __('Increase') ?>" type="button" data-role="change_cart_qty" data-qty="1" class="increase"></button>
+                                        </div>
+
+                                    <input type="number"
+                                           name="super_group[<?= $block->escapeHtmlAttr($_item->getId()) ?>]"
+                                           data-selector="super_group[<?= $block->escapeHtmlAttr($_item->getId()) ?>]"
+                                           value="<?= $block->escapeHtmlAttr($_item->getQty() * 1) ?>"
+                                           title="<?= $block->escapeHtmlAttr(__('Qty')) ?>"
+                                           class="input-text qty"
+                                           data-validate="{'validate-grouped-qty':'#super-product-table'}"
+                                           data-errors-message-box="#validation-message-box"
+                                           oninput="updateTotalPrice('<?= $block->escapeHtmlAttr($_item->getId()) ?>', this.value)"
+                                    />
+                                </div>
+                            <?php else : ?>
+                                <div class="stock unavailable" title="<?= $block->escapeHtmlAttr(__('Availability')) ?>">
+                                    <span><?= $block->escapeHtml(__('Out of stock')) ?></span>
+                                </div>
+                            <?php endif; ?>
+                        </td>
+
+<!--           ============= get totalPriceCell to every row ================-->
+                        <td id="totalPriceCell<?= $block->escapeHtmlAttr($_item->getId()) ?>" data-price-amount=""></td>
+
+                  <!--  Start Script UpdateTotalPrice Function-->
+                        <script>
+                            function updateTotalPrice(itemId) {
+                                var priceAmount = parseFloat(document.querySelector('span[id="product-price-' + itemId + '"]').getAttribute('data-price-amount'));
+                                console.log("priceAmount: " . priceAmount);
+
+                                var quantity = parseFloat(document.querySelector('input[name="super_group[' + itemId + ']"]').value);
+                                console.log("quantity: " . quantity);
+
+                                var totalPrice = priceAmount * quantity;
+
+                                document.getElementById('totalPriceCell' + itemId).innerHTML = totalPrice;
+                                document.getElementById('totalPriceCell' + itemId).setAttribute('data-price-amount', totalPrice);
+
+                                var totalSum = 0;
+                                <?php foreach ($_associatedProducts as $_item) : ?>
+                                var itemPriceAmount<?= $block->escapeHtmlAttr($_item->getId()) ?> = parseFloat(document.getElementById('totalPriceCell<?= $block->escapeHtmlAttr($_item->getId()) ?>').getAttribute('data-price-amount'));
+                                totalSum += itemPriceAmount<?= $block->escapeHtmlAttr($_item->getId()) ?>;
+                                <?php endforeach; ?>
+
+                                document.getElementById('total-price').innerHTML = totalSum.toFixed(2);
+                            }
+
+                        </script>
+                 <!--  End Script UpdateTotalPrice Function-->
+
+
+                    <?php endif; ?>
+                </tr>
+                <?php if ($block->getCanShowProductPrice($_product)
+                    && $block->getCanShowProductPrice($_item)
+                    && trim($block->getProductPriceHtml(
+                        $_item,
+                        \Magento\Catalog\Pricing\Price\TierPrice::PRICE_CODE
+                    ))) : ?>
+                    <tr class="row-tier-price">
+                        <td colspan="2">
+                            <?= $block->getProductPriceHtml(
+                                $_item,
+                                \Magento\Catalog\Pricing\Price\TierPrice::PRICE_CODE
+                            ) ?>
+                        </td>
+                    </tr>
+                <?php endif; ?>
+            <?php endforeach; ?>
+            </tbody>
+        <?php else : ?>
+            <tbody>
+            <tr>
+                <td class="unavailable"
+                    colspan="<?php if ($_product->isSaleable()) : ?>4<?php else : ?>3<?php endif; ?>">
+                    <?= $block->escapeHtml(__('No options of this product are available.')) ?>
+                </td>
+            </tr>
+            </tbody>
+        <?php endif; ?>
+    </table>
+    <div id="grouped-table-total">
+        <span class="product-info-main">
+            <span class="price-box">
+                <span class="price-wrapper" style="font-size:19px">
+                    <span> <?= $block->escapeHtml(__('Total Price:')) ?></span>
+                    <span id="total-price" class="price" style="font-size:19px"></span>
+                    <span class="price" style="font-size:19px"><?= $block->escapeHtml(__('EGP')) ?></span></span></span></span>
+    </div>
+
+</div>
+<div id="validation-message-box"></div>
+
+<!--  Call UpdateTotalPrice Function-->
+<script>
+    <?php foreach ($_associatedProducts as $_item) : ?>
+    updateTotalPrice(<?= $block->escapeHtmlAttr($_item->getId()) ?>);
+    <?php endforeach; ?>
+</script>

@@ -1,0 +1,19 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package B2B Company Account for Magento 2
+ */
+
+/**
+ * @var Amasty\CompanyAccount\Block\Adminhtml\AbstractInfo $block
+ */
+$companyName = $block->getCompanyName();
+?>
+
+<?php if ($companyName): ?>
+<tr>
+    <th><?= $block->escapeHtml($block->getLabel()) ?></th>
+    <td><?= $block->escapeHtml($companyName, ['br']) ?></td>
+</tr>
+<?php endif; ?>

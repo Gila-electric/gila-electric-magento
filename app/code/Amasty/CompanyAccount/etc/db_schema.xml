@@ -1,0 +1,191 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package B2B Company Account for Magento 2
+ */-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+    <table name="amasty_company_account_company" resource="default" engine="innodb" comment="Company Table">
+        <column xsi:type="int" name="company_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Company Id"/>
+        <column xsi:type="varchar" name="company_name" nullable="true" length="40" comment="Company Name"/>
+        <column xsi:type="smallint" name="status" padding="5" unsigned="true" nullable="false" identity="false" default="0" comment="Status"/>
+        <column xsi:type="varchar" name="legal_name" nullable="true" length="80" comment="Legal Name"/>
+        <column xsi:type="varchar" name="company_email" nullable="true" length="255" comment="Company Email"/>
+        <column xsi:type="varchar" name="vat_tax_id" nullable="true" length="40" comment="VAT Tax ID"/>
+        <column xsi:type="varchar" name="reseller_id" nullable="true" length="40" comment="Reseller ID"/>
+        <column xsi:type="text" name="comment" nullable="true" comment="Comment"/>
+        <column xsi:type="varchar" name="street" nullable="true" length="40" comment="Street"/>
+        <column xsi:type="varchar" name="city" nullable="true" length="40" comment="City"/>
+        <column xsi:type="varchar" name="country_id" nullable="true" length="2" comment="Country ID"/>
+        <column xsi:type="varchar" name="region" nullable="true" length="40" comment="Region"/>
+        <column xsi:type="int" name="region_id" padding="10" unsigned="true" nullable="true" identity="false" comment="Region Id"/>
+        <column xsi:type="varchar" name="postcode" nullable="true" length="30" comment="Postcode"/>
+        <column xsi:type="varchar" name="telephone" nullable="true" length="20" comment="Telephone"/>
+        <column xsi:type="int" name="customer_group_id" padding="10" unsigned="true" nullable="true" identity="false" comment="Customer Group ID"/>
+        <column xsi:type="int" name="sales_representative_id" padding="10" unsigned="true" nullable="true" identity="false" comment="Sales Representative ID"/>
+        <column xsi:type="int" name="super_user_id" padding="10" unsigned="true" nullable="true" identity="false" comment="Super User ID"/>
+        <column xsi:type="text" name="reject_reason" nullable="true" comment="Reject Reason"/>
+        <column xsi:type="timestamp" name="rejected_at" on_update="false" nullable="true" comment="Reject At"/>
+        <column xsi:type="text" name="restricted_payments" nullable="true" comment="Restricted Payment Method Codes"/>
+        <column xsi:type="smallint" name="use_company_group" padding="6" unsigned="false" nullable="false" identity="false" default="1" comment="Use Company Customer Group"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="company_id"/>
+        </constraint>
+
+        <constraint xsi:type="foreign" referenceId="AMASTY_COMPANY_ACCOUNT_COMPANY_COUNTRY_ID_DIR_COUNTRY_COUNTRY_ID" table="amasty_company_account_company" column="country_id" referenceTable="directory_country" referenceColumn="country_id" onDelete="SET NULL"/>
+        <constraint xsi:type="foreign" referenceId="FK_A0CA27A638A2BA27DF7E86359E691BB8" table="amasty_company_account_company" column="region_id" referenceTable="directory_country_region" referenceColumn="region_id" onDelete="SET NULL"/>
+        <constraint xsi:type="foreign" referenceId="FK_106C37CCAF8F697F137B2EBA17D2AABB" table="amasty_company_account_company" column="customer_group_id" referenceTable="customer_group" referenceColumn="customer_group_id" onDelete="SET NULL"/>
+        <constraint xsi:type="foreign" referenceId="FK_ECBB6FD6084A185E5885E35A58108ACD" table="amasty_company_account_company" column="sales_representative_id" referenceTable="admin_user" referenceColumn="user_id" onDelete="SET NULL"/>
+        <constraint xsi:type="foreign" referenceId="AMASTY_COMPANY_ACCOUNT_COMPANY_SPR_USR_ID_CSTR_ENTT_ENTT_ID" table="amasty_company_account_company" column="super_user_id" referenceTable="customer_entity" referenceColumn="entity_id" onDelete="SET NULL"/>
+    </table>
+
+    <table name="amasty_company_account_role" resource="default" engine="innodb" comment="Company Role Table">
+        <column xsi:type="int" name="role_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Role Id"/>
+        <column xsi:type="varchar" name="role_name" nullable="true" length="40" comment="Role Name"/>
+        <column xsi:type="int" name="company_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Company ID"/>
+        <column xsi:type="int" name="role_type_id" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Company ID"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="role_id"/>
+        </constraint>
+
+        <constraint xsi:type="foreign" referenceId="FK_2803A4DB5BBB23D512E69D39C8980523" table="amasty_company_account_role" column="company_id" referenceTable="amasty_company_account_company" referenceColumn="company_id" onDelete="CASCADE"/>
+
+        <constraint xsi:type="unique" referenceId="AMASTY_COMPANY_ACCOUNT_ROLE_ROLE_ID">
+            <column name="role_id"/>
+        </constraint>
+    </table>
+
+    <table name="amasty_company_account_customer" resource="default" engine="innodb" comment="Company Customer Table">
+        <column xsi:type="int" name="customer_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Customer Id"/>
+        <column xsi:type="int" name="company_id" padding="10" unsigned="true" nullable="true" identity="false" comment="Company Id"/>
+        <column xsi:type="text" name="job_title" nullable="true" comment="Job Title"/>
+        <column xsi:type="varchar" name="telephone" nullable="true" length="255" comment="Phone Number"/>
+        <column xsi:type="int" name="role_id" padding="10" unsigned="true" nullable="true" identity="false" comment="Role Id"/>
+        <column xsi:type="smallint" name="status" padding="6" unsigned="false" nullable="false" identity="false" default="1" comment="User Status"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="customer_id"/>
+        </constraint>
+
+        <constraint xsi:type="foreign" referenceId="FK_1A9CE53366DDCBAD03566F6ABA61F889" table="amasty_company_account_customer" column="company_id" referenceTable="amasty_company_account_company" referenceColumn="company_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="AMASTY_COMPANY_ACCOUNT_CSTR_CSTR_ID_CSTR_ENTT_ENTT_ID" table="amasty_company_account_customer" column="customer_id" referenceTable="customer_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+        <constraint xsi:type="foreign" referenceId="FK_4EF8B59BC3DFF8886BCDA7C7DFAD7109" table="amasty_company_account_customer" column="role_id" referenceTable="amasty_company_account_role" referenceColumn="role_id" onDelete="SET NULL"/>
+
+        <constraint xsi:type="unique" referenceId="AMASTY_COMPANY_ACCOUNT_CUSTOMER_CUSTOMER_ID">
+            <column name="customer_id"/>
+        </constraint>
+
+        <index referenceId="AMASTY_COMPANY_ACCOUNT_CUSTOMER_ROLE_ID_COMPANY_ID" indexType="btree">
+            <column name="role_id"/>
+            <column name="company_id"/>
+        </index>
+    </table>
+
+    <table name="amasty_company_account_permission" resource="default" engine="innodb" comment="Company Permissions Table">
+        <column xsi:type="int" name="permission_id" padding="11" unsigned="false" nullable="false" identity="true" comment="Permission ID"/>
+        <column xsi:type="int" name="role_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Role ID"/>
+        <column xsi:type="varchar" name="resource_id" nullable="true" length="40" comment="Resource ID"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="permission_id"/>
+        </constraint>
+
+        <constraint xsi:type="foreign" referenceId="FK_93A32EADB5920F73CE05EDE9433AC2DC" table="amasty_company_account_permission" column="role_id" referenceTable="amasty_company_account_role" referenceColumn="role_id" onDelete="CASCADE"/>
+
+        <constraint xsi:type="unique" referenceId="AMASTY_COMPANY_ACCOUNT_PERMISSION_PERMISSION_ID">
+            <column name="permission_id"/>
+        </constraint>
+
+        <index referenceId="AMASTY_COMPANY_ACCOUNT_PERMISSION_ROLE_ID" indexType="btree">
+            <column name="role_id"/>
+        </index>
+    </table>
+
+    <table name="amasty_company_account_order" resource="default" engine="innodb" comment="Company Order Table">
+        <column xsi:type="int" name="company_order_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Id"/>
+        <column xsi:type="int" name="company_id" padding="11" unsigned="false" nullable="false" identity="false" default="0" comment="Company Id"/>
+        <column xsi:type="text" name="company_name" nullable="true" comment="Company Name"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="company_order_id"/>
+        </constraint>
+
+        <constraint xsi:type="foreign" referenceId="FK_017975B21B6C93FEB6451B9206315B3E" table="amasty_company_account_order" column="company_order_id" referenceTable="sales_order" referenceColumn="entity_id" onDelete="CASCADE"/>
+    </table>
+
+    <table name="amasty_company_credit" resource="default" engine="innodb" comment="Company Credit Table">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="Id."/>
+        <column xsi:type="int" name="company_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Company Id."/>
+        <column xsi:type="decimal" name="balance" scale="4" precision="20" unsigned="false" nullable="false" comment="Balance."/>
+        <column xsi:type="decimal" name="credit" scale="4" precision="20" unsigned="false" nullable="false" comment="Issued credit."/>
+        <column xsi:type="decimal" name="be_paid" scale="4" precision="20" unsigned="false" nullable="false" comment="To be paid."/>
+        <column xsi:type="varchar" name="currency_code" nullable="false" length="3" comment="Currency of credit."/>
+        <column xsi:type="boolean" name="allow_overdraft" nullable="false" comment="Is overdraft allowed."/>
+        <column xsi:type="decimal" name="overdraft_limit" scale="4" precision="20" unsigned="false" nullable="true" comment="Overdraft limit."/>
+        <column xsi:type="smallint" name="overdraft_repay_period" padding="6" unsigned="false" nullable="false" identity="false" default="0" comment="Overdraft repay period."/>
+        <column xsi:type="smallint" name="overdraft_repay_digit" padding="6" unsigned="false" nullable="true" identity="false" comment="Number of days/months/years."/>
+        <column xsi:type="smallint" name="overdraft_repay_type" padding="6" unsigned="false" nullable="true" identity="false" comment="Days/months/years."/>
+        <column xsi:type="float" name="overdraft_penalty" scale="0" precision="0" unsigned="false" nullable="true" comment="Penalty if repay period expired."/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+
+        <constraint xsi:type="foreign" referenceId="FK_FA1AD0A7C76D7E975C389277DE88FC24" table="amasty_company_credit" column="company_id" referenceTable="amasty_company_account_company" referenceColumn="company_id" onDelete="CASCADE"/>
+
+        <index referenceId="AMASTY_COMPANY_CREDIT_COMPANY_ID" indexType="btree">
+            <column name="company_id"/>
+        </index>
+    </table>
+
+    <table name="amasty_company_credit_event" resource="default" engine="innodb" comment="Company Credit Event Table">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="Id."/>
+        <column xsi:type="int" name="credit_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Credit Id."/>
+        <column xsi:type="int" name="user_id" padding="10" unsigned="true" nullable="true" identity="false" comment="User Id."/>
+        <column xsi:type="smallint" name="user_type" padding="5" unsigned="true" nullable="true" identity="false" comment="User Type."/>
+        <column xsi:type="varchar" name="type" nullable="false" length="25" comment="Type of operation."/>
+        <column xsi:type="decimal" name="amount" scale="4" precision="20" unsigned="false" nullable="false" comment="Amount of operation(saved in base currency of operation (order, etc.))."/>
+        <column xsi:type="varchar" name="currency_credit" nullable="false" length="3" comment="Currency of credit."/>
+        <column xsi:type="varchar" name="currency_event" nullable="false" length="3" comment="Currency of operation."/>
+        <column xsi:type="decimal" name="rate" scale="12" precision="24" unsigned="false" nullable="false" default="0" comment="Rate for convert in Operation Currency."/>
+        <column xsi:type="decimal" name="rate_credit" scale="12" precision="24" unsigned="false" nullable="false" default="0" comment="Rate for convert in Credit Currency."/>
+        <column xsi:type="decimal" name="balance" scale="4" precision="20" unsigned="false" nullable="false" comment="Balance at moment (Saved in Credit Currency)."/>
+        <column xsi:type="timestamp" name="datetime" on_update="false" nullable="true" default="CURRENT_TIMESTAMP" comment="Timestamp of Operation."/>
+        <column xsi:type="text" name="comment" nullable="true" comment="Comment of Operation."/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+
+        <constraint xsi:type="foreign" referenceId="AMASTY_COMPANY_CREDIT_EVENT_CREDIT_ID_AMASTY_COMPANY_CREDIT_ID" table="amasty_company_credit_event" column="credit_id" referenceTable="amasty_company_credit" referenceColumn="id" onDelete="CASCADE"/>
+
+        <index referenceId="AMASTY_COMPANY_CREDIT_EVENT_CREDIT_ID" indexType="btree">
+            <column name="credit_id"/>
+        </index>
+    </table>
+
+    <table name="amasty_company_credit_overdraft" resource="default" engine="innodb" comment="Company Credit Overdraft Table">
+        <column xsi:type="int" name="id" padding="10" unsigned="true" nullable="false" identity="true" comment="Id."/>
+        <column xsi:type="int" name="credit_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Credit Id."/>
+        <column xsi:type="timestamp" name="start_date" on_update="false" nullable="false" default="CURRENT_TIMESTAMP" comment="Timestamp when Overdraft created."/>
+        <column xsi:type="timestamp" name="repay_date" on_update="false" nullable="true" comment="Timestamp when Overdraft calculate penalty if not repayed."/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="id"/>
+        </constraint>
+
+        <constraint xsi:type="foreign" referenceId="FK_BB22A8AE343CA1C4D26A45BBE3E81CA4" table="amasty_company_credit_overdraft" column="credit_id" referenceTable="amasty_company_credit" referenceColumn="id" onDelete="CASCADE"/>
+
+        <index referenceId="AMASTY_COMPANY_CREDIT_OVERDRAFT_REPAY_DATE" indexType="btree">
+            <column name="repay_date"/>
+        </index>
+
+        <index referenceId="AMASTY_COMPANY_CREDIT_OVERDRAFT_CREDIT_ID" indexType="btree">
+            <column name="credit_id"/>
+        </index>
+    </table>
+</schema>

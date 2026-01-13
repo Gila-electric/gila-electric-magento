@@ -1,0 +1,22 @@
+{
+    "name": "amasty/module-optimizer-lite",
+    "description": "Page Speed Optimizer Lite by Amasty",
+    "require": {
+        "php": ">=7.3",
+        "amasty/base": "*",
+        "amasty/module-lazy-load-ui": "*"
+    },
+    "type": "magento2-module",
+    "version": "1.2.0",
+    "license": [
+        "Commercial"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Amasty\\PageSpeedOptimizerLite\\": ""
+        }
+    }
+}

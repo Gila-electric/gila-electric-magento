@@ -1,0 +1,103 @@
+<!--
+ /**
+ * Amasty Multiple Block Component
+ *
+ * @desc Multiple Component For Quick Order Module
+ *
+ * @copyright 2009-2020 Amasty Ltd
+ * @license   https://amasty.com/license.html
+ */
+ -->
+
+<article class="amqorder-title">
+    <button class="amqorder-button -clean -reverse"
+            type="button"
+            data-bind="click: toggle, attr: {title: $t('Add product')}"></button>
+    <span class="amqorder-text" data-bind="{i18n: 'Add Multiple Products'}"></span>
+</article>
+
+<article class="amqorder-sku">
+    <label class="amqorder-label" for="amqorder-sku" data-bind="{i18n: 'Enter multiple SKU(s)'}"></label>
+    <textarea id="amqorder-sku"
+              class="amqorder-textarea"
+              name="multiple_sku"
+              cols="30"
+              rows="3"
+              data-bind="
+                     event: {
+                        input: function(ui, event) {
+                            list(event.target.value);
+                        }
+                     },
+                     attr: {
+                        placeholder: $t('Use new line for each separate SKU. Add just SKUs or also specify qty and options.')
+                     },
+                     css: {
+                         '-active': list()
+                     },
+                     value: list"
+    ></textarea>
+    <span class="amqorder-comment" data-bind="{i18n: 'Format: SKU,qty,option:value'}"></span>
+    <span class="amqorder-comment" data-bind="{i18n: 'Example: WT08,5,size:xl,color:black'}"></span>
+    <button class="amqorder-button -fill -primary -addto"
+            type="button"
+            data-bind="{
+                i18n: 'Add to List',
+                attr: {
+                    title: $t('Add products from list')
+                },
+                css: {
+                    '-disabled': !list()
+                },
+                click: uploadList
+            }">
+    </button>
+</article>
+
+<!-- ko if: fileUploadEnabled -->
+    <article class="amqorder-file">
+        <label class="amqorder-label" for="amqorder-file" data-bind="{i18n: 'Add from File'}"></label>
+        <div class="amfile-uploader-block"
+             data-amfile-js="loader"
+             data-bind="attr: {
+                          'data-file': files() ? '' : '+',
+                          'data-label': files() && files()[0] && files()[0].name ? files()[0].name : $t('Choose file')
+                        },
+                        css: {
+                            '-active': files(),
+                            '-error': fileErrors()
+                        }">
+            <input id="amqorder-file"
+                   class="amfile-input"
+                   name="multiple_file"
+                   type="file"
+                   data-amfile-js="input"
+                   accept=".xml,.csv"
+                   data-bind="
+                        click: function(ui, event) {
+                            event.target.value = '';
+                            return true;
+                        },
+                        event: {
+                            input: function(ui, event) {
+                                files(event.target.files);
+                            }
+                        }">
+        </div>
+        <ul class="amqorder-messages-list" data-bind="foreach: fileErrors, visible: fileErrors()">
+            <li class="amqorder-item" html="$data"></li>
+        </ul>
+        <span class="amqorder-comment"
+              data-bind="{i18n: 'File must be in .csv or .xml format and include “SKU” and “QTY” columns.'}">
+        </span>
+        <a class="amqorder-link" text="$t('Download sample.xml')" data-bind="attr: {'href': sampleXmlUrl}"></a>
+        <a class="amqorder-link" text="$t('Download sample.csv')" data-bind="attr: {'href': sampleCsvUrl}"></a>
+        <button class="amqorder-button -fill -primary -upload"
+                type="button"
+                data-bind="i18n: 'Upload now',
+                           attr: { title: $t('Upload file') },
+                           css: { '-disabled': !files().length },
+                           click: uploadFile">
+        </button>
+    </article>
+<!-- /ko -->

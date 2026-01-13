@@ -1,0 +1,15 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package B2B Company Account for Magento 2
+ */
+/**
+ * @var \Amasty\CompanyAccount\Block\Payment\Info $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+?>
+<div class="order-payment-method-name"><?= $escaper->escapeHtml($block->getMethodTitle()) ?></div>
+<div>
+    <a href="<?= $escaper->escapeUrl($block->getCheckUrl()) ?>" target="_blank"><?= $escaper->escapeHtml(__('Check Current Balance.')) ?></a>
+</div>

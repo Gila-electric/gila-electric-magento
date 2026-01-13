@@ -1,0 +1,83 @@
+//
+//  Category Page Styles
+//  ____________________________________________
+
+//
+//  Imports
+//  --------------------------------------------
+
+@import (reference) '../_mixins';
+
+//
+//  Common
+//  --------------------------------------------
+
+& when (@media-common = true) {
+    .catalog-category-view,
+    .catalogsearch-result-index {
+        .amqorder-header {
+            padding: 0;
+            width: 49%;
+        }
+
+        .amqorder-item-info .amqorder-checkbox-container {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+            padding: @amqorder__indent__m;
+        }
+
+        .amqorder-header .amqorder-item:not(.-selectall) {
+            display: none;
+        }
+
+        .toolbar {
+            margin-bottom: @amqorder__indent__l * 2;
+        }
+    }
+}
+
+//
+//  Tablet
+//  --------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .catalog-category-view,
+    .catalogsearch-result-index {
+        .amqorder-item-info .amqorder-checkbox-container {
+            position: inherit;
+            padding: 0;
+        }
+
+        .amqorder-massaction-toolbar:last-child > .amqorder-selected-toolbar {
+            margin: 0 @amqorder__indent__l 0 0;
+        }
+
+        .amqorder-massaction-toolbar:first-child {
+            & {
+                justify-content: flex-end;
+                width: 100%;
+            }
+
+            .amqorder-buttons-block {
+                display: flex;
+            }
+        }
+
+        .amqorder-header {
+            width: 100%;
+        }
+
+        .amqorder-header .amqorder-item.-item {
+            min-width: 305px;
+        }
+
+        .amqorder-header .amqorder-item:not(.-selectall) {
+            display: inline-block;
+        }
+
+        .amqorder-items-block .amqorder-item.-name {
+            min-width: 200px;
+        }
+    }
+}

@@ -1,0 +1,34 @@
+<!--
+/**
+ * Amasty Popup Component
+ *
+ * @desc Popup Component For Quick Order Module
+ *
+ * @copyright 2009-2020 Amasty Ltd
+ * @license   https://amasty.com/license.html
+ */
+-->
+
+<div data-bind="attr: { class: '-' + type() + ' amqorder-popup' }">
+    <div class="amqorder-title">
+        <h5 class="amqorder-header" data-bind="visible: header, html: header"></h5>
+        <p class="amqorder-desc" data-bind="visible: description, html: description"></p>
+    </div>
+    <div class="amqorder-content" data-bind="visible: messagesList().length">
+        <ul class="amqorder-labels-list">
+            <li class="amqorder-item -index" data-bind="i18n: 'Item №'"></li>
+            <li class="amqorder-item -sku" data-bind="i18n: 'SKU(s)'"></li>
+            <li class="amqorder-item -reason" data-bind="i18n: 'Reason'"></li>
+        </ul>
+        <ul class="amqorder-errors-list" data-bind="foreach: messagesList">
+            <li class="amqorder-item">
+                <span class="amqorder-index" data-bind="attr: {'data-label': $t('Item №')}" text="row"></span>
+                <span class="amqorder-sku" data-bind="attr: {'data-label': $t('SKU(s)')}" text="sku"></span>
+                <span class="amqorder-reason" data-bind="attr: {'data-label': $t('Reason')}" text="message"></span>
+            </li>
+        </ul>
+    </div>
+    <div class="amqorder-toolbar" data-bind="foreach: buttons, visible: buttons">
+        <button data-bind="i18n: text, attr: { class: classes + ' amqorder-button' }, click: callback"></button>
+    </div>
+</div>

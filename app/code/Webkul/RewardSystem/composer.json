@@ -1,0 +1,20 @@
+{
+    "name": "webkul/reward_system",
+    "description": "Reward system module for Magento2 ",
+    "require": {
+        "magento/framework": "103.0.*"
+    },
+    "type": "magento2-module",
+    "version": "4.0.5",
+    "license": [
+        "proprietary"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Webkul\\RewardSystem\\": ""
+        }
+    }
+}

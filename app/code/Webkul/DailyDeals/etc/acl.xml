@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul DailyDeals acl
+ * @category  Webkul
+ * @package   Webkul_DailyDeals
+ * @author    Webkul Software Private Limited
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Webkul_DailyDeals::dailydeals" title="Webkul Daily Deals" sortOrder="10" >
+                    <resource id="Webkul_DailyDeals::dailydeals_support" title="Support" sortOrder="20">
+                        <resource id="Webkul_DailyDeals::dailydeals_userguide" title="User Guide" sortOrder="10" />
+                        <resource id="Webkul_DailyDeals::dailydeals_extension" title="Store Extension" sortOrder="20" />
+                        <resource id="Webkul_DailyDeals::dailydeals_uvdesk" title="Ticket/Customisations" sortOrder="30" />
+                        <resource id="Webkul_DailyDeals::dailydeals_services" title="Services" sortOrder="40" />
+                        <resource id="Webkul_DailyDeals::dailydeals_reviews" title="Reviews" sortOrder="50" />
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Webkul_DailyDeals::config_dailydeals" title="DailyDeals Configuration" sortOrder="50" />
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>   
+        </resources>
+    </acl>
+</config>

@@ -1,0 +1,13 @@
+<?php
+/** @var \Ignitix\Hreflang\Block\Hreflang $block */
+$links = $block->getAlternateLinks();
+if (is_array($links)):
+    foreach ($links as $link):
+        if (empty($link['hreflang']) || empty($link['href'])) { continue; }
+        ?>
+        <link rel="alternate"
+              hreflang="<?= $block->escapeHtmlAttr($link['hreflang']) ?>"
+              href="<?= $block->escapeUrl($link['href']) ?>" />
+        <?php
+    endforeach;
+endif;

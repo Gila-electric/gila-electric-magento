@@ -1,0 +1,14 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package Quick Order for Magento 2
+ */ /** @var \Amasty\QuickOrder\Block\Script\Giftcard $block */ ?>
+
+<script type="text/x-magento-init">
+{
+    "[data-amqorder-js=\"item\"][data-item-id=\"<?= $block->escapeHtml($block->getItemId()) ?>\"] .giftcard-amount": {
+        "Amasty_QuickOrder/js/catalog/subtotal/giftcard-amount": <?= /** @noEscape */ $block->getJsonConfig() ?>
+    }
+}
+</script>

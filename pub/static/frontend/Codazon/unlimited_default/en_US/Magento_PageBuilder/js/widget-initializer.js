@@ -1,0 +1,1 @@
+/home/abanoub/Desktop/Gila/Gila-project/vendor/magento/module-page-builder/view/base/web/js/widget-initializer.js

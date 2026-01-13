@@ -1,0 +1,22 @@
+<!--@subject {{trans "New Quote Request"}} @-->
+<!--@vars {
+"var type":"Type",
+"var company_name":"Company Name",
+"var full_name":"Full Name",
+"var email":"Email",
+"var phone":"Phone Number",
+"var address":"Address",
+"var order_details":"Order Details"
+} @-->
+
+<p><strong>{{trans "New Quote Request"}}</strong></p>
+<ul>
+    <li><strong>{{trans "Type"}}:</strong> {{var type}}</li>
+    <li><strong>{{trans "Company Name"}}:</strong> {{var company_name}}</li>
+    <li><strong>{{trans "Full Name"}}:</strong> {{var full_name}}</li>
+    <li><strong>{{trans "Email"}}:</strong> {{var email}}</li>
+    <li><strong>{{trans "Phone Number"}}:</strong> {{var phone}}</li>
+    <li><strong>{{trans "Address"}}:</strong> {{var address}}</li>
+</ul>
+<p><strong>{{trans "Order Details"}}:</strong><br/>{{var order_details|raw}}</p>
+<p>{{trans "Any uploaded file will be attached to this email."}}</p>

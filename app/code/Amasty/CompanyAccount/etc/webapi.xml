@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package B2B Company Account for Magento 2
+ */-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/amcompany/company/:companyId" method="GET">
+        <service class="Amasty\CompanyAccount\Api\CompanyRepositoryInterface" method="getById"/>
+        <resources>
+            <resource ref="Amasty_CompanyAccount::company_management" />
+        </resources>
+    </route>
+    <route url="/V1/amcompany/company" method="POST">
+        <service class="Amasty\CompanyAccount\Api\CompanyRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Amasty_CompanyAccount::company_management" />
+        </resources>
+    </route>
+    <route url="/V1/amcompany/company/:companyId" method="PUT">
+        <service class="Amasty\CompanyAccount\Api\CompanyRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Amasty_CompanyAccount::company_management" />
+        </resources>
+    </route>
+    <route url="/V1/amcompany/company/:companyId" method="DELETE">
+        <service class="Amasty\CompanyAccount\Api\CompanyRepositoryInterface" method="deleteById"/>
+        <resources>
+            <resource ref="Amasty_CompanyAccount::company_management" />
+        </resources>
+    </route>
+
+    <route url="/V1/amcompany/credit/:companyId" method="GET">
+        <service class="Amasty\CompanyAccount\Api\CreditRepositoryInterface" method="getByCompanyId"/>
+        <resources>
+            <resource ref="Amasty_CompanyAccount::company_management" />
+        </resources>
+    </route>
+    <route url="/V1/amcompany/credit/:companyId" method="PUT">
+        <service class="Amasty\CompanyAccount\Api\CreditRepositoryInterface" method="save"/>
+        <resources>
+            <resource ref="Amasty_CompanyAccount::company_management" />
+        </resources>
+    </route>
+
+    <route url="/V1/amcompany/customer/:companyId" method="POST">
+        <service class="Amasty\CompanyAccount\Api\CustomerRepositoryInterface" method="assignToCompany"/>
+        <resources>
+            <resource ref="Amasty_CompanyAccount::company_management" />
+        </resources>
+    </route>
+    <route url="/V1/amcompany/customer/:customerId" method="DELETE">
+        <service class="Amasty\CompanyAccount\Api\CustomerRepositoryInterface" method="delete"/>
+        <resources>
+            <resource ref="Amasty_CompanyAccount::company_management" />
+        </resources>
+    </route>
+</routes>

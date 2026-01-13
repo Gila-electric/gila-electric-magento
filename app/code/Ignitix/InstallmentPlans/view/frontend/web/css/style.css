@@ -1,0 +1,93 @@
+#installment-plans-sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 320px; /* or your preferred width */
+    height: 100%;
+    background-color: #fff;
+    box-shadow: -2px 0 6px rgba(0,0,0,0.2);
+    transition: right 0.3s ease-in-out;
+    z-index: 9999;
+    padding: 20px;
+    overflow-y: auto;
+}
+#installment-plans-sidebar.open {
+    right: 0;
+}
+.sidebar-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+.installment-tabs {
+    display: flex;
+    list-style: none;
+    margin: 15px 0;
+    padding: 0;
+    border-bottom: 1px solid #ccc;
+}
+.installment-tabs li {
+    padding: 8px 12px;
+    cursor: pointer;
+    margin-right: 5px;
+}
+.installment-tabs li.active {
+    border-bottom: 2px solid #f60;
+    font-weight: bold;
+}
+.tab-content {
+    display: none;
+}
+.tab-content.active {
+    display: block;
+}
+.entities-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.entity {
+    width: 80px;
+    text-align: center;
+    cursor: pointer;
+}
+.entity.active img {
+    border: 2px solid #0072bc;
+    box-shadow: 0 0 10px #0072bc;
+}
+.entity img {
+    width: 100px;
+}
+.installment-plans-durations {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+.plan-duration {
+    padding: 6px 6px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+	width: 84px;
+}
+.installment-result {
+    margin-top: 20px;
+    border-top: 1px solid #eee;
+    padding-top: 10px;
+}
+#installment-plans-button {
+	width: calc(50% - 15px);
+    height: 40px;
+}
+@media only screen and (max-width: 768px) {
+	#installment-plans-button {
+		width: 100%;
+		margin-top: 10px;
+	}
+}

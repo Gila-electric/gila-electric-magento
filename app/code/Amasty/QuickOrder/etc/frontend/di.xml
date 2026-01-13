@@ -1,0 +1,347 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package Quick Order for Magento 2
+ */-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\App\RouterList">
+        <arguments>
+            <argument name="routerList" xsi:type="array">
+                <item name="cms" xsi:type="array">
+                    <item name="class" xsi:type="string">Amasty\QuickOrder\Controller\Router</item>
+                    <item name="disable" xsi:type="boolean">false</item>
+                    <item name="sortOrder" xsi:type="string">70</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\Message\MessageConfigurationsPool">
+        <arguments>
+            <argument name="configurationsMap" xsi:type="array">
+                <item name="quickorderAddedProducts" xsi:type="array">
+                    <item name="renderer" xsi:type="const">Magento\Framework\View\Element\Message\Renderer\BlockRenderer::CODE</item>
+                    <item name="data" xsi:type="array">
+                        <item name="template" xsi:type="string">Amasty_QuickOrder::messages/addedProducts.phtml</item>
+                    </item>
+                </item>
+                <item name="quickorderNotAddedProducts" xsi:type="array">
+                    <item name="renderer" xsi:type="const">Magento\Framework\View\Element\Message\Renderer\BlockRenderer::CODE</item>
+                    <item name="data" xsi:type="array">
+                        <item name="template" xsi:type="string">Amasty_QuickOrder::messages/notAddedProducts.phtml</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Page\Config\Renderer">
+        <plugin name="Amasty_QuickOrder::add-css" type="Amasty\QuickOrder\Plugin\View\Page\Config\Renderer" />
+    </type>
+
+    <virtualType name="quickOrderStorage" type="Magento\Framework\Session\Storage">
+        <arguments>
+            <argument name="namespace" xsi:type="string">amasty_quickorder</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Amasty\QuickOrder\Model\Session">
+        <arguments>
+            <argument name="storage" xsi:type="object">quickOrderStorage</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="quickOrderCategoryStorage" type="Magento\Framework\Session\Storage">
+        <arguments>
+            <argument name="namespace" xsi:type="string">amasty_quickorder_category</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Amasty\QuickOrder\Model\Category\Item\Session">
+        <arguments>
+            <argument name="storage" xsi:type="object">quickOrderCategoryStorage</argument>
+        </arguments>
+    </type>
+
+    <!-- start import section -->
+    <type name="Amasty\QuickOrder\Model\Import\Provider\CustomOption">
+        <arguments>
+            <argument name="optionResource" xsi:type="object">Amasty\QuickOrder\Model\Import\Resources\GetCustomOptions</argument>
+            <argument name="valueResource" xsi:type="object">Amasty\QuickOrder\Model\Import\Resources\GetCustomOptionsValues</argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\QuickOrder\Model\Import\Provider\Configurable\Provider">
+        <arguments>
+            <argument name="optionResource" xsi:type="object">Amasty\QuickOrder\Model\Import\Resources\Configurable\GetSuperAttributes</argument>
+            <argument name="valueResource" xsi:type="object">Amasty\QuickOrder\Model\Import\Resources\Configurable\GetSuperAttributesValues</argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\QuickOrder\Model\Import\Provider\Bundle\Provider">
+        <arguments>
+            <argument name="optionResource" xsi:type="object">Amasty\QuickOrder\Model\Import\Resources\Bundle\GetOptions</argument>
+            <argument name="valueResource" xsi:type="object">Amasty\QuickOrder\Model\Import\Resources\Bundle\GetSelections</argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\QuickOrder\Model\Import\Provider\Grouped\Provider">
+        <arguments>
+            <argument name="optionResource" xsi:type="object">Amasty\QuickOrder\Model\Import\Resources\Grouped\GetLinks</argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\QuickOrder\Model\Import\ImportHandler">
+        <arguments>
+            <argument name="optionProviders" xsi:type="array">
+                <item name="custom_option" xsi:type="object">Amasty\QuickOrder\Model\Import\Provider\CustomOption</item>
+                <item name="super_attribute" xsi:type="object">Amasty\QuickOrder\Model\Import\Provider\Configurable\Provider</item>
+                <item name="selections" xsi:type="object">Amasty\QuickOrder\Model\Import\Provider\Bundle\Provider</item>
+                <item name="super_group" xsi:type="object">Amasty\QuickOrder\Model\Import\Provider\Grouped\Provider</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- end import section -->
+
+    <!-- start export section -->
+    <type name="Amasty\QuickOrder\Model\Export\Provider\CustomOption\Provider">
+        <arguments>
+            <argument name="optionResource" xsi:type="object">Amasty\QuickOrder\Model\Export\Resources\GetCustomOptions</argument>
+            <argument name="valueResource" xsi:type="object">Amasty\QuickOrder\Model\Export\Resources\GetCustomOptionsValues</argument>
+        </arguments>
+    </type>
+
+    <virtualType name="configurableOptionProvider" type="Amasty\QuickOrder\Model\Export\Provider\OptionProvider">
+        <arguments>
+            <argument name="optionResource" xsi:type="object">Amasty\QuickOrder\Model\Export\Resources\Configurable\GetSuperAttributes</argument>
+            <argument name="valueResource" xsi:type="object">Amasty\QuickOrder\Model\Export\Resources\Configurable\GetSuperAttributesValues</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="bundleOptionProvider" type="Amasty\QuickOrder\Model\Export\Provider\OptionProvider">
+        <arguments>
+            <argument name="optionResource" xsi:type="object">Amasty\QuickOrder\Model\Export\Resources\Bundle\GetOptions</argument>
+            <argument name="valueResource" xsi:type="object">Amasty\QuickOrder\Model\Export\Resources\Bundle\GetSelections</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Amasty\QuickOrder\Model\Export\Provider\Grouped\Provider">
+        <arguments>
+            <argument name="optionResource" xsi:type="object">Amasty\QuickOrder\Model\Export\Resources\Grouped\GetLinks</argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\QuickOrder\Model\Export\ExportHandler">
+        <arguments>
+            <argument name="optionProviders" xsi:type="array">
+                <item name="custom_option" xsi:type="object">Amasty\QuickOrder\Model\Export\Provider\CustomOption\Provider</item>
+                <item name="super_attribute" xsi:type="object">configurableOptionProvider</item>
+                <item name="selections" xsi:type="object">bundleOptionProvider</item>
+                <item name="super_group" xsi:type="object">Amasty\QuickOrder\Model\Export\Provider\Grouped\Provider</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- end export section -->
+
+    <!-- start section for menu plugins -->
+    <type name="Amasty\MegaMenuLite\Model\Menu\TreeResolver">
+        <plugin name="Amasty_QuickOrder::AmastyMegaMenu" type="Amasty\QuickOrder\Plugin\MegaMenu\Model\Menu\TreeResolverPlugin" />
+    </type>
+    <type name="Magento\Theme\Block\Html\Topmenu">
+        <plugin name="Amasty_QuickOrder::TopMenu" type="Amasty\QuickOrder\Plugin\Theme\Block\Html\TopmenuPlugin" sortOrder="999" />
+    </type>
+    <type name="Infortis\UltraMegamenu\Block\Navigation">
+        <plugin name="Amasty_QuickOrder::TopMenuUltimo" type="Amasty\QuickOrder\Plugin\Infortis\UltraMegamenu\Block\NavigationPlugin" sortOrder="999" />
+    </type>
+    <type name="Smartwave\Megamenu\Block\Topmenu">
+        <plugin name="Amasty_QuickOrder::TopMenuPorto" type="Amasty\QuickOrder\Plugin\Smartwave\Megamenu\Block\TopmenuPlugin" sortOrder="999" />
+    </type>
+    <!-- end section for menu plugins -->
+
+    <!-- start section with additional data for controllers -->
+    <type name="Amasty\QuickOrder\Controller\Item\Import\File">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="fileHandler" xsi:type="object">Amasty\QuickOrder\Model\Import\FileHandler</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Amasty\QuickOrder\Controller\Item\Import\MultipleInput">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="arrayHandler" xsi:type="object">Amasty\QuickOrder\Model\Import\ArrayHandler</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="addProductsInQuoteCart" type="Amasty\QuickOrder\Model\Cart\AddProductsPool">
+        <arguments>
+            <argument name="cart" xsi:type="object">Amasty\RequestQuote\Model\Cart</argument>
+        </arguments>
+    </virtualType>
+    <type name="Amasty\QuickOrder\Model\Cart\AddProductsPool">
+        <arguments>
+            <argument name="instanceMap" xsi:type="array">
+                <item name="from_grid" xsi:type="string">Amasty\QuickOrder\Model\Cart\AddProducts</item>
+                <item name="from_category" xsi:type="string">Amasty\QuickOrder\Model\Cart\Category\AddProducts</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Amasty\QuickOrder\Controller\Item\Move\InQuote">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="addProducts" xsi:type="object">addProductsInQuoteCart</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="addProductsInCart" type="Amasty\QuickOrder\Model\Cart\AddProductsPool">
+        <arguments>
+            <argument name="cart" xsi:type="object">Magento\Checkout\Model\Cart</argument>
+        </arguments>
+    </virtualType>
+    <type name="Amasty\QuickOrder\Controller\Item\Move\InCart">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="addProducts" xsi:type="object">addProductsInCart</item>
+                <item name="cartHelper" xsi:type="object">Magento\Checkout\Helper\Cart\Proxy</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Amasty\QuickOrder\Controller\Item\Move\AbstractAction">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="urlBuilder" xsi:type="object">Magento\Framework\UrlInterface</item>
+            </argument>
+        </arguments>
+    </type>
+    <!-- end section with additional data for controllers -->
+
+    <!-- start section with additional data for category controllers -->
+    <type name="Amasty\QuickOrder\Controller\Category\GetOptions">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="optionsProvider" xsi:type="object">Amasty\QuickOrder\Model\Category\OptionsProvider</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Amasty\QuickOrder\Controller\Category\UpdateItem">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="itemManager" xsi:type="object">Amasty\QuickOrder\Model\Category\Item\Manager</item>
+                <item name="zendUri" xsi:type="object">Zend\Uri\Uri</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Amasty\QuickOrder\Controller\Category\UnselectAll">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="itemManager" xsi:type="object">Amasty\QuickOrder\Model\Category\Item\Manager</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Amasty\QuickOrder\Controller\Item\AbstractAction">
+        <arguments>
+            <argument name="getIsAvailable" xsi:type="object">Amasty\QuickOrder\Model\GetIsAvailable</argument>
+        </arguments>
+    </type>
+    <type name="Amasty\QuickOrder\Controller\Category\Item\Move\InCart">
+        <arguments>
+            <argument name="getIsAvailable" xsi:type="object">Amasty\QuickOrder\Model\CategoryModeIsAvailable</argument>
+        </arguments>
+    </type>
+    <type name="Amasty\QuickOrder\Controller\Category\Item\Move\InQuote">
+        <arguments>
+            <argument name="getIsAvailable" xsi:type="object">Amasty\QuickOrder\Model\CategoryModeIsAvailable</argument>
+        </arguments>
+    </type>
+    <!-- end section with additional data for category controllers -->
+
+    <type name="Magento\Catalog\Block\Product\ListProduct">
+        <plugin name="Amasty_QuickOrder::quickorder-mode-category" type="Amasty\QuickOrder\Plugin\Catalog\Block\Product\ListProductPlugin" />
+    </type>
+
+    <type name="Magento\Catalog\Helper\Product\ProductList">
+        <plugin name="Amasty_QuickOrder::quickorder-mode-category-toolbar" type="Amasty\QuickOrder\Plugin\Catalog\Helper\Product\ProductListPlugin" />
+    </type>
+
+    <!-- fix error product.price.render.default not exist -->
+    <type name="Magento\Catalog\Block\Product\View\Options\AbstractOptions">
+        <plugin name="Amasty_QuickOrder::inject-layout-for-option-render" type="Amasty\QuickOrder\Plugin\Catalog\Block\Product\View\Options\AbstractOptionsPlugin" />
+    </type>
+
+    <type name="Magento\Customer\CustomerData\SectionPoolInterface">
+        <arguments>
+            <argument name="sectionSourceMap" xsi:type="array">
+                <item name="quickorder_category" xsi:type="string">Amasty\QuickOrder\CustomerData\Category</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="quickOrderGridMoveConfig" type="Amasty\QuickOrder\Block\Grid\MoveConfigProcessor">
+        <arguments>
+            <argument name="requestedButtons" xsi:type="array">
+                <item name="0" xsi:type="const">Amasty\QuickOrder\Model\MoveButton\Provider::CHECKOUT_BUTTON</item>
+                <item name="1" xsi:type="const">Amasty\QuickOrder\Model\MoveButton\Provider::CART_BUTTON</item>
+                <item name="2" xsi:type="const">Amasty\QuickOrder\Model\MoveButton\Provider::QUOTE_BUTTON</item>
+            </argument>
+            <argument name="mode" xsi:type="const">Amasty\QuickOrder\Model\Cart\AddProductsPool::FROM_GRID</argument>
+        </arguments>
+    </virtualType>
+
+    <virtualType name="categoryGridMoveConfig" type="Amasty\QuickOrder\Block\Grid\MoveConfigProcessor">
+        <arguments>
+            <argument name="requestedButtons" xsi:type="array">
+                <item name="0" xsi:type="const">Amasty\QuickOrder\Model\MoveButton\Provider::CART_BUTTON</item>
+                <item name="1" xsi:type="const">Amasty\QuickOrder\Model\MoveButton\Provider::QUOTE_BUTTON</item>
+            </argument>
+            <argument name="mode" xsi:type="const">Amasty\QuickOrder\Model\Cart\AddProductsPool::FROM_CATEGORY</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Amasty\QuickOrder\Block\Grid">
+        <arguments>
+            <argument name="layoutProcessors" xsi:type="array">
+                <item name="gridConfig" xsi:type="object">Amasty\QuickOrder\Block\Grid\GridConfigProcessor</item>
+                <item name="fileConfig" xsi:type="object">Amasty\QuickOrder\Block\Grid\FileConfigProcessor</item>
+                <item name="pagerConfig" xsi:type="object">Amasty\QuickOrder\Block\Grid\PagerConfigProcessor</item>
+                <item name="moveConfig" xsi:type="object">quickOrderGridMoveConfig</item>
+                <item name="multipleConfig" xsi:type="object">Amasty\QuickOrder\Block\Grid\MultipleConfigProcessor</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\QuickOrder\Block\Category\Grid">
+        <arguments>
+            <argument name="layoutProcessors" xsi:type="array">
+                <item name="gridConfig" xsi:type="object">Amasty\QuickOrder\Block\Category\Grid\GridConfigProcessor</item>
+                <item name="moveConfig" xsi:type="object">categoryGridMoveConfig</item>
+                <item name="toolbarConfig" xsi:type="object">Amasty\QuickOrder\Block\Category\Grid\ToolbarConfigProcessor</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\QuickOrder\Model\Item\Manager">
+        <arguments>
+            <argument name="rewritableFields" xsi:type="array">
+                <item name="0" xsi:type="const">Amasty\QuickOrder\Model\Import\Provider\Bundle\Provider::REQUEST_CODE</item>
+                <item name="1" xsi:type="const">Amasty\QuickOrder\Model\Import\Provider\Bundle\Provider::QTY_REQUEST_CODE</item>
+                <item name="2" xsi:type="const">Amasty\QuickOrder\Model\Import\Provider\Configurable\Provider::REQUEST_CODE</item>
+                <item name="3" xsi:type="const">Amasty\QuickOrder\Model\Import\Provider\CustomOption::REQUEST_CODE</item>
+                <item name="4" xsi:type="const">Amasty\QuickOrder\Model\Import\Provider\Grouped\Provider::REQUEST_CODE</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Amasty\QuickOrder\Model\Category\Item\Manager">
+        <arguments>
+            <argument name="rewritableFields" xsi:type="array">
+                <item name="0" xsi:type="const">Amasty\QuickOrder\Model\Import\Provider\Bundle\Provider::REQUEST_CODE</item>
+                <item name="1" xsi:type="const">Amasty\QuickOrder\Model\Import\Provider\Bundle\Provider::QTY_REQUEST_CODE</item>
+                <item name="2" xsi:type="const">Amasty\QuickOrder\Model\Import\Provider\Configurable\Provider::REQUEST_CODE</item>
+                <item name="3" xsi:type="const">Amasty\QuickOrder\Model\Import\Provider\CustomOption::REQUEST_CODE</item>
+                <item name="4" xsi:type="const">Amasty\QuickOrder\Model\Import\Provider\Grouped\Provider::REQUEST_CODE</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

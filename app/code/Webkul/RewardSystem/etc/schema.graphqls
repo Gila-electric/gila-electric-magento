@@ -1,0 +1,482 @@
+type StoreConfig {
+    rewardsystem_enable : Int @doc(description: "Enable Reward System Module")
+    rewardsystem_reward_value : Int @doc(description: "1 Reward Point Value is Equals to")
+    rewardsystem_max_reward_assign : Int @doc(description: "Maximum Reward Points can Assign to a Customer")
+    rewardsystem_max_reward_used : Int @doc(description: "Maximum Reward Points can be Used By a Customer")
+    rewardsystem_allow_registration : Int @doc(description: "Allow Reward Points on Registration")
+    rewardsystem_registration_reward : String @doc(description: "Reward Points On Registration")
+    rewardsystem_allow_review : String @doc(description: "Allow Reward Points on Product Review")
+    rewardsystem_review_reward : String @doc(description: "Reward Points On Product Review")
+}
+
+type Query {
+    rewardProductList(
+        filter: RewardProductFilters @doc(description: "Identifies which reward product to search for and return.")
+        ): RewardProductList @resolver(class:"Webkul\\RewardSystem\\Model\\Resolver\\Admin\\RewardProductList") @doc(description: "Return query of reward products list")
+
+    rewardProductSpecificList(
+        filter: RewardProductSpecificFilters @doc(description: "Identifies which reward specific time product to search for and return.")
+        ): RewardProductSpecificList @resolver(class:"Webkul\\RewardSystem\\Model\\Resolver\\Admin\\RewardProductSpecificList") @doc(description: "Return query of reward products for specific time list")
+
+    rewardCategoryList(
+        filter: RewardCategoryFilters @doc(description: "Identifies which reward category to search for and return.")
+        ): RewardCategoryList @resolver(class:"Webkul\\RewardSystem\\Model\\Resolver\\Admin\\RewardCategoryList") @doc(description: "Return query of reward categories list")
+
+    rewardCategorySpecificList(
+        filter: RewardCategorySpecificFilters @doc(description: "Identifies which reward specific time category to search for and return.")
+        ): RewardCategorySpecificList @resolver(class:"Webkul\\RewardSystem\\Model\\Resolver\\Admin\\RewardCategorySpecificList") @doc(description: "Return query of reward categories for specific time list")
+
+    rewardRecordList(
+        filter: RewardRecordFilters @doc(description: "Identifies which reward record to search for and return.")
+        ): RewardRecordList @resolver(class:"Webkul\\RewardSystem\\Model\\Resolver\\Admin\\RewardRecordList") @doc(description: "Return query of reward record list")
+
+    rewardIndividualList(
+        customerId: Int! @doc(description: "Customer ID")
+        filter: RewardIndividualFilters @doc(description: "Identifies which reward individual record to search for and return.")
+        ): RewardIndividualList @resolver(class:"Webkul\\RewardSystem\\Model\\Resolver\\Admin\\RewardIndividualList") @doc(description: "Return query of reward individual record list")
+
+    rewardCartPointsList(
+        filter: RewardCartPointsFilters @doc(description: "Identifies which reward cart record to search for and return.")
+        ): RewardCartPointsList @resolver(class:"Webkul\\RewardSystem\\Model\\Resolver\\Admin\\RewardCartPointsList") @doc(description: "Return query of reward cart list")
+
+    rewardCartPointsData(
+        id: Int @doc(description: "reward cart points ID")
+        ): RewardCartPointsData @resolver(class:"Webkul\\RewardSystem\\Model\\Resolver\\Admin\\RewardCartPointsData") @doc(description: "Return query of reward cart data")
+
+    rewardAttributePointsList(
+        filter: RewardAttributePointsFilters @doc(description: "Identifies which reward attribute record to search for and return.")
+        ): RewardAttributePointsList @resolver(class:"Webkul\\RewardSystem\\Model\\Resolver\\Admin\\RewardAttributePointsList") @doc(description: "Return query of reward attribute list")
+
+    rewardAttributePointsData(
+        id: Int @doc(description: "reward attribute record ID")
+        ): RewardAttributePointsData @resolver(class:"Webkul\\RewardSystem\\Model\\Resolver\\Admin\\RewardAttributePointsData") @doc(description: "Return query of reward attribute data")
+
+    customerRewardDetail(
+        filter: CustomerRewardFilters @doc(description: "Identifies which reward record to search for and return.")
+        ): CustomerRewardDetailOutput @resolver(class:"Webkul\\RewardSystem\\Model\\Resolver\\CustomerRewardDetail") @doc(description: "Return query of customer reward record list")
+}
+
+type Mutation {
+    updateProductRewardPoint(
+        input: ProductRewardPointInput! @doc(description: "input data of products reward point")
+        ): RewardSystemDefaultResponse @resolver(class:"Webkul\\RewardSystem\\Model\\Resolver\\Admin\\UpdateProductRewardPoint") @doc(description: "Update reward point of products.")
+
+    updateProductSpecificRewardPoint(
+        input: ProductSpecificRewardPointInput! @doc(description: "input data of products reward point for specific time")
+        ): RewardSystemDefaultResponse @resolver(class:"Webkul\\RewardSystem\\Model\\Resolver\\Admin\\UpdateProductSpecificRewardPoint") @doc(description: "Update reward point of products for specific time.")
+
+    updateCategoryRewardPoint(
+        input: CategoryRewardPointInput! @doc(description: "input data of categories reward point")
+        ): RewardSystemDefaultResponse @resolver(class:"Webkul\\RewardSystem\\Model\\Resolver\\Admin\\UpdateCategoryRewardPoint") @doc(description: "Update reward point of categories.")
+
+    updateCategorySpecificRewardPoint(
+        input: CategorySpecificRewardPointInput! @doc(description: "input data of categories reward point for specific time")
+        ): RewardSystemDefaultResponse @resolver(class:"Webkul\\RewardSystem\\Model\\Resolver\\Admin\\UpdateCategorySpecificRewardPoint") @doc(description: "Update reward point of categories for specific time.")
+
+    addRewardTransaction(
+        input: RewardTransactionInput! @doc(description: "input data for reward transaction")
+        ): RewardSystemMultiMessageResponse @resolver(class:"Webkul\\RewardSystem\\Model\\Resolver\\Admin\\AddRewardTransaction") @doc(description: "Add reward transaction.")
+
+    manageRewardCartPoints(
+        ids: [Int]! @doc(description: "Array of reward cart points Ids")
+        action: RewardListActionEnum! @doc(description: "Identifies the action on reward cart points.")
+        ): RewardSystemDefaultResponse @resolver(class:"Webkul\\RewardSystem\\Model\\Resolver\\Admin\\ManageRewardCartPoints") @doc(description: "Manage reward cart points.")
+
+    saveRewardCartPoints(
+        input: RewardCartPointsInput! @doc(description: "input data for reward cart points")
+        ): RewardSystemDefaultResponse @resolver(class:"Webkul\\RewardSystem\\Model\\Resolver\\Admin\\SaveRewardCartPoints") @doc(description: "Save reward cart points.")
+
+    manageRewardAttributePoints(
+        ids: [Int]! @doc(description: "Array of reward attribute points Ids")
+        action: RewardListActionEnum! @doc(description: "Identifies the action on reward attribute points.")
+        ): RewardSystemDefaultResponse @resolver(class:"Webkul\\RewardSystem\\Model\\Resolver\\Admin\\ManageRewardAttributePoints") @doc(description: "Manage reward attribute points.")
+
+    saveRewardAttributePoints(
+        input: RewardAttributePointsInput! @doc(description: "input data for reward attribute points")
+        ): RewardSystemDefaultResponse @resolver(class:"Webkul\\RewardSystem\\Model\\Resolver\\Admin\\SaveRewardAttributePoints") @doc(description: "Save reward attribute points.")
+
+    applyWkRewardToCart(
+        input: ApplyWkRewardToCartInput @doc(description: "An input object that defines the rewards to apply to the cart.")
+        ): ApplyWkRewardToCartOutput @resolver(class: "Webkul\\RewardSystem\\Model\\Resolver\\Checkout\\ApplyRewards") @doc(description:"Apply rewards to the specified cart.")
+
+    removeWkRewardFromCart(
+        input: RemoveWkRewardFromCartInput @doc(description: "An input object that defines the rewards to remove from the cart.")
+        ): RemoveWkRewardFromCartOutput @resolver(class: "Webkul\\RewardSystem\\Model\\Resolver\\Checkout\\CancelRewards") @doc(description:"Cancel rewards from the specified cart.")
+}
+
+input ApplyWkRewardToCartInput @doc(description: "Specifies the reward points to apply to the cart.") {
+    cart_id: String! @doc(description: "The unique ID of a `Cart` object.")
+    used_reward_points: Int! @doc(description: "Number of reward points to apply.")
+}
+
+type ApplyWkRewardToCartOutput @doc(description: "Contains details about the cart after applying rewards.") {
+    cart: Cart! @doc(description: "The cart after applying rewards.")
+}
+
+input RemoveWkRewardFromCartInput @doc(description: "Specifies the cart from which to remove rewards.") {
+    cart_id: String! @doc(description: "The unique ID of a `Cart` object.")
+}
+
+type RemoveWkRewardFromCartOutput @doc(description: "Contains details about the cart after removing rewards.") {
+    cart: Cart @doc(description: "The cart after removing rewards.")
+}
+
+type RewardPointFieldOptions {
+    status: [RewardFieldOption]
+}
+
+input RewardProductFilters @doc(description: "Filters to fetch Reward products") {
+    entity_id: Int @doc(description: "Product ID")
+    sku: String @doc(description: "Product SKU")
+    product_name: String @doc(description: "Product Name")
+    points	: Float @doc(description: "Reward Points")
+    status: Int @doc(description: "Status")
+}
+
+type RewardProductList {
+    total_count: Int
+    items: [RewardProductItem]
+    options: RewardPointFieldOptions
+}
+
+type RewardProductItem {
+    entity_id: Int
+    sku: String
+    product_name: String
+    points: Float
+    status: Int
+}
+
+input RewardProductSpecificFilters @doc(description: "Filters to fetch Reward specific time products") {
+    entity_id: Int @doc(description: "Product ID")
+    sku: String @doc(description: "Product SKU")
+    product_name: String @doc(description: "Product Name")
+    points	: Float @doc(description: "Reward Points")
+    status: Int @doc(description: "Status")
+}
+
+type RewardProductSpecificList {
+    total_count: Int
+    items: [RewardProductSpecificItem]
+    options: RewardPointFieldOptions
+}
+
+type RewardProductSpecificItem {
+    entity_id: Int
+    sku: String
+    product_name: String
+    points: Float
+    start_time: String
+    end_time: String
+    status: Int
+}
+
+input RewardCategoryFilters @doc(description: "Filters to fetch Reward categories") {
+    entity_id: Int @doc(description: "Category ID")
+    category_name: String @doc(description: "Category Name")
+    points	: Float @doc(description: "Reward Points")
+    status: Int @doc(description: "Status")
+}
+
+type RewardCategoryList {
+    total_count: Int
+    items: [RewardCategoryItem]
+    options: RewardPointFieldOptions
+}
+
+type RewardCategoryItem {
+    entity_id: Int
+    category_name: String
+    points: Float
+    status: Int
+}
+
+input RewardCategorySpecificFilters @doc(description: "Filters to fetch Reward specific time categories") {
+    entity_id: Int @doc(description: "Category ID")
+    category_name: String @doc(description: "Category Name")
+    points	: Float @doc(description: "Reward Points")
+    status: Int @doc(description: "Status")
+}
+
+type RewardCategorySpecificList {
+    total_count: Int
+    items: [RewardCategorySpecificItem]
+    options: RewardPointFieldOptions
+}
+
+type RewardCategorySpecificItem {
+    entity_id: Int
+    category_name: String
+    points: Float
+    start_time: String
+    end_time: String
+    status: Int
+}
+
+input RewardRecordFilters @doc(description: "Filters to fetch Reward records") {
+    customer_id: FilterTypeInput @doc(description: "Customer Id")
+    email: FilterTypeInput @doc(description: "Customer Email")
+    name: FilterTypeInput @doc(description: "Customer Name")
+    total_reward_point	: FilterTypeInput @doc(description: "Total Reward Point")
+    remaining_reward_point: FilterTypeInput @doc(description: "Remaining Reward Point")
+    used_reward_point: FilterTypeInput @doc(description: "Used Reward Point")
+    updated_at: FilterTypeInput @doc(description: "Updated At")
+}
+
+type RewardRecordList {
+    total_count: Int
+    items: [RewardRecordItem]
+}
+
+type RewardRecordItem {
+    entity_id: Int
+    customer_id: Int
+    email: String
+    name: String
+    total_reward_point: Float
+    remaining_reward_point: Float
+    used_reward_point: Float
+    updated_at: String
+}
+
+input RewardIndividualFilters @doc(description: "Filters to fetch Reward records") {
+    reward_point: FilterTypeInput @doc(description: "Reward Point")
+    transaction_at: FilterTypeInput @doc(description: "Transaction At")
+    action: FilterTypeInput @doc(description: "Action")
+}
+
+type RewardIndividualList {
+    total_count: Int
+    items: [RewardIndividualItem]
+}
+
+type RewardIndividualItem {
+    reward_point: Float
+    transaction_at: String
+    action: String
+    transaction_note: String
+}
+
+input RewardCartPointsFilters @doc(description: "Filters to fetch Reward cart records") {
+    entity_id: FilterTypeInput @doc(description: "Entity Id")
+    points: FilterTypeInput @doc(description: "Reward Points")
+    amount_from: FilterTypeInput @doc(description: "Amount From")
+    amount_to: FilterTypeInput @doc(description: "Amount To")
+    start_date	: FilterTypeInput @doc(description: "Start Date")
+    end_date: FilterTypeInput @doc(description: "End Date")
+    status: FilterTypeInput @doc(description: "Status")
+    created_at: FilterTypeInput @doc(description: "Created At")
+}
+
+type RewardCartPointsList {
+    total_count: Int
+    items: [RewardCartPointsItem]
+}
+
+type RewardCartPointsItem {
+    entity_id: Int
+    points: Float
+    amount_from: Float
+    amount_to: Float
+    start_date: String
+    end_date: String
+    status: Int
+    created_at: String
+}
+
+type RewardCartPointsData {
+    options: CartPointsFieldOptions
+    reward_cart: RewardCartPointsItem
+}
+
+type CartPointsFieldOptions {
+    status: [RewardFieldOption]
+}
+
+input RewardAttributePointsFilters @doc(description: "Filters to fetch Reward attribute records") {
+    entity_id: FilterTypeInput @doc(description: "Entity Id")
+    points: FilterTypeInput @doc(description: "Reward Points")
+    option_label: FilterTypeInput @doc(description: "Option Label")
+    status: FilterTypeInput @doc(description: "Status")
+    created_at: FilterTypeInput @doc(description: "Created At")
+}
+
+type RewardAttributePointsList {
+    total_count: Int
+    items: [RewardAttributePointsItem]
+}
+
+type RewardAttributePointsItem {
+    entity_id: Int
+    points: Float
+    option_id: Int
+    option_label: String
+    status: Int
+    created_at: String
+}
+
+type RewardAttributePointsData {
+    options: AttributePointsFieldOptions
+    reward_attribute: RewardAttributePointsItem
+}
+
+type AttributePointsFieldOptions {
+    option_id: [RewardFieldOption]
+    status: [RewardFieldOption]
+}
+
+type RewardFieldOption {
+    label: String
+    value: String
+}
+
+input CustomerRewardFilters @doc(description: "Filters to fetch Reward records") {
+    type: RewardActionTypeEnum @doc(description: "Action")
+    reward_point: String @doc(description: "Reward Point")
+    status: RewardPointStatusEnum @doc(description: "Status")
+}
+
+type CustomerRewardDetailOutput {
+    remaining_reward_point: Float
+    reward_details: [CustomerRewardDetail]
+}
+
+type CustomerRewardDetail {
+    description: String
+    type: String
+    reward_point: Float
+    status: String
+    expires_at: String
+}
+
+input ProductRewardPointInput {
+    rewardpoint: Float
+    status: RewardPointStatusUpdateEnum!
+    wk_productids: [Int]!
+}
+
+input ProductSpecificRewardPointInput {
+    rewardpoint: Float
+    start_time: String
+    end_time: String
+    status: RewardPointStatusUpdateEnum!
+    wk_productids: [Int]!
+}
+
+input CategoryRewardPointInput {
+    rewardpoint: Float
+    status: RewardPointStatusUpdateEnum!
+    wk_categoryids: [Int]!
+}
+
+input CategorySpecificRewardPointInput {
+    rewardpoint: Float
+    start_time: String
+    end_time: String
+    status: RewardPointStatusUpdateEnum!
+    wk_categoryids: [Int]!
+}
+
+input RewardTransactionInput {
+    action: RewardTransactionActionEnum!
+    reward_point: Float!
+    transaction_note: String!
+    customerIds: [Int]!
+}
+
+input RewardCartPointsInput {
+    entity_id: Int
+    points: Float!
+    amount_from: Float!
+    amount_to: Float!
+    start_date: String!
+    end_date: String!
+    status: Int!
+}
+
+input RewardAttributePointsInput {
+    entity_id: Int
+    points: Float!
+    option_id: Int
+    status: Int!
+}
+
+type RewardSystemDefaultResponse {
+    status: Int
+    message: String
+}
+
+type RewardSystemMultiMessageResponse {
+    status: Int
+    message: [String]
+}
+
+enum RewardPointStatusUpdateEnum @doc(description: "The list of status for reward points update.") {
+    ENABLE
+    DISABLE
+}
+
+enum RewardListActionEnum @doc(description: "The list of actions for reward cart/attribute points list by admin.") {
+    ENABLE
+    DISABLE
+    DELETE
+}
+
+enum RewardActionTypeEnum @doc(description: "The list of options for reward type.") {
+    CREDIT
+    DEBIT
+}
+
+enum RewardPointStatusEnum @doc(description: "The list of status for reward points.") {
+    APPROVED
+    APPLIED
+    EXPIRED
+    PENDING
+    CANCELLED
+}
+
+enum RewardTransactionActionEnum @doc(description: "The list of options for reward type.") {
+    CREDIT
+    DEBIT
+    EXPIRED
+}
+
+type OrderTotal @doc(description: "Contains details about the sales total amounts used to calculate the final price.") {
+    reward_amount: Money @doc(description: "Rewarded Amount") @resolver(class: "Webkul\\RewardSystem\\Model\\Resolver\\Order\\RewardAmount")
+}
+
+type InvoiceTotal @doc(description: "Contains price details from an invoice."){
+    reward_amount: Money @doc(description: "Rewarded Amount") @resolver(class: "Webkul\\RewardSystem\\Model\\Resolver\\Order\\RewardAmount")
+}
+
+type CreditMemoTotal @doc(description: "Contains credit memo price details.") {
+    reward_amount: Money @doc(description: "Rewarded Amount") @resolver(class: "Webkul\\RewardSystem\\Model\\Resolver\\Order\\RewardAmount")
+}
+
+interface ProductInterface @doc(description: "Contains fields that are common to all types of products.") {
+    wk_reward_info: RewardInfoForProduct @doc(description: "Reward Info for product") @resolver(class: "Webkul\\RewardSystem\\Model\\Resolver\\Product\\RewardInfo")
+}
+
+type RewardInfoForProduct {
+    reward_use_msg: String
+    product_reward_msg: String
+}
+
+interface CategoryInterface @doc(description: "Contains the full set of attributes that can be returned in a category search.") {
+    wk_reward_info: RewardInfoForCategory @doc(description: "Reward Info for category") @resolver(class: "Webkul\\RewardSystem\\Model\\Resolver\\Category\\RewardInfo")
+}
+
+type RewardInfoForCategory {
+    category_reward_msg: String
+}
+
+type Cart @doc(description: "Contains the contents and other details about a guest or customer cart.") {
+    applied_reward_info: AppliedRewardInfo @resolver(class: "\\Webkul\\RewardSystem\\Model\\Resolver\\Checkout\\AppliedRewardInfo") @doc(description:"An array of `RewardInfo`.")
+}
+
+type AppliedRewardInfo {
+    used_reward_points: Float
+    number_of_rewards: Int
+    avail_amount: Float
+    amount: Float
+}

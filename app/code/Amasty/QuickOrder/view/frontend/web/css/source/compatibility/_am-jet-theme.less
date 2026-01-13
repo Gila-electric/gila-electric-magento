@@ -1,0 +1,61 @@
+//
+//  Compatibility with Amasty Jet Theme
+//  ____________________________________
+
+//
+//  Common
+//  ------------------------------------
+
+& when (@media-common = true) {
+    .amasty-jet-theme {
+        .modes .mode-quick-order:before {
+            display: none;
+        }
+
+        .amqorder-checkbox-container .amqorder-mark {
+            & {
+                padding: 0 0 0 14px;
+            }
+
+            &:after,
+            &:before {
+                margin: 0;
+            }
+        }
+
+        .amqorder-checkbox-container {
+            .amqorder-label:hover .amqorder-mark{
+                border-color: @amqorder__color__mark;
+                background: @amqorder__color__mark;
+            }
+
+            .amqorder-input:checked + .amqorder-mark{
+                border-color: @amqorder__color__mark;
+                background: @amqorder__color__mark;
+                box-shadow: 0 2px 4px rgba(122, 160, 34, .4);
+            }
+        }
+
+        .toolbar,
+        .toolbar .pager {
+            flex-direction: row;
+        }
+
+        .swatch-attribute-selected-option {
+            color: #646464;
+            padding-left: 17px;
+        }
+    }
+}
+
+
+//
+//  Mobile
+//  -------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'max') and (@break = @screen__m) {
+    .amasty-jet-theme .footer.links li {
+        padding: 15px 0;
+        border-bottom: 1px solid #dfdedd;
+    }
+}

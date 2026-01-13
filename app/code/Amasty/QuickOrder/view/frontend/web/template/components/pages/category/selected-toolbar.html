@@ -1,0 +1,14 @@
+<div class="amqorder-selected-toolbar">
+    <span class="amqorder-counter" data-bind="i18n: 'Total selected '"></span>
+    (<span class="amqorder-counter" data-bind="text: getCountSelectedItems()"></span>)
+    <!--ko if: $parents[1].getCountSelectedItems() -->
+        <button class="amqorder-button -remove -clear"
+                data-bind="
+                    attr: { title: $t('Unselect') },
+                    event: {
+                        click: function() { unselect() }
+                    }
+        ">
+        </button>
+    <!--/ko-->
+</div>

@@ -1,0 +1,1 @@
+/home/abanoub/Desktop/Gila/Gila-project/vendor/magento/module-ui/view/base/web/js/lib/knockout/bindings/resizable.js

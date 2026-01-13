@@ -1,0 +1,103 @@
+<?php
+/**
+ * Webkul_DailyDeals View On Product template.
+ * @category  Webkul
+ * @package   Webkul_DailyDeals
+ * @author    Webkul Software Private Limited
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+
+$dealDetail = $block->getCurrentProductDealDetail();
+
+$product = $block->getCurrentProduct();
+if ($dealDetail && $dealDetail['deal_status'] && isset($dealDetail['diff_timestamp'])) {  ?>
+    <?php if ($product->getTypeId()!='grouped') { ?>
+    <div class="deal wk-daily-deal" data-deal-id="<?= /* @noEscape */ $dealDetail['entity_id']?>" 
+    data-update-url="<?= /* @noEscape */ $dealDetail['update_url'] ?>" id="max-save-deal" >
+        <div class="wk-deal-timer">
+            <span class="deal-ens-in">
+                    <?= /* @noEscape */ __('Deals Ends in');?>
+            </span>
+            <p class="wk_cat_count_clock" data-stoptime="<?= /* @noEscape */ $dealDetail['stoptime'] ?>" 
+                data-diff-timestamp ="<?= /* @noEscape */ $dealDetail['diff_timestamp'] ?>">
+            </p>
+        </div>
+            <?php if (!count($product->getOptions()) || $product->getTypeId() == 'booking') { ?>
+            <span class="wk-deal-off">
+                 <?= /* @noEscape */ $dealDetail['discount-percent']?>% <?= /* @noEscape */ __('Off'); ?>
+            </span>
+        <?php } ?>
+        
+            <?php if (isset($dealDetail['saved-amount'])) { ?>
+            <span class="save-box ">
+                <b class="save-label"><?= /* @noEscape */ __('Save On Deal'); ?> 
+                <?= /* @noEscape */ $dealDetail['saved-amount']?></b>
+            </span>
+        <?php } ?>
+        
+    </div>
+            <?php }?>
+    <?php if (isset($dealDetail['pro_type']) && $dealDetail['pro_type'] == 'configurable') {
+        $assProductsDeal = $block->getConfigAssociateProDeals(false);
+        foreach ($assProductsDeal as $dealDetail) { ?>
+            <div class="deal wk-daily-deal hide" id="deal<?= /* @noEscape */ $dealDetail['entity_id']; ?>" >
+                <div class="wk-deal-timer">
+                    <span class="deal-ens-in">
+                        <?= /* @noEscape */ __('Deals Ends in');?>
+                    </span>
+                    <p class="wk_cat_count_clock" data-stoptime="<?= /* @noEscape */ $dealDetail['stoptime'] ?>" 
+                        data-diff-timestamp ="<?= /* @noEscape */ $dealDetail['diff_timestamp'] ?>">
+                    </p>
+                </div>
+                <?php if (!count($product->getOptions()) || $product->getTypeId() == 'booking') { ?>
+                    <span class="wk-deal-off">
+                        <?= /* @noEscape */ $dealDetail['discount-percent']?>% <?= /* @noEscape */ __('Off'); ?>
+                    </span>
+                <?php } ?>
+                
+                <?php if (isset($dealDetail['saved-amount'])) { ?>
+                    <span class="save-box ">
+                        <b class="save-label"><?= /* @noEscape */ __('Save On Deal'); ?>
+                         <?= /* @noEscape */ $dealDetail['saved-amount']?></b>
+                    </span>
+                <?php } ?>
+            </div>
+        <?php }
+    } ?>
+    <?php if (isset($dealDetail['pro_type']) && $dealDetail['pro_type'] == 'grouped') {
+        $assProductsDeal = $block->getGroupAssociateProDeals(false);
+        foreach ($assProductsDeal as $dealDetail) {  ?>
+            <div class="deal wk-daily-deal"  data-deal-id="<?= /* @noEscape */ $dealDetail['entity_id']?>"
+             data-update-url="<?= /* @noEscape */ $dealDetail['update_url'] ?>" >
+                        <div class="wk-deal-timer">
+                            <span class="deal-ens-in">
+                                <?= /* @noEscape */ __('Deals Ends in');?>
+                            </span>
+                            <p class="wk_cat_count_clock" 
+                            data-stoptime="<?= /* @noEscape */ $dealDetail['stoptime'] ?>" 
+                                data-diff-timestamp ="<?= /* @noEscape */ $dealDetail['diff_timestamp'] ; ?>">
+                            </p>
+                        </div>
+                        <?php if (!count($product->getOptions()) || $product->getTypeId() == 'booking') { ?>
+                            <span class="wk-deal-off">
+                                <?= /* @noEscape */ $dealDetail['discount-percent']?>% <?= /* @noEscape */ __('Off'); ?>
+                            </span>
+                        <?php } ?>
+                        
+                        <?php if (isset($dealDetail['saved-amount'])) { ?>
+                            <span class="save-box ">
+                                <b class="save-label"><?= /* @noEscape */ __('Save On Deal'); ?> 
+                                <?= /* @noEscape */ $dealDetail['saved-amount']?></b>
+                            </span>
+                        <?php } ?>
+                    </div>
+        <?php }
+    } ?>
+    <script>window.dailyurl = '<?= /* @noEscape */ $block->getUrl("dailydeals/index/gettimes") ?>';</script>
+    <script type="text/x-magento-init">
+    {
+        "body": {"Webkul_DailyDeals/js/viewonproduct": {}}
+    }
+    </script>
+<?php } ?>

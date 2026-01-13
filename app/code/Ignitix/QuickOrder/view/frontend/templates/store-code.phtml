@@ -1,0 +1,8 @@
+<?php
+/** @var \Magento\Framework\View\Element\Template $block */
+$storeManager = \Magento\Framework\App\ObjectManager::getInstance()->get(\Magento\Store\Model\StoreManagerInterface::class);
+$storeId = (int) $storeManager->getStore()->getId();
+?>
+<script>
+    window.storeId = <?= $storeId ?>;
+</script>

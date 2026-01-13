@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <sales>
+            <ignitix_shippingdiscounts>
+                <enabled>0</enabled>
+                <discount_percent>0</discount_percent>
+                <min_subtotal_incl_tax>0</min_subtotal_incl_tax>
+            </ignitix_shippingdiscounts>
+        </sales>
+    </default>
+</config>

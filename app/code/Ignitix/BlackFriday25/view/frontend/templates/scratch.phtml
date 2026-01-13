@@ -1,0 +1,96 @@
+<?php
+/** @var \Ignitix\BlackFriday25\Block\Scratch $block */
+if (!$block->isEnabled() || !$block->isInDateRange()) { return; }
+
+$images = $block->getPrizeImageUrls(); // each: ['url' => ..., 'alt' => ...]
+$imagesJson = json_encode(
+    $images,
+    JSON_UNESCAPED_SLASHES
+    | JSON_HEX_TAG
+    | JSON_HEX_AMP
+    | JSON_HEX_APOS
+    | JSON_HEX_QUOT
+);
+?>
+<div id="ignitix-bf25-overlay" class="ignitix-bf25-overlay" style="display:none" aria-hidden="true">
+  <div class="ignitix-bf25-modal" role="dialog" aria-labelledby="ignitix-bf25-title" aria-modal="true">
+    <button type="button"
+            id="ignitix-bf25-close"
+            class="ignitix-bf25-close"
+            aria-label="<?= $block->escapeHtmlAttr(__('Close')) ?>"></button>
+
+    <h2 id="ignitix-bf25-title"><?= $block->escapeHtml(__('Black Friday Scratch Card')) ?></h2>
+    <p class="ignitix-bf25-sub"><?= $block->escapeHtml(__('Scratch to reveal your gift!')) ?></p>
+
+    <div class="ignitix-bf25-card" style="position:relative; display:inline-block;">
+      <!-- Underlay: prize images shown beneath the scratch canvas -->
+      <div class="ignitix-bf25-underlay"
+           style="position:absolute; inset:0; border-radius:8px; overflow:hidden; z-index:0;">
+        <?php if (!empty($images)): ?>
+          <div class="ignitix-bf25-underlay-grid"
+               style="display:grid; grid-template-columns:repeat(3,1fr); grid-auto-rows:1fr; width:100%; height:100%;">
+            <?php foreach ($images as $img): ?>
+              <div style="display:flex;align-items:center;justify-content:center;">
+                <img src="<?= $block->escapeUrl($img['url']) ?>"
+                     alt="<?= $block->escapeHtmlAttr($img['alt']) ?>"
+                     style="max-width:100%; max-height:100%; object-fit:contain;" />
+              </div>
+            <?php endforeach; ?>
+          </div>
+        <?php else: ?>
+          <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#f5f7fb;">
+            <span><?= $block->escapeHtml(__('Scratch to reveal your gift!')) ?></span>
+          </div>
+        <?php endif; ?>
+      </div>
+
+      <!-- Text layer just above underlay, below canvas -->
+      <div class="ignitix-bf25-prize" id="ignitix-bf25-prize" aria-live="polite"
+           style="position:relative; z-index:1;">
+        <span><?= $block->escapeHtml(__('Scratch to reveal your gift!')) ?></span>
+      </div>
+
+      <!-- Scratch surface (erases to reveal the underlay) -->
+      <canvas id="ignitix-bf25-canvas" width="360" height="180"
+              style="position:absolute; left:0; top:0; border-radius:8px; z-index:2;"></canvas>
+    </div>
+
+    <div class="ignitix-bf25-result" id="ignitix-bf25-result" style="display:none">
+      <strong><?= $block->escapeHtml(__('You won:')) ?></strong> <span id="ignitix-bf25-result-name"></span>
+    </div>
+  </div>
+</div>
+
+<script type="text/x-magento-init">
+{
+  "*": {
+    "Ignitix_BlackFriday25/js/scratch": {
+      "enabled": <?= $block->isEnabled() ? 'true' : 'false' ?>,
+      "inDate": <?= $block->isInDateRange() ? 'true' : 'false' ?>,
+      "threshold": <?= (float)$block->getThreshold() ?>,
+      "minTotal": <?= (float)$block->getMinTotal() ?>,
+      "grandTotal": <?= (float)$block->getGrandTotal() ?>,
+      "applyUrl": "<?= $block->escapeUrl($block->getUrl('ignitix_bf25/prize/apply')) ?>",
+      "statusUrl": "<?= $block->escapeUrl($block->getUrl('ignitix_bf25/prize/status')) ?>",
+      "applied": <?= $block->isApplied() ? 'true' : 'false' ?>,
+      "autostart": false,
+      "formKey": "",
+      "images": <?= $imagesJson ?: '[]' ?>,
+      "fireworksSeconds": 10,
+      "postRevealReloadMs": 5000
+    }
+  }
+}
+</script>
+
+<!-- Fallback: ensure overlay is a direct child of <body> so it truly overlays the page -->
+<script>
+require(['jquery'], function ($) {
+  $(function () {
+    var $o = $('#ignitix-bf25-overlay');
+    if ($o.length && !$o.parent().is('body')) {
+      $('body').append($o.detach());
+    }
+  });
+});
+</script>

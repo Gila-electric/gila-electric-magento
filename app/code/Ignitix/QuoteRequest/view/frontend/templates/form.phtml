@@ -1,0 +1,144 @@
+<?php /** @var \Ignitix\QuoteRequest\Block\Form $block */ ?>
+<?php if (!$block->isEnabled()): ?>
+    <div class="message info"><?= $block->escapeHtml(__('Quote Request is currently disabled.')) ?></div>
+    <?php return; ?>
+<?php endif; ?>
+
+<div class="ignitix-quote-request">
+    <form class="form"
+          action="<?= $block->escapeUrl($block->getPostUrl()); ?>"
+          method="post"
+          enctype="multipart/form-data"
+          id="ignitix-quote-form">
+
+        <?= /* form key */ $block->getBlockHtml('formkey'); ?>
+
+        <fieldset class="fieldset">
+            <div class="field choice required">
+                <label class="label"><span><?= $block->escapeHtml(__('Type')) ?></span></label>
+                <div class="control">
+                    <label class="radio">
+                        <input type="radio" name="type" value="individual" checked>
+                        <?= $block->escapeHtml(__('Individual')) ?>
+                    </label>
+                    <label class="radio" style="margin-left:12px;">
+                        <input type="radio" name="type" value="company">
+                        <?= $block->escapeHtml(__('Company')) ?>
+                    </label>
+                </div>
+            </div>
+
+            <div class="field company_name" id="company-name-field" style="display:none;">
+                <label class="label" for="company_name">
+                    <span><?= $block->escapeHtml(__('Company Name')) ?></span>
+                </label>
+                <div class="control">
+                    <input type="text" name="company_name" id="company_name" class="input-text">
+                </div>
+            </div>
+
+            <div class="field required">
+                <label class="label" for="full_name">
+                    <span><?= $block->escapeHtml(__('Full Name')) ?></span>
+                </label>
+                <div class="control">
+                    <input type="text"
+                           name="full_name"
+                           id="full_name"
+                           class="input-text"
+                           data-validate='{"required":true, "min_text_length":2}'>
+                </div>
+            </div>
+
+            <div class="field required">
+                <label class="label" for="email">
+                    <span><?= $block->escapeHtml(__('Email')) ?></span>
+                </label>
+                <div class="control">
+                    <input type="email"
+                           name="email"
+                           id="email"
+                           class="input-text"
+                           data-validate='{"required":true, "validate-email":true}'>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label" for="phone">
+                    <span><?= $block->escapeHtml(__('Phone Number')) ?></span>
+                </label>
+                <div class="control">
+                    <input type="text"
+                           name="phone"
+                           id="phone"
+                           class="input-text"
+                           data-validate='{"validate-digits":true}'>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label" for="address">
+                    <span><?= $block->escapeHtml(__('Address')) ?></span>
+                </label>
+                <div class="control">
+                    <input type="text" name="address" id="address" class="input-text">
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label" for="order_details">
+                    <span><?= $block->escapeHtml(__('Order Details')) ?></span>
+                </label>
+                <div class="control">
+                    <textarea name="order_details" id="order_details" rows="5" class="input-text"></textarea>
+                </div>
+            </div>
+
+            <div class="field">
+                <label class="label" for="attachment">
+                    <span><?= $block->escapeHtml(__('Upload PDF/Excel/JPG/PNG')) ?></span>
+                </label>
+                <div class="control">
+                    <input type="file" name="attachment" id="attachment" accept=".pdf,.xls,.xlsx,.jpg,.png">
+                </div>
+                <p class="note"><?= $block->escapeHtml(__('Allowed types: pdf, xls, xlsx, jpg, png')) ?></p>
+            </div>
+
+            <div class="actions-toolbar">
+                <div class="primary">
+                    <button type="submit" class="action submit primary">
+                        <span><?= $block->escapeHtml(__('Submit Request')) ?></span>
+                    </button>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>
+
+<!-- Explicit validator init after DOM is ready -->
+<script>
+require(['jquery', 'mage/validation', 'domReady!'], function ($) {
+    var $form = $('#ignitix-quote-form');
+    if ($form.length && $.fn.validation) {
+        $form.validation();
+    }
+});
+</script>
+
+<script>
+require(['jquery', 'domReady!'], function($){
+    function toggleCompanyField(){
+        var type = $('input[name="type"]:checked').val();
+        if (type === 'company') {
+            $('#company-name-field').show();
+            $('#company_name').attr('data-validate', '{"required":true}');
+        } else {
+            $('#company-name-field').hide();
+            $('#company_name').removeAttr('data-validate');
+        }
+    }
+
+    $(document).on('change', 'input[name="type"]', toggleCompanyField);
+    toggleCompanyField();
+});
+</script>

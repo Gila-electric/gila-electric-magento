@@ -1,0 +1,24 @@
+<!--@subject Your points at {{var store.getFrontendName()}} are about to expire  @-->
+<!--@vars {
+"var this.getUrl($store, 'customer/account/')":"Customer Account URL",
+"var transactiondetails":"Customer Transaction Details",
+"var customername":"Customer Name",
+"var store.getFrontendName()":"Store Front Name"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<table>
+    <tr class="email-intro">
+        <td>
+            <p class="greeting">{{trans "Hello %customername, " customername=$customername}}</p>
+        </td>
+    </tr>
+    <tr>
+    	<td>
+        	<p>{{trans "%message" message=$transactiondetails}}</p>
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer_template"}}

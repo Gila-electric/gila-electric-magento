@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package Quick Order for Magento 2
+ */-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <amasty_quickorder>
+            <general>
+                <enabled>0</enabled>
+                <url_key>quick-order</url_key>
+                <label>Quick Order</label>
+                <display_link_in>0,1,2</display_link_in>
+                <search_max_results>10</search_max_results>
+                <page_size>7</page_size>
+                <max_qty_add>100</max_qty_add>
+                <request_quote_button>1</request_quote_button>
+                <download_list>1</download_list>
+            </general>
+
+            <category_mode>
+                <enabled>0</enabled>
+                <replace>0</replace>
+                <disabled_categories>0</disabled_categories>
+                <grid_per_page_values>5,10,15,20,25</grid_per_page_values>
+                <grid_per_page>10</grid_per_page>
+                <enabled_on_search>1</enabled_on_search>
+            </category_mode>
+        </amasty_quickorder>
+    </default>
+</config>

@@ -1,0 +1,105 @@
+<?php
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_RewardSystem
+ * @author    Webkul
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+?>
+<div class="entry-edit">
+    <div id="reward_add_block">
+        <form action="<?= /* @escapeNotVerified */ $block->escapeHtml(
+            $block->getUrl('rewardsystem/product/massRewardPointSpecific')
+        ) ?>"
+          enctype="multipart/form-data" method="post" id="formmassaddproducts">
+            <?= /* @escapeNotVerified */ $block->getBlockHtml('formkey')?>
+            <input type="hidden" name="wk_productids" id="wk_productids" value="" >
+            <fieldset class="fieldset admin__fieldset">
+                <div class="messages"></div>
+                <div class="field admin__field">
+                    <label class="label" for="rewardpoint">
+                        <span><?= /* @escapeNotVerified */ $block->escapeHtml(__('Enter Points'))?></span>
+                    </label>
+                    <div class="control">
+                        <input id="reward_point" name="rewardpoint" type="text" class="input-text" >
+                    </div>
+                </div>
+                <div class="field admin__field">
+                    <label class="label" for="start_time">
+                        <span><?= /* @escapeNotVerified */ $block->escapeHtml(__('Start Time'))?></span>
+                    </label>
+                    <div class="control">
+                        <input id="wk_start_time" name="start_time" type="text" class="input-text" >
+                    </div>
+                </div>
+                <div class="field admin__field">
+                    <label class="label" for="end_time">
+                        <span><?= /* @escapeNotVerified */ $block->escapeHtml(__('End Time'))?></span>
+                    </label>
+                    <div class="control">
+                        <input id="wk_end_time" name="end_time" type="text" class="input-text" >
+                    </div>
+                </div>
+                <div class="field admin__field">
+                    <label class="label" for="status">
+                        <span>
+                          <?= $block->escapeHtml(__('Reward Point Status'))?>
+                        </span>
+                    </label>
+                    <div class="control">
+                        <select id="status" name="status" type="text" class="input-text required-entry">
+                            <option value=0 selected="selected">
+                              <?= $block->escapeHtml(__('Disable'))?>
+                            </option>
+                            <option value=1>
+                              <?= $block->escapeHtml(__('Enable'))?>
+                            </option>
+                        </select>
+                    </div>
+                </div>
+                <button type="button"
+                 title="<?= $block->escapeHtml(__('Update point for product')) ?>"
+                 id="save_butnproduct">
+                 <span><span>
+                   <span><?= $block->escapeHtml(__('Update Points')) ?></span>
+                 </span></span>
+               </button>
+            </fieldset>
+        </form>
+    </div>
+</div>
+<?= /* @escapeNotVerified */ $block->getGridHtml() ?>
+<?php
+    $blockGrid = $block->getBlockGrid();
+    $gridJsObjectName = $blockGrid->getJsObjectName();
+?>
+<?php
+$formData = [
+    'wk_productids'    =>    '#wk_productids',
+    'save_butnproduct'    =>    '#save_butnproduct',
+    'massupdateformproduct'    => '#formmassaddproducts',
+    'submitButton'    =>    '.submit_button',
+];
+$serializedFormData = $block->getLayout()->createBlock(
+    \Webkul\RewardSystem\Block\RewardData::class
+)->getJsonHelper()->jsonEncode($formData);
+?>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "WkRewardsystem": <?= /* @escapeNotVerified */ $block->escapeJsQuote($serializedFormData); ?>
+        }
+    }
+</script>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Webkul_RewardSystem/js/assign-productspecific": {
+                "gridJsObjectName": <?= /* @escapeNotVerified */ '"' . $gridJsObjectName . '"' ?: '{}'; ?>
+            }
+        }
+    }
+</script>

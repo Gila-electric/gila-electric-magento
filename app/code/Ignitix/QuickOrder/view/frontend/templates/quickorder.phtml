@@ -1,0 +1,91 @@
+<div class="quick-order-page">
+    <h2><?= __('Quick Order') ?></h2>
+    <div id="quick-order-search-section">
+        <input type="text" id="quick-order-search" placeholder="<?= __('Search by SKU or Product Name') ?>" autocomplete="off" />
+        <ul id="quick-order-suggestions" class="autocomplete-suggestions"></ul>
+    </div>
+
+    <div class="quick-order-list-wrapper">
+        <div class="quick-order-header">
+            <div class="col-thumbnail"><?= __('Thumbnail') ?></div>
+            <div class="col-name"><?= __('Name') ?></div>
+            <div class="col-sku"><?= __('SKU') ?></div>
+            <div class="col-unit-price"><?= __('Unit Price') ?></div>
+            <div class="col-quantity"><?= __('Quantity') ?></div>
+            <div class="col-total-price"><?= __('Total Price') ?></div>
+            <div class="col-availability"><?= __('Availability') ?></div>
+            <div class="col-remove"><?= __('Remove') ?></div>
+        </div>
+        <div id="quick-order-list"></div>
+    </div>
+
+    <div class="quick-order-summary">
+        <span class="qo-total-items"><strong><?= __('Total Items:') ?></strong> <span id="summary-total-items">0</span></span>
+        <span class="qo-total-price"><strong><?= __('Total Price:') ?></strong> <span id="summary-total-price">0.00</span></span>
+    </div>
+    <button id="add-to-cart-btn"><?= __('Add All to Cart') ?></button>
+</div>
+
+<style>
+.quick-order-header, .quick-order-row {
+    display: flex;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+    align-items: center;
+}
+.quick-order-header {
+    font-weight: bold;
+}
+.quick-order-row > div {
+    padding: 5px;
+    box-sizing: border-box;
+}
+.col-thumbnail { width: 10%; }
+.col-name { width: 20%; }
+.col-sku { width: 15%; }
+.col-unit-price { width: 10%; }
+.col-quantity { width: 15%; }
+.col-total-price { width: 10%; }
+.col-availability { width: 10%; }
+.col-remove { width: 10%; }
+
+@media (max-width: 768px) {
+    .quick-order-header {
+        display: none;
+    }
+    .quick-order-row {
+        display: block;
+        border: 1px solid #ccc;
+        margin-bottom: 15px;
+        padding: 10px;
+    }
+    .quick-order-row > div {
+        width: 100% !important;
+        padding: 4px 0;
+        border-bottom: none;
+    }
+    .col-thumbnail img {
+        max-width: 60px;
+        display: block;
+        margin-bottom: 5px;
+    }
+    .quick-order-row > div::before {
+        content: attr(data-label);
+        font-weight: bold;
+        display: block;
+        margin-bottom: 4px;
+    }
+    .col-remove { margin-top: 10px; }
+    .col-remove .delete-btn {
+        display: inline-block;
+        background: #e74c3c;
+        color: white;
+        border-radius: 4px;
+        padding: 6px 14px;
+        font-weight: bold;
+    }
+    .qty-input {
+        width: 75px;
+    }
+}
+</style>

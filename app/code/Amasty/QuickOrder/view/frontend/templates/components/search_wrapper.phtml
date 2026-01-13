@@ -1,0 +1,14 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package Quick Order for Magento 2
+ */
+?>
+
+<section class="amqorder-search-block"
+         data-bind="scope:'search', mageInit: {
+            'Magento_Ui/js/core/app': <?= $block->escapeHtml($block->getJsLayout()) ?>
+         }">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</section>

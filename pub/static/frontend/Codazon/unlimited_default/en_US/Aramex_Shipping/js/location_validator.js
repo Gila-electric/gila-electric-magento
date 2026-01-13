@@ -1,0 +1,1 @@
+/home/abanoub/Desktop/Gila/Gila-project/app/code/Aramex/Shipping/view/frontend/web/js/location_validator.js

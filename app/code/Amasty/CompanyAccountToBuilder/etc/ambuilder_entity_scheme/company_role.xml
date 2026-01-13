@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @author Amasty Team
+* @copyright Copyright (c) 2022 Amasty (https://www.amasty.com)
+* @package Company Account to Builder for Magento 2 (System)
+*/-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:amasty:module:Amasty_ReportBuilder:etc/entity_scheme.xsd">
+    <amasty_report_builder_entities>
+        <entity name="company_role">
+            <title>Amasty CA Role</title>
+            <main_table>amasty_company_account_role</main_table>
+            <hidden>true</hidden>
+
+            <columns>
+                <column name="role_id" primary="true" />
+            </columns>
+
+            <relations>
+                <relation name="company_customer" type="column">
+                    <column>role_id</column>
+                    <reference_column>role_id</reference_column>
+                    <relationship_type>one_to_one</relationship_type>
+                    <join_type>left</join_type>
+                </relation>
+            </relations>
+        </entity>
+    </amasty_report_builder_entities>
+</config>

@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!-- /**
+ * Webkul Software
+ *
+ * @category Webkul
+ * @package Webkul_RewardSystem
+ * @author Webkul
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license https://store.webkul.com/license.html
+ */ -->
+ <page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Webkul_RewardSystem::css/reward.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magento\Checkout\Block\Cart" name="RewardonCart" template="Webkul_RewardSystem::rewardOnCart.phtml" before="-">
+                <arguments>
+                    <argument name="reward_view_model" xsi:type="object">Webkul\RewardSystem\ViewModel\Reward</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="checkout.cart.order.actions">
+            <block class="Webkul\RewardSystem\Block\Checkout\Reward" name="checkout.cart.reward" template="Webkul_RewardSystem::checkout/rewards.phtml" ifconfig="rewardsystem/general_settings/enable"/>
+        </referenceContainer>
+        <referenceBlock name="checkout.cart.totals">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="block-totals" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="before_grandtotal" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="reward_amount" xsi:type="array">
+                                            <item name="component"  xsi:type="string">Webkul_RewardSystem/js/view/checkout/cart/totals/rewardamount</item>
+                                            <item name="config" xsi:type="array">
+                                                <item name="title" xsi:type="string" translate="true">Rewarded Amount</item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+ 	</body>
+ </page>

@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+    <table name="quote_address">
+        <column name="ignitix_original_shipping_incl_tax" xsi:type="decimal" precision="12" scale="4" nullable="true" comment="Ignitix Original Shipping Incl Tax"/>
+        <column name="ignitix_base_original_shipping_incl_tax" xsi:type="decimal" precision="12" scale="4" nullable="true" comment="Ignitix Base Original Shipping Incl Tax"/>
+        <column name="ignitix_shipping_discount_amount" xsi:type="decimal" precision="12" scale="4" nullable="true" comment="Ignitix Shipping Discount Amount (Incl Tax)"/>
+        <column name="ignitix_base_shipping_discount_amount" xsi:type="decimal" precision="12" scale="4" nullable="true" comment="Ignitix Base Shipping Discount Amount (Incl Tax)"/>
+    </table>
+
+    <table name="sales_order">
+        <column name="ignitix_original_shipping_incl_tax" xsi:type="decimal" precision="12" scale="4" nullable="true" comment="Ignitix Original Shipping Incl Tax"/>
+        <column name="ignitix_base_original_shipping_incl_tax" xsi:type="decimal" precision="12" scale="4" nullable="true" comment="Ignitix Base Original Shipping Incl Tax"/>
+        <column name="ignitix_shipping_discount_amount" xsi:type="decimal" precision="12" scale="4" nullable="true" comment="Ignitix Shipping Discount Amount (Incl Tax)"/>
+        <column name="ignitix_base_shipping_discount_amount" xsi:type="decimal" precision="12" scale="4" nullable="true" comment="Ignitix Base Shipping Discount Amount (Incl Tax)"/>
+    </table>
+
+</schema>

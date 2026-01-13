@@ -1,0 +1,115 @@
+//
+//  Amasty Qty Component Styles
+//  ____________________________________________
+
+//
+//  Common
+//  --------------------------------------------
+
+& when (@media-common = true) {
+    .amqorder-qty-block {
+        & {
+            .amqorder-flex(none, center);
+        }
+
+        &.-disabled,
+        .qty-disabled {
+            & {
+                &:extend(.amqorder-disabled);
+            }
+
+            .amqorder-input {
+                margin: 0 27px;
+            }
+
+            .amqorder-button {
+                display: none;
+            }
+        }
+
+        .amqorder-qty-wrapper {
+            .amqorder-flex(center, center);
+
+            position: relative;
+            min-width: 108px;
+        }
+
+        .amqorder-input {
+            box-sizing: border-box;
+            margin: 0 @amqorder__indent__m;
+            min-width: 54px;
+            width: 54px;
+            text-align: center;
+        }
+
+        .amqorder-input.-error {
+            border-color: @amqorder__color__error;
+        }
+
+        .amqorder-msg.-error {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            left: 0;
+            margin: 2px 0 0;
+            color: @amqorder__color__error;
+            text-align: center;
+            white-space: nowrap;
+            font-size: 12px;
+        }
+
+        .amqorder-text {
+            position: absolute;
+            top: 100%;
+            padding: 2px 0 0;
+            color: #41362f;
+            text-align: center;
+            font-size: 12px;
+        }
+    }
+
+    .amqorder-button.-incr,
+    .amqorder-button.-decr {
+        & {
+            max-width: 12px;
+            width: 100%;
+            height: 12px;
+            color: #adadad;
+        }
+
+        &:before {
+            .amqorder-flex(center, center);
+
+            font-size: 24px;
+            line-height: 0;
+        }
+
+        &:hover {
+            color: @amqorder__hover__color__primary;
+        }
+
+        &:focus,
+        &:active {
+            color: @amqorder__focus__color__primary;
+        }
+    }
+
+    .amqorder-button.-incr:before {
+        content: '+';
+    }
+
+    .amqorder-button.-decr:before {
+        content: '-';
+        transform: translateY(-2px) scaleX(1.8);
+    }
+}
+
+//
+//  Mobile
+//  --------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
+    .amqorder-qty-block .amqorder-qty-block {
+        white-space: inherit;
+    }
+}

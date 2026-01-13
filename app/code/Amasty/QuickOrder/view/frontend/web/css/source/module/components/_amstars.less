@@ -1,0 +1,64 @@
+//
+//  Amasty Rating Stars Component
+//  ____________________________________________
+
+//
+//  Variables
+//  --------------------------------------------
+
+@amqorder-star__l__height: 27px;
+@amqorder-star__s__height: 18px;
+@amqorder-rating__color: #006bb4;
+@amqorder-star-l__background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzMiIGhlaWdodD0iMjciIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZmlsbD0ibm9uZSIgZD0iTTAgMGgzM3YyN0gweiIvPjxwYXRoIGQ9Ik0xNCAwbDMuMzA1IDEwLjMxM0gyOGwtOC42NTIgNi4zNzRMMjIuNjUyIDI3IDE0IDIwLjYyNiA1LjM0OCAyN2wzLjMwNC0xMC4zMTNMMCAxMC4zMTNoMTAuNjk1TDE0IDB6IiBmaWxsPSIjRUQ5RDAwIi8+PC9zdmc+);
+@amqorder-star-s__background: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgiIGhlaWdodD0iMTgiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CgogPGc+CiAgPHRpdGxlPmJhY2tncm91bmQ8L3RpdGxlPgogIDxyZWN0IGZpbGw9Im5vbmUiIGlkPSJjYW52YXNfYmFja2dyb3VuZCIgaGVpZ2h0PSIyMCIgd2lkdGg9IjIwIiB5PSItMSIgeD0iLTEiLz4KIDwvZz4KIDxnPgogIDx0aXRsZT5MYXllciAxPC90aXRsZT4KICA8cGF0aCBpZD0ic3ZnXzEiIGZpbGw9IiNDN0M3QzciIGQ9Im0xNi44MjU1MjEsNy4wMjA0NjljLTAuMDIwOCwtMC4wODcyNSAtMC4wNjI0LC0wLjE0MTc5IC0wLjEyNDgsLTAuMTYzNmMtMC4wNjIzLC0wLjA0MzYzIC0wLjEyNDcsLTAuMDY1NDQgLTAuMTg3MSwtMC4wNjU0NGwtNS42NDUyLDBsLTEuNzQ2NiwtNS42Mjc4MWMtMC4wMjA3OSwtMC4wNjU0NCAtMC4wNjIzOCwtMC4xMTk5NyAtMC4xMjQ3NSwtMC4xNjM2Yy0wLjA0MTU5LC0wLjA0MzYzIC0wLjA5MzU3LC0wLjA2NTQ0IC0wLjE1NTk1LC0wLjA2NTQ0Yy0wLjA2MjM4LDAgLTAuMTI0NzYsMC4wMjE4MSAtMC4xODcxMywwLjA2NTQ0Yy0wLjA0MTU5LDAuMDQzNjMgLTAuMDcyNzgsMC4wOTgxNiAtMC4wOTM1NywwLjE2MzZsLTEuNzc3NzgsNS42Mjc4MWwtNS42MTQwMywwYy0wLjA2MjM4LDAgLTAuMTI0NzYsMC4wMjE4MSAtMC4xODcxNCwwLjA2NTQ0Yy0wLjA2MjM4LDAuMDIxODEgLTAuMTAzOTYsMC4wNzYzNSAtMC4xMjQ3NiwwLjE2MzZjLTAuMDIwNzksMC4wNjU0NCAtMC4wMjA3OSwwLjEzMDg4IDAsMC4xOTYzMmMwLjAyMDgsMC4wNjU0NCAwLjA2MjM4LDAuMTE5OTcgMC4xMjQ3NiwwLjE2MzZsNC41NTM2MSwzLjQ2ODNsLTEuNzQ2NTksNS42NjA0OWMtMC4wMjA3OSwwLjA2NTUgLTAuMDIwNzksMC4xMzA5IDAsMC4xOTY0YzAuMDIwNzksMC4wNjU0IDAuMDUxOTgsMC4xMTk5IDAuMDkzNTcsMC4xNjM2YzAuMDYyMzcsMC4wNDM2IDAuMTI0NzUsMC4wNjU0IDAuMTg3MTMsMC4wNjU0YzAuMDYyMzgsMCAwLjEyNDc2LC0wLjAyMTggMC4xODcxMywtMC4wNjU0bDQuNTg0OCwtMy41MDExbDQuNTg0OCwzLjUwMTFjMC4wMjA4LDAuMDIxOCAwLjA0MTYsMC4wMzI3IDAuMDYyNCwwLjAzMjdjMC4wNDE2LDAuMDIxOCAwLjA3MjcsMC4wMzI3IDAuMDkzNSwwLjAzMjdjMC4wNDE2LDAgMC4wNzI4LC0wLjAxMDkgMC4wOTM2LC0wLjAzMjdjMC4wNDE2LDAgMC4wNzI4LC0wLjAxMDkgMC4wOTM2LC0wLjAzMjdjMC4wNjI0LC0wLjA0MzcgMC4xMDM5LC0wLjA5ODIgMC4xMjQ3LC0wLjE2MzZjMC4wMjA4LC0wLjA2NTUgMC4wMjA4LC0wLjEzMDkgMCwtMC4xOTY0bC0xLjc0NjYsLTUuNjYwNDlsNC41NTM2LC0zLjQ2ODNjMC4wNjI0LC0wLjA0MzYzIDAuMTA0LC0wLjA5ODE2IDAuMTI0OCwtMC4xNjM2YzAuMDIwOCwtMC4wNjU0NCAwLjAyMDgsLTAuMTMwODggMCwtMC4xOTYzMnoiLz4KIDwvZz4KPC9zdmc+);
+
+//
+//  Common
+//  ----------------------------------------------
+
+& when (@media-common = true) {
+    .amqorder-rating-wrapper {
+        & {
+            .amqorder-flex(none, center, wrap);
+
+            align-content: center;
+        }
+
+        .amqorder-text {
+            margin: 0;
+        }
+    }
+
+    .amqorder-rating-container {
+        & {
+            overflow: hidden;
+            margin: 0 0 2px;
+            width: @amqorder-star__l__height * 5;
+            height: @amqorder-star__l__height;
+            background: @amqorder-star-l__background;
+        }
+
+        &.-small {
+            width: @amqorder-star__s__height * 5;
+            height: @amqorder-star__s__height;
+            background: @amqorder-star-s__background;
+        }
+
+        &.-small .amqorder-stars {
+            background: @amqorder-star-s__background;
+        }
+
+        .amqorder-stars {
+            height: 100%;
+            background: @amqorder-star-l__background;
+            filter: invert(43%) sepia(92%) saturate(3490%) hue-rotate(358deg) brightness(99%) contrast(103%);
+        }
+    }
+
+    .amqorder-reviews-count {
+        flex-basis: 100%;
+        margin: 0;
+        color: @amqorder-rating__color;
+        font-size: 12px;
+    }
+}

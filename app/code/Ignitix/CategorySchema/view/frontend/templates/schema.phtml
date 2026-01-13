@@ -1,0 +1,16 @@
+<?php
+$breadcrumb = $block->getBreadcrumbSchema();
+$itemList   = $block->getItemListSchema();
+?>
+
+<?php if ($breadcrumb): ?>
+<script type="application/ld+json">
+<?= /* @noEscape */ json_encode($breadcrumb, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) ?>
+</script>
+<?php endif; ?>
+
+<?php if ($itemList): ?>
+<script type="application/ld+json">
+<?= /* @noEscape */ json_encode($itemList, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) ?>
+</script>
+<?php endif; ?>

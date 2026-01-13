@@ -1,0 +1,55 @@
+//
+//  Quick Order Page Styles
+//  ____________________________________________
+
+//
+//  Imports
+//  --------------------------------------------
+
+@import (reference) '../_mixins';
+
+//
+//  Common
+//  --------------------------------------------
+
+& when (@media-common = true) {
+    .amasty_quickorder-index-index {
+        .amqorder-grid-block {
+            margin: @amqorder__indent__l * 2 0 0 0;
+        }
+
+        .amqorder-grid-block .amqorder-header {
+            display: none;
+        }
+    }
+}
+
+//
+//  Tablet
+//  --------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .amasty_quickorder-index-index {
+        .amqorder-grid-block .amqorder-header {
+            display: flex;
+        }
+
+        .amqorder-header .amqorder-item.-item {
+            min-width: 315px;
+        }
+
+        .amqorder-items-block .amqorder-item.-name {
+            min-width: 210px;
+        }
+    }
+}
+
+//
+//  Tablet +
+//  --------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    .amasty_quickorder-index-index .amqorder-grid-block {
+        margin: 0 @amqorder__indent__m * 2 0 0;
+    }
+}

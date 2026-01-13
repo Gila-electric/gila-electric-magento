@@ -1,0 +1,13 @@
+{
+  "name": "ignitix/module-product-message",
+  "description": "Adds a configurable message above the Add to Cart form.",
+  "type": "magento2-module",
+  "version": "1.0.0",
+  "license": "OSL-3.0",
+  "autoload": {
+    "files": ["registration.php"],
+    "psr-4": {
+      "Ignitix\\ProductMessage\\": ""
+    }
+  }
+}

@@ -1,0 +1,52 @@
+<?php
+/**
+ * Webkul Software
+ *
+ * @category  Webkul
+ * @package   Webkul_RewardSystem
+ * @author    Webkul
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+?>
+<?php
+    $rewardViewModel = $block->getRewardViewModel();
+    $helper = $rewardViewModel->getRewardDataHelper();
+    $chartHelper = $rewardViewModel->getRewardChartHelper();
+    $rewardInfo = $chartHelper->getRewardInfo();
+?>
+<div class="reports-container row">
+    <div class="reports-upper">
+        <div class="reports-dropdown-container">
+            <?= $block->getChildHtml('rewardChartSwitcher') ?>
+        </div>
+    </div>
+    <div class="reports-main col-m-8 col-m-push-4">
+        <div class="reports-diagram-container">
+            <div id="chart_div" style="height: 400px;"></div>
+        </div>
+    </div>
+    <div class="reports-secondary col-m-4 col-m-pull-8">
+        <div class="reports-item">
+            <div class="reports-item-title">
+                <span class="main-title"><?= $block->escapeHtml(__('Statistics')) ?></span>
+                (<span class="text-title"><?= $block->escapeHtml(__('Showing Data of')) ?></span>
+                <span id="report_period_title" class="period-title"><?= $block->escapeHtml(__('Today')) ?></span>)
+            </div>
+            <?= $block->getChildHtml('rewardStatistics') ?>
+        </div>
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "wkRewardReports": {
+                "refreshUrl": "<?= $escaper->escapeUrl($block->getUrl('rewardsystem/reports_chart/refresh', [
+                    '_current' => true
+                ])) ?>",
+                "rewardInfo": <?= /** @noEscape */ $helper->getJsonSerializer()->serialize($rewardInfo) ?>
+            }
+        }
+    }
+</script>

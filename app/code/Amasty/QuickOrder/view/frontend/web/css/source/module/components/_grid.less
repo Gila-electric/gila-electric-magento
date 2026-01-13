@@ -1,0 +1,582 @@
+//phpcs:ignoreFile
+//
+//  Product Grid Component
+//  _____________________________________
+
+//
+//  Imports
+//  -------------------------------------
+
+@import (reference) '../_mixins';
+
+//
+//  Common
+//  -------------------------------------
+
+& when (@media-common = true) {
+    .amqorder-wrapper {
+        .amqorder-flex(space-between, flex-start, wrap);
+
+        position: relative;
+        z-index: 0;
+        padding: 0 @amqorder__indent__m @amqorder__indent__l * 2;
+    }
+
+    .product-options-wrapper {
+        flex-basis: 100%;
+    }
+
+    .amqorder-grid-block {
+        & {
+            .amqorder-transition();
+
+            flex-basis: 100%;
+            order: 2;
+        }
+
+        .amqorder-content {
+            margin: 0 0 35px;
+            border-radius: 6px;
+            background: #fff;
+            box-shadow: 0 6px 25px rgba(218, 225, 241, .5);
+        }
+
+        .amqorder-msg.-error {
+            position: inherit;
+            margin: 0 0 0 @amqorder__indent;
+        }
+
+        .amqorder-message {
+            .amqorder-flex(center, center);
+
+            padding: @amqorder__indent__xl * 2 @amqorder__indent;
+        }
+
+        .amqorder-price {
+            flex-basis: 50%;
+            font-weight: 700;
+        }
+
+        // Magento blocks override
+        .price-box .price-as-configured {
+            margin: 0;
+        }
+
+        // END Magento blocks override
+
+        .amqorder-sku {
+            & {
+                .amqorder-flex();
+
+                box-sizing: border-box;
+                margin: 0 0 @amqorder__indent / 2;
+            }
+
+            &:before {
+                margin: 0 @amqorder__indent / 2 0 0;
+                content: attr(data-label) ':';
+                font-weight: 700;
+            }
+        }
+
+        .amqorder-sku .amqorder-text {
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .amqorder-messages-list {
+            padding: 0 0 @amqorder__indent / 2;
+        }
+
+        .amqorder-header {
+            .amqorder-flex(none, center);
+
+            display: inline-flex;
+            box-sizing: border-box;
+        }
+
+        .amqorder-header .amqorder-item {
+            flex-basis: 150px;
+            flex-grow: 1;
+        }
+
+        .amqorder-header .amqorder-item.-selectall {
+            justify-content: flex-end;
+        }
+
+        .amqorder-items-wrapper .amqorder-button.-action {
+            display: none;
+        }
+
+        .amqorder-button.-options {
+            flex-basis: 100%;
+            justify-content: flex-start;
+            padding: 0 0 @amqorder__indent__m * 2;
+            white-space: nowrap;
+        }
+    }
+
+    .amqorder-grid-block .amqorder-items-block {
+        & {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        > .amqorder-item {
+            & {
+                position: relative;
+                margin: 0;
+                padding: @amqorder__indent__m;
+                width: auto;
+            }
+
+            &:not(:last-child) {
+                border-bottom: 1px solid #ebeef5;
+            }
+        }
+
+        > .amqorder-item .amqorder-item:not(.amqorder-image) {
+            flex-basis: 150px;
+            flex-grow: 1;
+        }
+
+        > .amqorder-item .amqorder-item.-name {
+            align-self: stretch;
+        }
+
+        > .amqorder-item.-smart .amqorder-item.-name {
+            align-content: space-between;
+        }
+
+        > .amqorder-item.-errors {
+            border: 1px solid @amqorder__color__error;
+        }
+
+        > .amqorder-item:not(.-smart) .amqorder-item.-name {
+            align-content: center;
+        }
+
+        .amqorder-item.-name .amqorder-title {
+            & {
+                color: #000;
+            }
+
+            &.-disabled {
+                pointer-events: none;
+            }
+        }
+
+        > .amqorder-item.-weee {
+            padding: @amqorder__indent__m;
+        }
+
+        .amqorder-image {
+            position: inherit;
+            z-index: 1;
+            display: inline-block;
+            flex-grow: inherit;
+            float: left;
+            margin: 0 @amqorder__indent__m 0;
+            min-width: 90px;
+            width: 90px;
+            height: 90px;
+            background: #fff;
+            object-fit: contain;
+        }
+    }
+
+    .amqorder-grid-block .amqorder-items-wrapper {
+        & {
+            align-items: flex-start;
+            flex-basis: 100%;
+        }
+
+        .amqorder-qty-block {
+            & {
+                flex-basis: 100%;
+                float: none;
+                clear: both;
+                padding: @amqorder__indent__m * 2 0 @amqorder__indent__l;
+            }
+
+            &:before {
+                margin: 0 @amqorder__indent__m 0 0;
+                content: attr(data-label);
+                font-weight: 700;
+            }
+        }
+
+        .amqorder-price,
+        .amqorder-button.-options {
+            display: none;
+        }
+    }
+
+    .amqorder-grid-block .amqorder-toolbar-block {
+        & {
+            .amqorder-flex(space-between, center, wrap);
+
+            padding: @amqorder__indent__xl @amqorder__indent__m @amqorder__indent__m;
+            border-top: 1px solid #ebeef5;
+        }
+
+        .amqorder-button.-clear-list {
+            justify-content: flex-end;
+        }
+
+        .amqorder-button.-download {
+            margin-right: @amqorder__indent;
+        }
+
+        .amqorder-pager-block {
+            flex-basis: 100%;
+            justify-content: space-between;
+            order: 1;
+            margin: 0;
+            padding: @amqorder__indent__xl 0 0 0;
+        }
+    }
+
+    .amqorder-item-info > .amqorder-button.-action {
+        margin: 0 0 0 auto;
+    }
+
+    .amqorder-selected-toolbar {
+        & {
+            .amqorder-flex(none, center);
+        }
+
+        .amqorder-button.-remove {
+            margin: 0 0 0 @amqorder__indent;
+            color: @amqorder-checkbox__border-color;
+        }
+    }
+
+    .amqorder-massaction-toolbar {
+        .amqorder-flex(none, center);
+
+        display: inline-flex;
+        width: 100%;
+    }
+
+    .amqorder-massaction-toolbar:first-child {
+        & {
+            justify-content: flex-start;
+            width: 49%;
+        }
+
+        .amqorder-buttons-block {
+            display: none;
+        }
+    }
+
+    .amqorder-massaction-toolbar:last-child {
+        & {
+            flex-wrap: wrap;
+            justify-content: flex-start;
+        }
+
+        .amqorder-selected-toolbar {
+            margin: 0 0 @amqorder__indent__m;
+        }
+
+        .amqorder-buttons-block {
+            margin: 0;
+            width: 100%;
+        }
+
+        .amqorder-button.-cart {
+            margin: 0;
+        }
+    }
+
+    .amqorder-buttons-block {
+        & {
+            .amqorder-flex(flex-end, none, wrap);
+        }
+
+        &.-qty-1 .amqorder-button {
+            &:extend(.amqorder-button.-fill.-primary:not(.-disabled) all);
+            &:extend(.amqorder-button.-fill all);
+        }
+
+        &.-qty-3 .amqorder-button.-checkout {
+            flex-basis: 100%;
+            margin-top: @amqorder__indent__m;
+        }
+
+        .amqorder-button {
+            flex-grow: 1;
+            margin: 0 @amqorder__indent;
+            white-space: nowrap;
+        }
+    }
+
+    .amqorder-options-block {
+        .amqorder-flex(none, none, wrap);
+
+        flex-basis: 100%;
+        margin: 0;
+        list-style: none;
+    }
+}
+
+//
+//  Mobile
+//  --------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
+    .amqorder-buttons-block.-qty-2,
+    .amqorder-buttons-block.-qty-3 {
+        .amqorder-button {
+            flex-grow: inherit;
+        }
+
+        .amqorder-button.-checkout {
+            flex-basis: 100px;
+            margin-top: 0;
+        }
+    }
+
+    .amqorder-grid-block .amqorder-toolbar-block {
+        & {
+            padding: @amqorder__indent__xl @amqorder__indent__m;
+        }
+
+        &.-disabled .amqorder-button {
+            pointer-events: none;
+        }
+
+        &.-pagination .amqorder-pager-block {
+            order: -1;
+            margin: 0 auto 0 0;
+        }
+
+        &.-pagination .amqorder-button:not(.-arrow) {
+            margin: 0 0 0 @amqorder__indent__l;
+        }
+
+        &:not(.-pagination) .amqorder-button.-clear-list {
+            flex-basis: auto;
+            margin: 0 0 0 auto;
+        }
+
+        .amqorder-pager-block {
+            flex-basis: auto;
+            order: inherit;
+            margin: 0 @amqorder__indent 0 0;
+            padding: 0;
+        }
+    }
+}
+
+//
+//  Tablet
+//  --------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .amqorder-grid-block {
+        .amqorder-items-wrapper .amqorder-price {
+            .amqorder-flex();
+        }
+
+        .amqorder-header {
+            & {
+                margin: 0;
+                padding: 35px @amqorder__indent__m @amqorder__indent__l;
+                color: #777;
+                list-style: none;
+            }
+
+            .amqorder-item {
+                box-sizing: border-box;
+                margin: 0;
+            }
+
+            .amqorder-item:not(:last-child) {
+                margin: 0 @amqorder__indent__m 0 0;
+            }
+
+            .amqorder-item.-item {
+                flex-grow: 2;
+                text-align: left;
+            }
+
+            .amqorder-item.-action {
+                text-align: right;
+            }
+
+            .amqorder-item.-sku {
+                max-width: 130px;
+            }
+        }
+
+        .amqorder-options-block {
+            margin: 0;
+            padding: 0;
+        }
+
+        .amqorder-msg.-error {
+            position: absolute;
+            margin: 0;
+        }
+
+        .amqorder-sku {
+            & {
+                margin: 0;
+                max-width: 130px;
+            }
+
+            &:before {
+                display: none;
+            }
+        }
+
+        .amqorder-button.-action {
+            justify-content: flex-end;
+            min-width: 70px;
+        }
+
+        .amqorder-messages-list {
+            padding: @amqorder__indent 0 @amqorder__indent / 2;
+        }
+
+        .amqorder-button.-options {
+            padding: 0;
+        }
+    }
+
+    .amqorder-grid-block .amqorder-items-wrapper {
+        & {
+            .amqorder-flex(space-between, center, wrap);
+        }
+
+        .amqorder-item {
+            & {
+                .amqorder-flex(none, center);
+
+                box-sizing: border-box;
+                padding: 0;
+            }
+
+            &:not(:last-child) {
+                margin: 0 @amqorder__indent__m 0 0;
+            }
+
+            &.-qty {
+                & {
+                    flex-basis: auto;
+                }
+
+                &:before {
+                    display: none;
+                }
+            }
+
+            &.-checkbox {
+                .amqorder-flex(flex-end, center);
+            }
+
+            &.-name {
+                .amqorder-flex(none, none, wrap);
+
+                padding: 0 @amqorder__indent__m 0 @amqorder__indent;
+            }
+        }
+
+        .amqorder-button.-action,
+        .amqorder-button.-options {
+            .amqorder-flex();
+        }
+    }
+
+    .amqorder-grid-block .amqorder-items-block {
+        .amqorder-items-wrapper {
+            flex-wrap: nowrap;
+        }
+
+        > .amqorder-item,
+        > .amqorder-item.-weee {
+            padding: @amqorder__indent__m;
+        }
+
+        .amqorder-image {
+            float: none;
+            margin: 0;
+            max-width: inherit;
+            width: auto;
+        }
+
+        .amqorder-price {
+            flex-basis: auto;
+            font-weight: 400;
+        }
+
+        // Magento options block override
+        .swatch-attribute,
+        .field {
+            width: auto;
+        }
+
+        .product-options-wrapper {
+            padding: @amqorder__indent__xl 0 0;
+        }
+
+        // END Magento options block override
+    }
+
+    .amqorder-item-info {
+        > .amqorder-price,
+        > .amqorder-button.-action,
+        > .amqorder-button.-options {
+            display: none;
+        }
+    }
+
+    .amqorder-massaction-toolbar .amqorder-selected-toolbar {
+        margin: 0 @amqorder__indent__l 0 0;
+    }
+
+    .amqorder-massaction-toolbar:first-child {
+        & {
+            justify-content: flex-end;
+            width: 100%;
+        }
+
+        .amqorder-buttons-block {
+            display: flex;
+        }
+    }
+
+    .amqorder-massaction-toolbar:last-child {
+        & {
+            justify-content: flex-end;
+        }
+
+        .amqorder-buttons-block {
+            width: auto;
+        }
+    }
+}
+
+//
+//  Tablet +
+//  --------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__xl) {
+    .amqorder-wrapper {
+        flex-wrap: nowrap;
+    }
+
+    .amqorder-grid-block {
+        & {
+            order: inherit;
+        }
+
+        .amqorder-message {
+            margin: 75px 0 0;
+        }
+    }
+}

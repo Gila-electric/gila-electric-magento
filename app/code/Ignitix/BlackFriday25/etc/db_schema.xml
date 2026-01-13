@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+    <!-- Quote-level flags -->
+    <table name="quote">
+        <column xsi:type="smallint"
+                name="ignitix_bf25_applied"
+                unsigned="true"
+                nullable="false"
+                default="0"
+                comment="Ignitix BF25 Applied"/>
+        <column xsi:type="varchar"
+                name="ignitix_bf25_prize_sku"
+                nullable="true"
+                length="64"
+                comment="Ignitix BF25 Prize SKU"/>
+        <column xsi:type="varchar"
+                name="ignitix_bf25_items_hash"
+                nullable="true"
+                length="64"
+                comment="Ignitix BF25 Items Hash"/>
+        <!-- Persist the preselected (locked) prize SKU -->
+        <column xsi:type="varchar"
+                name="ignitix_bf25_pending_sku"
+                nullable="true"
+                length="64"
+                comment="Ignitix BF25 Pending Prize SKU"/>
+    </table>
+
+    <!-- Item-level gift flag (so it persists across checkout steps) -->
+    <table name="quote_item">
+        <column xsi:type="smallint"
+                name="ignitix_bf25_gift"
+                unsigned="true"
+                nullable="false"
+                default="0"
+                comment="Ignitix BF25 Gift Flag"/>
+    </table>
+
+</schema>

@@ -1,0 +1,38 @@
+<?php
+// Safely retrieve the current product
+$product = $block->getProduct();
+if (!$product) {
+    $objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+    $registry = $objectManager->get(\Magento\Framework\Registry::class);
+    $product = $registry->registry('current_product');
+}
+$productPrice = $product ? (float)$product->getFinalPrice() : 0;
+?>
+<!-- Installment Plans Button -->
+<button id="installment-plans-button" type="button" class="action primary">
+    <?= __('Installment Plans') ?>
+</button>
+
+<!-- Initialize the JS module (for plan data, calculations, etc.) -->
+<script type="text/x-magento-init">
+{
+  "*": {
+    "Ignitix_InstallmentPlans/js/installmentplans": {
+      "productPrice": <?= $productPrice ?>,
+      "monthsLabel": "<?= __('Months') ?>"
+    }
+  }
+}
+</script>
+
+<!-- Simple toggle script to open the sidebar -->
+<script>
+require(['jquery'], function($) {
+    $(document).ready(function() {
+        $('#installment-plans-button').on('click', function() {
+            // Add the "open" class to the sidebar so it slides in
+            $('#installment-plans-sidebar').addClass('open');
+        });
+    });
+});
+</script>

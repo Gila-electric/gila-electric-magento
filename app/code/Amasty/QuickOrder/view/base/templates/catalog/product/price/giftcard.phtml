@@ -1,0 +1,20 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package Quick Order for Magento 2
+ */ /** @var \Magento\GiftCard\Pricing\Render\FinalPriceBox $block */ ?>
+<?php $productId = $block->getSaleableItem()->getId(); ?>
+
+<div class="price-box" data-price-type="quickOrderSubtotal" >
+    <?php if ($block->isMinEqualToMax()): ?>
+        <span class="price" id="product-price-<?= $block->escapeHtmlAttr($productId) ?><?= $block->escapeHtmlAttr($block->getIdSuffix()) ?>">
+            <?= $block->escapeHtml($block->convertAndFormatCurrency($block->getMinValue(), false)) ?>
+        </span>
+    <?php elseif ($block->getMinValue() !== 0): ?>
+        <span class="price-label"><?= $block->escapeHtml(__('From')) ?></span>
+        <span class="price" id="min-product-price-<?= $block->escapeHtmlAttr($productId) ?><?= $block->escapeHtmlAttr($block->getIdSuffix()) ?>">
+            <?= $block->escapeHtml($block->convertAndFormatCurrency($block->getMinValue(), false)) ?>
+        </span>
+    <?php endif; ?>
+</div>

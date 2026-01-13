@@ -1,0 +1,78 @@
+<?php
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_RewardSystem
+ * @author    Webkul
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+?>
+<?php
+    $rewardViewModel = $block->getRewardViewModel();
+    $helper = $rewardViewModel->getRewardDataHelper();
+    $rewardPriorityStatus = $helper->getrewardPriority();
+    $enableRewardSystem = $helper->enableRewardSystem();
+
+    $product = $block->getProduct();
+    list(
+        $productRewardPoints,
+        $minPrice,
+        $maxPrice,
+        $pointsRequired,
+        $sumOfRewardPoints,
+        $minRewardPoint,
+        $maxRewardPoint,
+        $status,
+        $message
+    ) = $helper->getProductRewardInfo($product);
+
+    $url  = $block->escapeUrl($block->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]));
+    $customerId = $helper->getCustomerId();
+    $loginUrl = $block->getUrl('customer/account/login', ['referer' => base64_encode($url)]);
+    ?>
+    <?php if ($enableRewardSystem):?>
+      <span class="wk_reward_required">
+        <?php if ($product->getTypeId() == 'grouped' || ($product->getTypeId() == 'configurable' &&
+         $maxPrice > $minPrice) || $product->getTypeId() == 'bundle') { ?>
+            <?= /* @noEscape */
+             __('Between %1 - %2 Reward Points will be used to purchase this product', $minPrice, $maxPrice)?>
+        <?php } else { ?>
+            <?= /* @noEscape */ __('%1 Reward Points will be used to purchase this product', $pointsRequired)?>
+    <?php } ?>
+        
+      </span>
+    <?php endif;?>
+    <?php
+    if ($rewardPriorityStatus == 0 && $enableRewardSystem && $productRewardPoints) { ?>
+        <div class="wk_rewards_on_products">
+            <h3 class="wk_rs_product_style wk_rs_advertise_product_page_style">
+                <div class="wk_rs_sub_style_left">
+                    <span class="wk_rs_product_page_greet"></span>
+                </div>
+                <div class="wk_rs_sub_style_right">
+                    <?= /* @noEscape */ __('Buy this product and ')?>
+                    <span class="wk_rs_cart_green">
+                    <?php if ($product->getTypeId() == 'grouped' || ($product->getTypeId() == 'configurable'
+                    && $sumOfRewardPoints > 0 && $pointsRequired > $minRewardPoint) ||
+                        ($product->getTypeId() == 'bundle' && $pointsRequired > $minRewardPoint)) { ?>
+                        <?= /* @noEscape */
+                            __('Earn %1 to %2 Reward Points', $minRewardPoint, $productRewardPoints) ; ?>
+                    <?php } else { ?>
+                        <?= /* @noEscape */ __('Earn %1 Reward Points', $productRewardPoints); ?>
+                    <?php } ?>
+                        <?php if ($status) {
+                            /* @noEscape */ echo __(' between')?>
+                        <?php } ?>
+                        <span class="wk_rs_cart_green"><?=  $block->escapeHtml($message); ?>
+                        <?php if (!$customerId) { ?>
+                            <a href="<?= $block->escapeUrl($loginUrl) ; ?>"><?= /* @noEscape */ __(" click here"); ?>
+                            </a>
+                            <?= /* @noEscape */ __(" to login");} ?>
+                        </span>
+                    </span>
+                </div>
+            </h3>
+        </div>
+<?php }?>

@@ -1,0 +1,16 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package B2B Company Account for Magento 2
+ */
+/**
+ * @var \Amasty\CompanyAccount\Block\Payment\Info $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+?>
+
+<dl class="payment-method">
+    <dt class="title"><?= $escaper->escapeHtml($block->getMethod()->getTitle()) ?></dt>
+</dl>
+<?= $block->getChildHtml() ?>

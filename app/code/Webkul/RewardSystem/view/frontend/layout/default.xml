@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software
+ *
+ * @category Webkul
+ * @package Webkul_RewardSystem
+ * @author Webkul
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license https://store.webkul.com/license.html
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="header.links">
+            <block class="Webkul\RewardSystem\Block\View\Html\RewardPointsLink" name="reward-points-link" ifconfig="rewardsystem/general_settings/enable">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Reward Points:</argument>
+                    <argument name="path" xsi:type="string">rewardsystem\index\index</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+        <referenceBlock name="footer_links">
+            <block class="Webkul\RewardSystem\Block\View\Html\RewardProgramLink" name="rewardsystem-program-info-link" ifconfig="rewardsystem/general_settings/enable">
+                <arguments>
+                    <argument name="label" xsi:type="string" translate="true">Reward Program</argument>
+                    <argument name="path" xsi:type="string">rewardsystem/index/program</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

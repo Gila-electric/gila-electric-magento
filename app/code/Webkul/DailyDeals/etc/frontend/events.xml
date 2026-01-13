@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul_DailyDeals frontend events
+ * @category  Webkul
+ * @package   Webkul_DailyDeals
+ * @author    Webkul Software Private Limited
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+*/
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+	<event name="checkout_cart_add_product_complete">
+        <observer name="Webkul_DailyDeals::addtocart" instance="Webkul\DailyDeals\Observer\CatalogControllerProductView" shared="false" />
+    </event>
+    <event name="controller_action_predispatch">
+        <observer name="webkul_dailydeal_quote_before_observer" instance="Webkul\DailyDeals\Observer\LoadQuoteBeforeObserver" />
+    </event>
+
+</config>

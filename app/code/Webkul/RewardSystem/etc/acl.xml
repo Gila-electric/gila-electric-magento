@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!-- /**
+ * Webkul Software
+ *
+ * @category Webkul
+ * @package Webkul_RewardSystem
+ * @author Webkul
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license https://store.webkul.com/license.html
+ */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <acl>
+        <resources>
+            <resource id="Magento_Backend::admin">
+                <resource id="Webkul_RewardSystem::rewardsystem" title="Webkul Reward System" sortOrder="10" >
+                    <resource id="Webkul_RewardSystem::product" title="Manage Reward Points on Product" sortOrder="10">
+                    </resource>
+                    <resource id="Webkul_RewardSystem::category" title="Manage Reward Points on Category" sortOrder="11">
+                    </resource>
+                    <resource id="Webkul_RewardSystem::cartrules" title="Manage Reward Points on Cart" sortOrder="12">
+                    </resource>
+                    <resource id="Webkul_RewardSystem::attribute" title="Manage Reward Points on Attribute" sortOrder="13">
+                    </resource>
+                    <resource id="Webkul_RewardSystem::reward" title="Reward System Details" sortOrder="14">
+                    </resource>
+                    <resource id="Webkul_RewardSystem::rewardsystem_support" title="Support" sortOrder="20">
+                        <resource id="Webkul_RewardSystem::rewardsystem_userguide" title="User Guide" sortOrder="10" />
+                        <resource id="Webkul_RewardSystem::rewardsystem_extension" title="Store Extension" sortOrder="20" />
+                        <resource id="Webkul_RewardSystem::rewardsystem_uvdesk" title="Ticket/Customisations" sortOrder="30" />
+                        <resource id="Webkul_RewardSystem::rewardsystem_services" title="Services" sortOrder="40" />
+                        <resource id="Webkul_RewardSystem::rewardsystem_reviews" title="Reviews" sortOrder="50" />
+                    </resource>
+                </resource>
+                <resource id="Magento_Reports::report">
+                    <resource id="Magento_Reports::report_marketing">
+                        <resource id="Webkul_RewardSystem::report_rewardsystem" title="Reward Points Reports" translate="title" sortOrder="50" />
+                    </resource>
+                </resource>
+                <resource id="Magento_Backend::stores">
+                    <resource id="Magento_Backend::stores_settings">
+                        <resource id="Magento_Config::config">
+                            <resource id="Webkul_RewardSystem::config_rewardsystem" title="RewardSystem Configuration section" sortOrder="50" />
+                        </resource>
+                    </resource>
+                </resource>
+            </resource>
+        </resources>
+    </acl>
+</config>

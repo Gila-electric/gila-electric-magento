@@ -1,0 +1,23 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package Quick Order for Magento 2
+ */ /** @var \Amasty\QuickOrder\Block\Script\Price $block */ ?>
+
+<script>
+    require([
+        'jquery',
+        'amqorderPriceBox'
+    ], function($) {
+        var dataQuickOrderItem = '[data-amqorder-js="item"][data-item-id=<?= $block->escapeHtml($block->getItemId()) ?>]',
+            dataPriceBoxSelector = '[data-role=priceBox]'
+            priceBoxes = $(dataQuickOrderItem + ' ' + dataPriceBoxSelector);
+
+        priceBoxes = priceBoxes.filter(function(index, elem){
+            return !$(elem).find('.price-from').length;
+        });
+
+        priceBoxes.priceBox({'priceConfig': <?= /* @noEscape */ $block->getJsonConfig() ?> });
+    });
+</script>

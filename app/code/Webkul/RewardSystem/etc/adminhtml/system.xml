@@ -1,0 +1,268 @@
+<?xml version="1.0"?>
+<!-- /**
+ * Webkul Software
+ *
+ * @category Webkul
+ * @package Webkul_RewardSystem
+ * @author Webkul
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license https://store.webkul.com/license.html
+ */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="webkul" translate="label" sortOrder="10" class="wk-config-tab-class">
+            <label>Webkul</label>
+        </tab>
+        <section id="rewardsystem" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Reward System</label>
+            <tab>webkul</tab>
+            <resource>Webkul_RewardSystem::config_rewardsystem</resource>
+            <group id="general_settings" translate="label" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Settings of Reward Points</label>
+                <field id="enable" translate="label comment" sortOrder="1" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable Reward System Module</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="reward_value" translate="label comment" sortOrder="2" type="text" showInDefault="1">
+                    <label>1 Reward Point Value is Equals to</label>
+                    <validate>validate-number required-entry validate-digits-range digits-range-0-1000000</validate>
+                    <comment>e.g. 10</comment>
+                </field>
+                <field id="max_reward_assign" translate="label comment" sortOrder="3" type="text" showInDefault="1">
+                    <label>Maximum Reward Points can Assign to a Customer</label>
+                    <validate>validate-number required-entry validate-digits</validate>
+                    <comment>e.g. 1000 (Maximum number of points assign to a customer)</comment>
+                </field>
+                <field id="max_reward_used" translate="label comment" sortOrder="4" type="text" showInDefault="1">
+                    <label>Maximum Reward Points can be Used By a Customer</label>
+                    <validate>validate-number required-entry validate-digits</validate>
+                    <comment>e.g. 1000 (Maximum number of points can be used by the customer at the time of order place)</comment>
+                </field>
+                <field id="allow_registration" translate="label comment" sortOrder="5" type="select" showInDefault="1">
+                    <label>Allow Reward Points on Registration</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="registration_reward" translate="label comment" sortOrder="6" type="text" showInDefault="1">
+                    <label>Reward Points On Registration</label>
+                    <depends>
+                        <field id="allow_registration">1</field>
+                    </depends>
+                    <validate>validate-number required-entry validate-digits</validate>
+                    <comment>e.g. 10</comment>
+                </field>
+                <field id="allow_review" translate="label comment" sortOrder="7" type="select" showInDefault="1">
+                    <label>Allow Reward Points on Product Review</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="review_reward" translate="label comment" sortOrder="8" type="text" showInDefault="1">
+                    <label>Reward Points On Product Review</label>
+                    <depends>
+                        <field id="allow_review">1</field>
+                    </depends>
+                    <validate>validate-number required-entry validate-digits</validate>
+                    <comment>e.g. 10</comment>
+                </field>
+                <field id="order_reward_approved_on" translate="label comment" sortOrder="9" type="select" showInDefault="1" >
+                    <label>Order Placed Reward Points Applied When</label>
+                    <source_model>Webkul\RewardSystem\Model\Config\Source\Ordermode</source_model>
+                    <comment>Reward points for placed order will Approved on the selected event.</comment>
+                </field>
+                <field id="priority" translate="label comment" sortOrder="10" type="select" showInDefault="1" >
+                    <label>Order Placed Reward Points Calculation Based On</label>
+                    <source_model>Webkul\RewardSystem\Model\Config\Source\Priority</source_model>
+                    <comment>Reward points for placed order will calculate based on Product/Cart/Category.</comment>
+                </field>
+                <field id="activeproduct" translate="label comment" sortOrder="11" type="select" showInDefault="1">
+                    <label>Rewards Applied product's Quantity wise</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="priority">0</field>
+                    </depends>
+                    <comment>If yes then reward points will apply product's quantity wise.</comment>
+                </field>
+                <field id="attribute_reward" translate="label comment" sortOrder="12" type="select" showInDefault="1">
+                    <label>Select Attribute Code</label>
+                    <source_model>Webkul\RewardSystem\Model\Config\Source\Attributes</source_model>
+                    <depends>
+                        <field id="priority">3</field>
+                    </depends>
+                    <comment>Please select attribute for attribute rule.</comment>
+                </field>
+                <field id="reward_on_birthday" translate="label" sortOrder="13" type="select" showInDefault="1">
+                    <label>Allow Reward Points on Customer Birthday</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="birthday_after_days" translate="label comment" type="text" sortOrder="14" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Configure Reward Point on Birthday Day(s)</label>
+                    <depends>
+                        <field id="reward_on_birthday">1</field>
+                    </depends>
+                    <validate>required-entry</validate>
+                    <comment>Reward points credit to customer after/before days of the customer birthday, if you want to credit reward before the birthday then write days with (-) sign for eg: -3 and if you want to credit reward after birthday then only write number of days for eg: 3 or if you want to credit reward on the day of birthday then write zero (0).</comment>
+                </field>
+                <field id="birthday_reward" translate="label comment" sortOrder="15" type="text" showInDefault="1">
+                    <label>Reward Points On Birthday</label>
+                    <depends>
+                        <field id="reward_on_birthday">1</field>
+                    </depends>
+                    <validate>validate-number required-entry validate-digits</validate>
+                    <comment>e.g. 10</comment>
+                </field>
+                <field id="expires_after_days" translate="label comment" type="text" sortOrder="16" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Reward points expire after days</label>
+                    <validate>validate-number required-entry validate-digits</validate>
+                    <comment>Write 0 if you don't want to set expiry for the points</comment>
+                </field>
+                <field id="send_before_expiring_days" translate="label" type="text" sortOrder="17" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Send notification before points expiring (in days)</label>
+                    <validate>validate-number required-entry validate-digits</validate>
+                </field>
+            </group>
+            <group id="reward_information" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Reward Information</label>
+                <field id="enable" translate="label comment" sortOrder="1" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Set as 'Yes' to show reward program information on reward points page</comment>
+                </field>
+                <field id="content" translate="label comment" sortOrder="10" type="editor" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Content</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field</frontend_model>
+                    <comment>Fill the information that you want to show on customer's reward points page</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="pagetitle" translate="label comment" sortOrder="15" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Reward Page Title</label>
+                    <comment>e.g Reward Points</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="displaybanner" translate="label comment" sortOrder="20" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Display Banner</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="banner" translate="label" type="image" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Banner Image</label>
+                    <comment>Allowed file types: jpg, jpeg, gif, png. Recommended image size: 1200x400 px</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">rewardsystem/page</base_url>
+                    <upload_dir config="system/filesystem/media" scope_info="1">rewardsystem/page</upload_dir>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="bannerheading" translate="label comment" sortOrder="40" type="editor" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Banner Heading</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field</frontend_model>
+                    <comment>This content will be display over the banner image in the reward program page url-www.yourwebsite.com/reward/index/program</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="bannertext" translate="label comment" sortOrder="45" type="editor" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Banner Text</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field</frontend_model>
+                    <comment>This content will be display over the banner image in the reward program page url-www.yourwebsite.com/reward/index/program</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="pagelabel1" translate="label comment" sortOrder="50" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Reward Page Label1</label>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="pagecontent" translate="label comment" sortOrder="60" type="editor" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Reward Page Content</label>
+                    <frontend_model>Webkul\RewardSystem\Block\Adminhtml\System\Config\Form\Field\Editor</frontend_model>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="flowimage" translate="label" type="image" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Reward Flow Image</label>
+                    <comment>Allowed file types: jpg, jpeg, gif, png. Recommended image size: 1200x400 px</comment>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <base_url type="media" scope_info="1">rewardsystem/page</base_url>
+                    <upload_dir config="system/filesystem/media" scope_info="1">rewardsystem/page</upload_dir>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="referral" translate="label" type="text" sortOrder="25" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Referral Program</label>
+                <field id="enable" translate="label comment" sortOrder="1" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Set as 'Yes' to enable referral program</comment>
+                </field>
+                <field id="customer_reward" translate="label comment" sortOrder="6" type="text" showInDefault="1">
+                    <label>Reward Points For Customer</label>
+                    <validate>validate-number required-entry validate-digits</validate>
+                    <comment>e.g. 10</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="referee_reward" translate="label comment" sortOrder="6" type="text" showInDefault="1">
+                    <label>Reward Points For Referee</label>
+                    <validate>validate-number required-entry validate-digits</validate>
+                    <comment>e.g. 10</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+                <field id="content" translate="label comment" sortOrder="10" type="editor" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Content</label>
+                    <frontend_model>Magento\Config\Block\System\Config\Form\Field</frontend_model>
+                    <comment>Fill the information that you want to show on referral program page</comment>
+                    <depends>
+                        <field id="enable">1</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="enable_cron_settings" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Cron Setting</label>
+                <field id="enable_frequency" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0">
+                    <label>Frequency</label>
+                    <source_model>Magento\Cron\Model\Config\Source\Frequency</source_model>
+                    <backend_model>Webkul\RewardSystem\Model\Config\CronConfig</backend_model>
+                </field>
+                <field id="enable_time" translate="label comment" sortOrder="2" type="time" showInDefault="1" showInWebsite="1">
+                    <label>Start Time</label>
+                </field>
+            </group>
+            <group id="reports" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Reports Section</label>
+                <field id="enable" translate="label comment" sortOrder="1" type="select" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>Set as 'Yes' to show reward section in the admin reports</comment>
+                </field>
+            </group>
+            <group id="email_settings" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Manage Email Settings</label>
+                <field id="rewardsystem_transaction" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Reward Transaction Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="rewards_expiry" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Reward Expiry Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+                <field id="referral_invitation" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Referral Invitation Email Template</label>
+                    <source_model>Magento\Config\Model\Config\Source\Email\Template</source_model>
+                </field>
+      		</group>
+        </section>
+    </system>
+</config>

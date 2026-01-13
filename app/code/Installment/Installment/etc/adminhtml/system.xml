@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+      <tab id="installmentsvalu" translate="label" sortOrder="51">
+            <label>Installments</label>
+        </tab>
+      
+        <section id="installmentsvalu" translate="label" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1">
+            <class>separator-top</class>
+            <label>Installments</label>
+            <tab>installmentsvalu</tab>
+            <resource>Installment_Installment::installmentsvalu_config</resource>
+
+       
+            <group id="generals" translate="label" type="text" sortOrder="131" showInDefault="1" showInWebsite="0" showInStore="1">
+                <label>Installment plans</label>
+
+                <field id="enablevalu" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="1">
+                    <label>Instalment Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+            </group>
+      
+
+            <group id="generalspaymob" translate="label" type="text" sortOrder="131" showInDefault="1" showInWebsite="0" showInStore="1">
+                <label>Installment plan offer</label>
+
+                <field id="enablepaymob" translate="label" type="select" sortOrder="1" showInDefault="1" showInWebsite="0" showInStore="1">
+                    <label>Instalment plan offer Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+             
+            </group>
+
+
+        </section>
+
+
+
+
+
+
+    </system>
+</config>

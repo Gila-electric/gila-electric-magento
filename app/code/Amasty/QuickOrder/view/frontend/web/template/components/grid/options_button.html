@@ -1,0 +1,9 @@
+<button class="amqorder-button -clear -link -chevron -options"
+        data-bind="i18n: 'Option details',
+                   click: function () {
+                        $parent.optionsVisible() ? $parent.optionsVisible(false) : $parent.optionsVisible(true)
+                   },
+                   css: { '-active': $parent.optionsVisible },
+                   title: $('Open options'),
+                   visible: $parent.optionsQty() > 2">
+</button>

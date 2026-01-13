@@ -1,0 +1,70 @@
+//
+//  Uploader
+//  _____________________________________
+
+//
+//  Imports
+//  -------------------------------------
+
+@import (reference) '../_mixins';
+
+//
+//  Common
+//  -------------------------------------
+
+& when (@media-common = true) {
+    .amfile-uploader-block {
+        & {
+            .amqorder-flex(center, center, wrap);
+
+            position: relative;
+            height: 80px;
+            border: 1px dashed #ccc;
+            border-radius: 1px;
+            color: @amqorder__color__primary;
+            font-size: 12px;
+            transition: .1s all;
+        }
+
+        &:hover,
+        &.-active {
+            border-color: @amqorder__hover__color__primary;
+        }
+
+        &.-error {
+            border-color: @amqorder__color__error;
+            background: #fff6f6;
+        }
+
+        &:after,
+        &:before {
+            .amqorder-flex(none, center);
+
+            display: inline-flex;
+            content: '';
+            line-height: 20px;
+        }
+
+        &:before {
+            content: attr(data-label);
+        }
+
+        &:after {
+            margin: 0 0 0 @amqorder__indent / 2;
+            content: attr(data-file);
+            font-size: 20px;
+        }
+
+        .amfile-input {
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            z-index: 1;
+            width: 100%;
+            opacity: 0;
+            cursor: pointer;
+        }
+    }
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+
+    <!-- Run once per quote save; avoids collect() recursion loops -->
+    <event name="sales_quote_save_before">
+        <observer name="ignitix_bf25_reset_on_change"
+                  instance="Ignitix\BlackFriday25\Observer\ResetPrizeOnCartChange"/>
+    </event>
+</config>

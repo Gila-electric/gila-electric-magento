@@ -1,0 +1,48 @@
+<div id="installment-plans-sidebar" class="installment-plans-sidebar">
+    <div class="sidebar-header">
+        <h2><?= __('Installment Plans') ?></h2>
+        <button id="close-installment-sidebar" class="close-btn" type="button">&times;</button>
+    </div>
+
+    <p><?= __('The Installment Amount Is Approximate. The Actual Amount Will Be Shown During The Payment Process.') ?></p>
+    
+    <!-- Tabs -->
+    <ul class="installment-tabs">
+        <li data-tab="banks-tab" class="active"><?= __('Bank Installment') ?></li>
+        <li data-tab="microfinance-tab"><?= __('Direct Installment') ?></li>
+    </ul>
+
+    <!-- Banks Tab Content -->
+    <div id="banks-tab" class="tab-content active">
+        <div class="entities-list" id="banks-entities">
+            <!-- Dynamically populated by JavaScript or rendered server-side -->
+        </div>
+    </div>
+
+    <!-- Microfinance Tab Content -->
+    <div id="microfinance-tab" class="tab-content">
+        <div class="entities-list" id="microfinance-entities">
+            <!-- Dynamically populated by JavaScript or rendered server-side -->
+        </div>
+    </div>
+
+    <!-- Plans (display after selecting entity) -->
+    <div id="installment-plans-durations" class="installment-plans-durations" style="display:none;">
+        <!-- Dynamically populated by JavaScript -->
+    </div>
+
+    <!-- Display monthly payment & T&C -->
+    <div id="installment-result" class="installment-result"></div>
+</div>
+
+<!-- Close button script -->
+<script>
+require(['jquery'], function($) {
+    $(document).ready(function() {
+        $('#close-installment-sidebar').on('click', function() {
+            // Remove the "open" class so the sidebar slides out
+            $('#installment-plans-sidebar').removeClass('open');
+        });
+    });
+});
+</script>

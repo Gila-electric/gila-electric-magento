@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+	<head>
+		<css src="Ignitix_InstallmentPlans::css/style.css"/>
+	</head>
+    <body>
+        <!-- Insert the Installment Plans button above Add to Cart -->
+        <referenceContainer name="product.info.main">
+            <block class="Magento\Framework\View\Element\Template"
+                   name="installmentplans.button"
+                   template="Ignitix_InstallmentPlans::installmentplans_button.phtml"
+                   before="product.info.social" />
+            <block class="Magento\Framework\View\Element\Template"
+                   name="installmentplans.sidebar"
+                   template="Ignitix_InstallmentPlans::installmentplans_sidebar.phtml"
+                   after="installmentplans.button" />
+        </referenceContainer>
+    </body>
+</page>

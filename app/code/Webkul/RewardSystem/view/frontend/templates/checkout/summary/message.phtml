@@ -1,0 +1,70 @@
+<?php
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_RewardSystem
+ * @author    Webkul
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+?>
+<?php
+$rewardViewModel = $block->getRewardViewModel();
+$helper = $rewardViewModel->getRewardDataHelper();
+$rewardPriorityStatus = $helper->getrewardPriority();
+$enableRewardSystem = $helper->enableRewardSystem();
+$cartQty = $helper->getCartData();
+$cartRewardDetails = $helper->getCartReward();
+$rewardValue = $helper->getRewardValue();
+$totalRewardPoints = 0;
+$quantityWise = $helper->getrewardQuantityWise();
+
+if ($cartQty) {
+    $cartAllData =  $helper->getCartAllData();
+    foreach ($cartAllData as $singleItem) {
+        $productId = $singleItem->getProductId();
+        $pdtQty = $singleItem->getQty();
+        list($productRewardPoints, $status, $message) = $helper->getProductRewardToShow($productId);
+        if ($singleItem['parent_item_id'] != null) {
+            $singleItem->getParentItem();
+            $pdtQty = $singleItem->getParentItem()->getQty();
+        }
+        if ($quantityWise) {
+            $totalRewardPoints += ($pdtQty*$productRewardPoints);
+        } else {
+            $totalRewardPoints += $productRewardPoints;
+        }
+    }
+}
+$cartRewardPoints = isset($cartRewardDetails['reward']) ? $cartRewardDetails['reward'] : 0;
+$amountFrom = $helper->getformattedPrice($cartRewardDetails['amount_from']);
+$amountTo = $helper->getformattedPrice($cartRewardDetails['amount_to']);
+$customerId = $helper->getCustomerId();
+$url  = $block->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
+$loginUrl = $block->escapeHtml($block->getUrl('customer/account/login', ['referer' => base64_encode($url)]));
+
+if ($enableRewardSystem && $totalRewardPoints && $rewardPriorityStatus == 0): ?>
+    <div class="wk_rs_checkout_msg" style="display:none;">
+        <span class="wk_rs_product_greet"></span>
+        <span class="wk_rs_summary_left"> <?= /* @noEscape */ __('You will Earn') ?> </span>
+        <span class="wk_rs_summary_right wk_rs_cart_green"><?= /* @noEscape */ __('%1 RP', $totalRewardPoints)?>
+    </div>
+<?php elseif ($rewardPriorityStatus == 1 && $cartQty && $enableRewardSystem == 1 && $cartRewardPoints): ?>
+    <div class="wk_rs_checkout_msg" style="display:none;">
+        <span class="wk_rs_product_greet"></span>
+        <span class="wk_rs_summary_left"> <?= /* @noEscape */ __('You will Earn') ?> </span>
+        <span class="wk_rs_summary_right wk_rs_cart_green"><?= /* @noEscape */ __('%1 RP', $cartRewardPoints)?>
+    </div>
+<?php endif; ?>
+
+<script>
+    require([
+        "jquery"
+    ], function($){
+        setTimeout(function() {
+            $('.opc-block-summary').prepend($('.wk_rs_checkout_msg'));
+            /* $('.wk_rs_checkout_msg').show(); */
+        }, 2000);
+    });
+</script>

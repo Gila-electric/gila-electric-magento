@@ -1,0 +1,165 @@
+{
+    "wk_rs_reward_record": {
+        "column": {
+            "entity_id": true,
+            "customer_id": true,
+            "total_reward_point": true,
+            "remaining_reward_point": true,
+            "used_reward_point": true,
+            "updated_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "WK_RS_REWARD_RECORD_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID": true
+        }
+    },
+    "wk_rs_reward_details": {
+        "column": {
+            "entity_id": true,
+            "customer_id": true,
+            "review_id": true,
+            "reward_point": true,
+            "amount": true,
+            "status": true,
+            "action": true,
+            "order_id": true,
+            "transaction_at": true,
+            "currency_code": true,
+            "curr_amount": true,
+            "transaction_note": true,
+            "is_revert": true,
+            "reward_used": true,
+            "is_expired": true,
+            "is_expiration_email_sent": true,
+            "expires_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "WK_RS_REWARD_DETAILS_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID": true
+        }
+    },
+    "wk_rs_reward_products": {
+        "column": {
+            "entity_id": true,
+            "product_id": true,
+            "points": true,
+            "status": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "wk_rs_reward_category": {
+        "column": {
+            "entity_id": true,
+            "category_id": true,
+            "points": true,
+            "status": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "wk_rs_reward_cart": {
+        "column": {
+            "entity_id": true,
+            "points": true,
+            "amount_from": true,
+            "amount_to": true,
+            "start_date": true,
+            "end_date": true,
+            "created_at": true,
+            "status": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "quote_address": {
+        "column": {
+            "reward_amount": true,
+            "base_reward_amount": true
+        }
+    },
+    "sales_order": {
+        "column": {
+            "reward_amount": true,
+            "base_reward_amount": true
+        }
+    },
+    "quote": {
+        "column": {
+            "reward_amount": true,
+            "base_reward_amount": true,
+            "reward_info": true
+        }
+    },
+    "wk_rs_reward_products_specific": {
+        "column": {
+            "entity_id": true,
+            "product_id": true,
+            "points": true,
+            "start_time": true,
+            "end_time": true,
+            "status": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "wk_rs_reward_category_specific": {
+        "column": {
+            "entity_id": true,
+            "category_id": true,
+            "points": true,
+            "start_time": true,
+            "end_time": true,
+            "status": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "wk_rs_reward_attribute": {
+        "column": {
+            "entity_id": true,
+            "points": true,
+            "attribute_code": true,
+            "option_id": true,
+            "option_label": true,
+            "created_at": true,
+            "status": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "wk_rs_reward_order_details": {
+        "column": {
+            "entity_id": true,
+            "order_id": true,
+            "item_id": true,
+            "points": true,
+            "qty": true,
+            "is_qty_wise": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "wk_rs_referral_details": {
+        "column": {
+            "entity_id": true,
+            "customer_id": true,
+            "referee_id": true,
+            "customer_reward_point": true,
+            "referee_reward_point": true,
+            "status": true,
+            "created_at": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "WK_RS_REFERRAL_DETAILS_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID": true
+        }
+    }
+}

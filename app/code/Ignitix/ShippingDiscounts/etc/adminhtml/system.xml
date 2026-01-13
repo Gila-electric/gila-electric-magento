@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="sales">
+            <group id="ignitix_shippingdiscounts" translate="label" type="text" sortOrder="999" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Ignitix Shipping Discounts</label>
+
+                <field id="enabled" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="discount_percent" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Shipping Discount %</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                    <comment>Applied only to Table Rates (tablerate_bestway). Discount is calculated on Shipping Incl. Tax.</comment>
+                </field>
+
+                <field id="min_subtotal_incl_tax" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Min Cart Subtotal (Incl. Tax) (Optional)</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                    <comment>If 0 or empty, discount always applies when enabled.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

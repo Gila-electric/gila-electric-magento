@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package Quick Order for Magento 2
+ */-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock class="Amasty\QuickOrder\Block\Catalog\Product\View\Type\Bundle" name="product.info.bundle.options" template="Amasty_QuickOrder::catalog/product/view/type/bundle/options.phtml">
+            <referenceBlock name="product.info.bundle.options.radio">
+                <arguments>
+                    <argument name="template" xsi:type="string">Amasty_QuickOrder::catalog/product/view/type/bundle/option/radio.phtml</argument>
+                </arguments>
+            </referenceBlock>
+            <referenceBlock name="product.info.bundle.options.select">
+                <arguments>
+                    <argument name="template" xsi:type="string">Amasty_QuickOrder::catalog/product/view/type/bundle/option/select.phtml</argument>
+                </arguments>
+            </referenceBlock>
+        </referenceBlock>
+    </body>
+</page>

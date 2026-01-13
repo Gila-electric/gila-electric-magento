@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!-- /**
+ * Webkul Software
+ *
+ * @category Webkul
+ * @package Webkul_RewardSystem
+ * @author Webkul
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license https://store.webkul.com/license.html
+ */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+       	<add id="Webkul_RewardSystem::rewardsystem" title="Reward System" module="Webkul_RewardSystem" sortOrder="10" resource="Webkul_RewardSystem::rewardsystem"/>
+       	<add id="Webkul_RewardSystem::product" title="Manage Reward Points on Product" module="Webkul_RewardSystem" sortOrder="1" parent="Webkul_RewardSystem::rewardsystem" action="rewardsystem/product" resource="Webkul_RewardSystem::product"/>
+       	<add id="Webkul_RewardSystem::category" title="Manage Reward Points on Category" module="Webkul_RewardSystem" sortOrder="2" parent="Webkul_RewardSystem::rewardsystem" action="rewardsystem/category" resource="Webkul_RewardSystem::category"/>
+        <add id="Webkul_RewardSystem::cartrules" title="Manage Reward Points on Cart" module="Webkul_RewardSystem" sortOrder="3" parent="Webkul_RewardSystem::rewardsystem" action="rewardsystem/cart" resource="Webkul_RewardSystem::cartrules"/>
+        <add id="Webkul_RewardSystem::attribute" title="Manage Reward Points on Attribute" module="Webkul_RewardSystem" sortOrder="4" parent="Webkul_RewardSystem::rewardsystem" action="rewardsystem/attribute" resource="Webkul_RewardSystem::attribute"/>
+        <add id="Webkul_RewardSystem::reward" title="Reward System Details" module="Webkul_RewardSystem" sortOrder="5" parent="Webkul_RewardSystem::rewardsystem" action="rewardsystem/reward" resource="Webkul_RewardSystem::reward"/>
+
+        <add id="Webkul_RewardSystem::rewardsystem_support" title="Support" module="Webkul_RewardSystem" sortOrder="200" parent="Webkul_RewardSystem::rewardsystem" resource="Webkul_RewardSystem::rewardsystem_support"/>
+        <add id="Webkul_RewardSystem::rewardsystem_userguide" title="User Guide" module="Webkul_RewardSystem" sortOrder="100" parent="Webkul_RewardSystem::rewardsystem_support" action="rewardsystem/support/blog" target="_blank" resource="Webkul_RewardSystem::rewardsystem_userguide"/>
+        <add id="Webkul_RewardSystem::rewardsystem_extension" title="Store Extension" module="Webkul_RewardSystem" sortOrder="200" parent="Webkul_RewardSystem::rewardsystem_support" action="rewardsystem/support/store" target="_blank" resource="Webkul_RewardSystem::rewardsystem_extension"/>
+        <add id="Webkul_RewardSystem::rewardsystem_uvdesk" title="Ticket/Customisations" module="Webkul_RewardSystem" sortOrder="300" parent="Webkul_RewardSystem::rewardsystem_support" action="rewardsystem/support/uvdesk" target="_blank" resource="Webkul_RewardSystem::rewardsystem_uvdesk"/>
+        <add id="Webkul_RewardSystem::rewardsystem_services" title="Services" module="Webkul_RewardSystem" sortOrder="300" parent="Webkul_RewardSystem::rewardsystem_support" action="rewardsystem/support/services" target="_blank" resource="Webkul_RewardSystem::rewardsystem_services"/>
+        <add id="Webkul_RewardSystem::rewardsystem_reviews" title="Reviews" module="Webkul_RewardSystem" sortOrder="300" parent="Webkul_RewardSystem::rewardsystem_support" action="rewardsystem/support/storereview" target="_blank" resource="Webkul_RewardSystem::rewardsystem_reviews"/>
+
+        <add id="Webkul_RewardSystem::report_rewardsystem" title="Reward Points Reports" translate="title" module="Webkul_RewardSystem" sortOrder="50" parent="Magento_Reports::report_marketing" action="rewardsystem/reports" resource="Webkul_RewardSystem::report_rewardsystem" dependsOnConfig="rewardsystem/reports/enable"/>
+    </menu>
+</config>

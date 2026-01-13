@@ -1,0 +1,27 @@
+<!--@subject Invitation @-->
+<!--@vars {
+"var link|raw":"Referral Link"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<table>
+    <tr class="email-intro">
+        <td>
+            <p class="greeting">{{trans "Hello,"}}</p>
+        </td>
+    </tr>
+    <tr>
+    	<td>
+        	<p>{{trans "You have got the invitation."}}</p>
+        </td>
+    </tr>
+    <tr>
+    	<td>
+            <p>{{trans "Open the below link and complete the registration process."}}</p>
+        	<p><a>{{var link|raw}}</a></p>
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer_template"}}

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+  <body>
+    <!-- define the block once -->
+    <block class="Ignitix\ProductMessage\Block\Product\Message"
+           name="ignitix.product.message"
+           template="Ignitix_ProductMessage::product/message.phtml"/>
+
+    <!-- move it to just below the price area -->
+    <move element="ignitix.product.message"
+          destination="product.info.price"
+          after="-"/>
+  </body>
+</page>

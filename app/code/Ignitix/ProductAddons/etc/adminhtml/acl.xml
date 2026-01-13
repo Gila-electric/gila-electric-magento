@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<acl xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:noNamespaceSchemaLocation="urn:magento:framework:Acl/etc/acl.xsd">
+    <resources>
+        <resource id="Magento_Backend::admin">
+            <resource id="Magento_Catalog::catalog">
+                <resource id="Ignitix_ProductAddons::rules" title="Ignitix Product Add-ons Rules" sortOrder="999"/>
+            </resource>
+        </resource>
+    </resources>
+</acl>

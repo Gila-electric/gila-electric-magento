@@ -1,0 +1,40 @@
+# Magento
+/generated/*
+!/generated/code/Magento/Framework/
+
+# Ignore dirs but keep .htaccess
+/var/*
+!/var/.htaccess
+/pub/media/*
+!/pub/media/.htaccess
+/pub/sitemap/*
+
+/app/etc/env.php
+/app/etc/config.php
+
+/vendor/
+/node_modules/
+
+# IDE/System
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Logs/Backups/Zips
+*.log
+*.zip
+*.csv  # Data dumps
+cma.js
+facebook-for-magento2/
+geidea.zip
+citiesimport.csv
+google8b1ef0a543ffceb2.html
+robots.txt
+favicon.ico
+error_log
+COPYING.txt
+composer.json.bad.*
+composer.json.bak
+auth.json*
+yarn.lock

@@ -1,0 +1,126 @@
+"Please update Amasty Base module. Re-upload it and replace all the files.","Please update Amasty Base module. Re-upload it and replace all the files."
+"Not available.","Not available."
+"Something went wrong. Please review error log.","Something went wrong. Please review error log."
+"Request method type not supported.","Request method type not supported."
+"Something is wrong.","Something is wrong."
+"Something went wrong. Please review the error log.","Something went wrong. Please review the error log."
+"Some problems with downloading the sample file.","Some problems with downloading the sample file."
+"Item data not provided.","Item data not provided."
+"File info not provided.","File info not provided."
+"Input with products was not provided.","Input with products was not provided."
+"Item id not provided.","Item id not provided."
+"%1 item was added successfully.","%1 item was added successfully."
+"%1 items were added successfully.","%1 items were added successfully."
+Table,Table
+All,All
+"Quick Order","Quick Order"
+"File format not supported.","File format not supported."
+"The contents of the file is incorrect. Please refer to the sample file to learn the right file markup.","The contents of the file is incorrect. Please refer to the sample file to learn the right file markup."
+"The maximum number of items allowed to add is %1. The items that exceed the limit will not be added.","The maximum number of items allowed to add is %1. The items that exceed the limit will not be added."
+"Product doesn't exist","Product doesn't exist"
+"Out of Stock","Out of Stock"
+Disabled,Disabled
+"Add to Quote","Add to Quote"
+"Add to Cart","Add to Cart"
+Checkout,Checkout
+"Maximum Search query length is %1","Maximum Search query length is %1"
+"Minimum Search query length is %1","Minimum Search query length is %1"
+"Item was not found","Item was not found"
+None,None
+"No (and use Table Mode as default)","No (and use Table Mode as default)"
+"No (but use default settings)","No (but use default settings)"
+Yes,Yes
+"Page Header","Page Header"
+"Top Menu","Top Menu"
+"Page Footer","Page Footer"
+"Not Logged In","Not Logged In"
+From,From
+"We can't find products matching the selection.","We can't find products matching the selection."
+"Choose a selection...","Choose a selection..."
+"No options of this product are available.","No options of this product are available."
+"You added %1 to your shopping cart.","You added %1 to your shopping cart."
+"The following products can’t be added to cart: %1. Please try again.","The following products can’t be added to cart: %1. Please try again."
+"Select for adding","Select for adding"
+"Option details","Option details"
+Qty,Qty
+"No reviews","No reviews"
+"Select All","Select All"
+SKU,SKU
+Item,Item
+SKU(s),SKU(s)
+Rating,Rating
+Subtotal,Subtotal
+Action,Action
+"Add Multiple Products","Add Multiple Products"
+"Enter multiple SKU(s)","Enter multiple SKU(s)"
+"Format: SKU,qty,option:value","Format: SKU,qty,option:value"
+"Example: WT08,5,size:xl,color:black","Example: WT08,5,size:xl,color:black"
+"Add to List","Add to List"
+"Add from File","Add from File"
+"File must be in .csv or .xml format and include “SKU” and “QTY” columns.","File must be in .csv or .xml format and include “SKU” and “QTY” columns."
+"Upload now","Upload now"
+"Add product","Add product"
+"Use new line for each separate SKU. Add just SKUs or also specify qty and options.","Use new line for each separate SKU. Add just SKUs or also specify qty and options."
+"Add products from list","Add products from list"
+"Choose file","Choose file"
+"Download sample.xml","Download sample.xml"
+"Download sample.csv","Download sample.csv"
+"Upload file","Upload file"
+"Total selected ","Total selected "
+Unselect,Unselect
+"Download List","Download List"
+"Clear List","Clear List"
+"You haven’t added products yet.","You haven’t added products yet."
+Delete,Delete
+"Remove current product","Remove current product"
+"Item №","Item №"
+Reason,Reason
+"Your search returned no products.","Your search returned no products."
+Add,Add
+"Add current product","Add current product"
+"Are you sure?","Are you sure?"
+"Not sure","Not sure"
+"Max value is","Max value is"
+"Min value is","Min value is"
+"The file is too large","The file is too large"
+"The file is empty.","The file is empty."
+"out of","out of"
+"successfully passed validation","successfully passed validation"
+"Items below will not be added to the grid because:","Items below will not be added to the grid because:"
+Accept,Accept
+Cancel,Cancel
+Information,Information
+General,General
+Enabled,Enabled
+"URL Key","URL Key"
+"Based on Website Base URL. If left empty, default ‘quick-order' is used.","Based on Website Base URL. If left empty, default ‘quick-order' is used."
+Label,Label
+"Here you can name the functionality the way you would like it to be displayed on the storefront. If left empty, default Quick Order is used.","Here you can name the functionality the way you would like it to be displayed on the storefront. If left empty, default Quick Order is used."
+"Display Link in","Display Link in"
+"Choose where to display a link.","Choose where to display a link."
+"Disable for Customer Groups","Disable for Customer Groups"
+"Chosen customer groups won't be able to Quick Order.","Chosen customer groups won't be able to Quick Order."
+"Max Search Results","Max Search Results"
+"Limit a maximum number of search results to show in autocomplete popup. For better performance we do not recommend to use large numbers here.","Limit a maximum number of search results to show in autocomplete popup. For better performance we do not recommend to use large numbers here."
+"Number of Items to Display Pager","Number of Items to Display Pager"
+"Allowed QTY of Items to Add","Allowed QTY of Items to Add"
+"Limit the quantity of items to be added to quick order grid. To avoid excess load on the server we recommend 100 as maximum qty.","Limit the quantity of items to be added to quick order grid. To avoid excess load on the server we recommend 100 as maximum qty."
+"Disable File Upload for Customer Groups","Disable File Upload for Customer Groups"
+"Chosen customer groups won’t be able to add products to Quick Order grid from file. You can use this option to limit file uploading by not logged in users.","Chosen customer groups won’t be able to add products to Quick Order grid from file. You can use this option to limit file uploading by not logged in users."
+"Show Request a Quote Button","Show Request a Quote Button"
+"If enabled, customers will be able to request a quote for the list of added items right from Quick Order page.","If enabled, customers will be able to request a quote for the list of added items right from Quick Order page."
+"Allow Customer to Download the List","Allow Customer to Download the List"
+"Table Category Mode","Table Category Mode"
+Enable,Enable
+"Disable for Selected Customer Groups","Disable for Selected Customer Groups"
+"Chosen customer groups will not be able to see and use Table Mode on category pages.","Chosen customer groups will not be able to see and use Table Mode on category pages."
+"Disable for Categories","Disable for Categories"
+"Choose categories where Table Mode is unavailable.","Choose categories where Table Mode is unavailable."
+"Replace Default List Modes","Replace Default List Modes"
+"Set ‘Yes’ to hide default List/Grid modes on chosen categories. With 'No (but use default settings)' the List Mode setting under Stores->Configuration->Catalog->Catalog->Storefront in priority.","Set ‘Yes’ to hide default List/Grid modes on chosen categories. With 'No (but use default settings)' the List Mode setting under Stores->Configuration->Catalog->Catalog->Storefront in priority."
+"Products per Page Allowed Values","Products per Page Allowed Values"
+Comma-separated.,Comma-separated.
+"Products per Page on Grid Default Value","Products per Page on Grid Default Value"
+"Must be in the allowed values list.","Must be in the allowed values list."
+"Apply to Search Results Page","Apply to Search Results Page"
+"Search by SKU or Product Name","Search by SKU or Product Name"

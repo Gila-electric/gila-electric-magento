@@ -1,0 +1,433 @@
+﻿Save Attribute Rule,حفظ قاعدة السمة
+Save and Continue Edit,حفظ ومتابعة التحرير
+Edit Rule,تحرير القاعدة
+New Rule,قانون جديد
+Reward system Attribute Rule,قاعدة سمات نظام المكافأة
+General Information,معلومات عامة
+Reward Point,نقطة مكافأة
+Attribute Options,خيارات السمة
+Rule Status,حالة القاعدة
+Enabled,ممكّن
+Disabled,عاجز
+Save Cart Rule,قاعدة حفظ سلة التسوق
+Reward system Cart Rule,قاعدة عربة نظام المكافآت
+Amount From,المبلغ من
+Amount To,المبلغ ل
+Start From Date,البدء من التاريخ
+End Date,تاريخ الانتهاء
+Reward Points On Categories,نقاط المكافأة على الفئات
+Reward point on category,نقطة المكافأة على الفئة
+Reward points,نقاط مكافأة
+Set point on category,تعيين نقطة على الفئة
+Enter points,أدخل النقاط
+Reward point status,حالة نقطة المكافأة
+Enable,يُمكَِن
+Disable,إبطال
+Category ID,معرف الفئة
+Category Name,اسم التصنيف
+Reward Points,نقاط مكافأة
+Status,حالة
+Start Time,وقت البدء
+End Time,وقت النهاية
+Reward Points On Category,نقاط المكافأة على الفئة
+Reward Point On Category,نقطة المكافأة على الفئة
+Reward Point On Category for Specific Time,نقطة المكافأة على الفئة لفترة محددة
+Reward Points On Products,نقاط المكافأة على المنتجات
+Reward point on product,نقطة المكافأة على المنتج
+Set point on product,نقطة التحديد على المنتج
+Product ID,معرف المنتج
+Product SKU,رمز المنتج
+Product Name,اسم المنتج
+Reward Points On Product,نقاط المكافأة على المنتج
+Reward Point On Product,نقطة المكافأة على المنتج
+Reward Point On Product for Specific Time,نقطة المكافأة على المنتج لمدة زمنية محددة
+All Websites,جميع المواقع
+All Customer Groups,جميع مجموعات العملاء
+Back,خلف
+Reset,إعادة ضبط
+Save Transaction,حفظ المعاملة
+Home,بيت
+Go to Home Page,انتقل إلى الصفحة الرئيسية
+Month,شهر
+Total Referrals,إجمالي الإحالات
+Earned Reward Points,نقاط المكافأة المكتسبة
+Reward System Attribute Rule,قاعدة سمات نظام المكافأة
+This rule no longer exists.,هذه القاعدة لم تعد موجودة.
+Edit Reward Attribute Rule,تحرير قاعدة سمة المكافأة
+Update Reward Attribute Rule,تحديث قاعدة سمة المكافأة
+Add Reward Attribute Rule,أضف قاعدة سمة المكافأة
+Manage Reward Points on Attribute,إدارة نقاط المكافأة على السمة
+A total of %1 record(s) have been deleted.,تم حذف إجمالي %1 من السجلات.
+A total of %1 record(s) have been updated.,تم تحديث إجمالي %1 من السجلات.
+Rule already exists for this option.,القاعدة موجودة بالفعل لهذا الخيار.
+Attribute Rule successfully saved.,تم حفظ قاعدة السمة بنجاح.
+Something went wrong while saving the data.,حدث خطأ ما أثناء حفظ البيانات.
+Wallet System Credit Rule,قاعدة الائتمان لنظام المحفظة
+Edit Reward Cart Rule,تحرير قاعدة سلة المكافآت
+Update Reward Cart Rule,تحديث قاعدة سلة المكافآت
+Add Reward Cart Rule,أضف قاعدة سلة المكافآت
+Manage Reward Points on Cart,إدارة نقاط المكافأة على سلة التسوق
+Amount range already exists.,نطاق المبلغ موجود بالفعل.
+Cart Rule successfully saved.,تم حفظ قاعدة سلة التسوق بنجاح.
+End date can not be lesser than start From date.,لا يمكن أن يكون تاريخ الانتهاء أقل من تاريخ البدء.
+Amount To can not be less than Amount From,لا يمكن أن يكون المبلغ إلى أقل من المبلغ من
+Amount From or Amount To can not be less than 0,لا يمكن أن يكون المبلغ من أو المبلغ إلى أقل من 0
+Manage Reward Points on Category,إدارة نقاط المكافأة على الفئة
+Total of %1 category(s) reward status are updated,تم تحديث إجمالي %1 حالة مكافأة فئة (فئات).
+Total of %1 category(s) reward are updated,تم تحديث إجمالي %1 مكافأة فئة (فئات).
+Please Enter a valid points number to add.,الرجاء إدخال رقم نقاط صالح لإضافته.
+Please select categories to set points.,الرجاء تحديد الفئات لتحديد النقاط.
+Manage Reward Points on Product,إدارة نقاط المكافأة على المنتج
+Total of %1 product(s) reward status are updated,تم تحديث إجمالي حالة المكافأة لـ %1 منتج (منتجات).
+Total of %1 product(s) reward are updated,تم تحديث إجمالي %1 من المنتجات (المنتجات).
+Please Enter a valid reward points number to add.,الرجاء إدخال رقم نقاط مكافأة صالح لإضافته.
+Please select products to set points.,يرجى تحديد المنتجات لتحديد النقاط.
+Reward Points Reports,تقارير نقاط المكافأة
+Reward System Details,تفاصيل نظام المكافآت
+%1's Details,تفاصيل %1
+New Transaction,معاملة جديدة
+Transaction is saved successfully!!,تم حفظ المعاملة بنجاح!!
+Something went wrong while saving the transaction.,حدث خطأ ما أثناء حفظ المعاملة.
+You got %1 reward points from admin,لقد حصلت على %1 نقطة مكافأة من المشرف
+%1 customer has been credited with %2 reward points,تم منح %1 للعميل %2 نقطة مكافأة
+%1 reward points debited by the admin,%1 نقاط مكافأة تم خصمها من قبل المشرف
+%1 customer has been debited with %2 reward points,تم خصم %2 من نقاط المكافأة من العميل %1
+"No customers added, Please select customers","لم تتم إضافة أي عملاء، يرجى تحديد العملاء"
+Reward points can't be greater than customer's reward point(s).,لا يمكن أن تكون نقاط المكافأة أكبر من نقاط (نقاط) مكافأة العميل.
+You can not use more than %1 reward points for this order purchase.,لا يمكنك استخدام أكثر من %1 نقطة مكافأة لشراء هذا الطلب.
+Reward Amount can not be greater than Order Total.,لا يمكن أن يكون مبلغ المكافأة أكبر من إجمالي الطلب.
+My Reward,مكافأتى
+Referral Program,برنامج الإحالة
+Period,فترة
+Rewarded Points,نقاط المكافأة
+Redeemed Points,النقاط المستردة
+-,-
+"Please, note that your reward points %1 will expire on %2","من فضلك، لاحظ أن نقاط المكافأة الخاصة بك %1 ستنتهي في %2"
+Remaining Reward Point can not be less than zero.,لا يمكن أن تكون نقاط المكافأة المتبقية أقل من الصفر.
+Order id : %1 credited amount,معرف الطلب : %1 المبلغ المضاف
+Order id : %1 credited amount in way,معرف الطلب : %1 مبلغ مضاف في الطريق
+Unable to send invitation mail to %1.,غير قادر على إرسال بريد الدعوة إلى %1.
+Reward point for referral,نقطة المكافأة للإحالة
+You got %1 reward points through referral program,لقد حصلت على %1 نقطة مكافأة من خلال برنامج الإحالة
+ got %1 reward points through referral program,  حصلت على %1 نقطة مكافأة من خلال برنامج الإحالة
+Reward point on registration through referral,نقطة مكافأة عند التسجيل عن طريق الإحالة
+You got %1 reward points on registration through referral program,لقد حصلت على %1 نقطة مكافأة عند التسجيل من خلال برنامج الإحالة
+" have registered on your site, and got %1 reward points through referral program",  قمت بالتسجيل في موقعك وحصلت على %1 نقطة مكافأة من خلال برنامج الإحالة
+Now total remaining reward points in your account are: %1,الآن إجمالي نقاط المكافأة المتبقية في حسابك هو: %1
+Now total remaining reward points in his/her account are: %1,الآن إجمالي نقاط المكافأة المتبقية في حسابه هو: %1
+Invoice Created,تم إنشاء الفاتورة
+Order Complete,الطلب جاهز
+Shipment Generate,توليد الشحنة
+Product Based,على أساس المنتج
+Cart Based,عربة التسوق
+Category Based,على أساس الفئة
+Attribute Based,على أساس السمة
+%1 Point(s) are expired,%1 نقطة(نقاط) منتهية الصلاحية
+Your %1 reward points have been expired,لقد انتهت صلاحية نقاط المكافأة %1 الخاصة بك
+ reward points expired %1,  انتهت صلاحية نقاط المكافأة %1
+Reward point on birthday,نقطة المكافأة في عيد ميلاد
+You got %1 reward points on birthday,لقد حصلت على %1 نقطة مكافأة في عيد الميلاد
+ have got %1 reward points on birthday,  لقد حصلت على %1 نقطة مكافأة في عيد الميلاد
+Credit,ائتمان
+Debit,دَين
+Expired,منتهي الصلاحية
+Applied,مُطبَّق
+Pending,قيد الانتظار
+Rewarded Amount,مبلغ المكافأة
+"The model with the ""%1"" ID doesn't exist.","النموذج ذو المعرف ""%1"" غير موجود."
+Today,اليوم
+Last 7 Days,اخر 7 ايام
+Last 30 Days,آخر 30 يومًا
+Last 6 Months,آخر 6 أشهر
+Last 2 Years,آخر سنتين
+Overall,إجمالي
+'input' input argument is required.,"وسيطة الإدخال ""الإدخال"" مطلوبة."
+Customer id(s) cannot be empty.,لا يمكن أن يكون معرف (أرقام) العميل فارغًا.
+Unauthorized access. Only admin can access this information.,دخول غير مرخص. يمكن للمسؤول فقط الوصول إلى هذه المعلومات.
+The consumer isn't authorized to access %resources.,المستهلك غير مصرح له بالوصول إلى %resources.
+Reward attribute point id(s) cannot be empty.,لا يمكن أن يكون معرف (معرفات) نقاط سمة المكافأة فارغًا.
+Reward attribute point id(s) are not valid.,معرف (معرفات) نقاط سمة المكافأة غير صالحة.
+'action' input argument is not valid.,"وسيطة الإدخال ""الإجراء"" غير صالحة."
+Invalid Request,طلب غير صالح
+Reward cart point id(s) cannot be empty.,لا يمكن أن يكون معرف (معرفات) نقاط عربة المكافآت فارغًا.
+Reward cart point id(s) are not valid.,معرف (معرفات) نقاط عربة المكافآت غير صالحة.
+'filter' input argument is required.,"وسيطة الإدخال ""مرشح"" مطلوبة."
+Option id is required.,معرف الخيار مطلوب.
+"""model"" value should be specified","يجب تحديد قيمة ""النموذج""."
+Buy any product and ,شراء أي منتج و
+Earn %1 Reward Points,اربح %1 نقطة مكافأة
+ between,  بين
+"Required parameter ""cart_id"" is missing","المعلمة المطلوبة ""cart_id"" مفقودة"
+"Required parameter ""used_reward_points"" is missing","المعلمة المطلوبة ""used_reward_points"" مفقودة"
+The current customer isn't authorized.,العميل الحالي غير مصرح له.
+Order id: ,رقم التعريف الخاص بالطلب:
+Credited amount in way,المبلغ المعتمد في الطريق
+Cancelled,ألغيت
+Approved,موافقة
+"""order"" value should be specified","يجب تحديد قيمة ""الطلب""."
+Between %1 - %2 Reward Points will be used to purchase this product,احصل ما بين %1 - %2 من نقاط عند الشراء
+%1 Reward Points will be used to purchase this product,احصل %1 نقطة عند الشراء
+Buy this product and ,شراء هذا المنتج و
+Earn %1 to %2 Reward Points,اربح %1 إلى %2 نقاط مكافأة
+You don't have sufficient Reward Points to use.,ليس لديك نقاط مكافأة كافية لاستخدامها.
+"Reward Attribute with id ""%1"" does not exist.","سمة المكافأة ذات المعرف ""%1"" غير موجودة."
+"Reward Cart with id ""%1"" does not exist.","سلة المكافآت ذات المعرف ""%1"" غير موجودة."
+"Reward Category with id ""%1"" does not exist.","فئة المكافأة ذات المعرف ""%1"" غير موجودة."
+"The model with id ""%1"" does not exist.","النموذج ذو المعرف ""%1"" غير موجود."
+"Time Slot with id ""%1"" does not exist.","الفترة الزمنية ذات المعرف ""%1"" غير موجودة."
+"Reward Product with id ""%1"" does not exist.","منتج المكافأة بالمعرف ""%1"" غير موجود."
+"Reward record with id ""%1"" does not exist.","سجل المكافأة بالمعرف ""%1"" غير موجود."
+Reward Amount,مبلغ المكافأة
+Reward point on registration,نقطة مكافأة عند التسجيل
+You got %1 reward points on registration,لقد حصلت على %1 نقطة مكافأة عند التسجيل
+" have registered on your site, and got %1 reward points",  لقد قمت بالتسجيل في موقعك وحصلت على %1 نقطة مكافأة
+You got %1 reward points on order #%2,لقد حصلت على %1 نقطة مكافأة على الطلب رقم %2
+" have placed an order on your site, and got %1 reward points","  قمت بتقديم طلب على موقعك، وحصلت على %1 نقطة مكافأة"
+Order id : %1 debited amount,معرف الطلب : %1 المبلغ المدين
+You used %1 reward points on order #%2,لقد استخدمت %1 نقطة مكافأة على الطلب رقم%2
+" have placed an order on your site, and used %1 reward points","  قمت بتقديم طلب على موقعك، واستخدمت %1 نقطة مكافأة"
+Order id : %1 Credited amount on order item cancel,معرف الطلب : %1 المبلغ المضاف عند إلغاء عنصر الطلب
+Revert %1 reward points on order #%2 item cancel,يمكنك إرجاع %1 نقطة مكافأة عند إلغاء العنصر رقم %2 للطلب
+ Revert %1 reward points on order #%2 item cancel,  يمكنك إرجاع %1 نقطة مكافأة عند إلغاء العنصر رقم %2 للطلب
+Order id : %1 Debited amount on order item cancel,معرف الطلب : %1 تم إلغاء المبلغ المدين على عنصر الطلب
+Buy and Earn,شراء وكسب
+Checkout now to,الخروج الآن ل
+earn %1 Reward Points,احصل على %1 نقطة مكافأة
+Reward Point for product review on %1,نقطة المكافأة لمراجعة المنتج على %1
+You got %1 reward points for product review,لقد حصلت على %1 نقطة مكافأة لمراجعة المنتج
+"'s product review get approved, and got %1 reward points","تمت الموافقة على مراجعة منتج s، وحصلت على %1 نقطة مكافأة"
+"""Maximum Reward Points can be Used By a Customer"" can not be greater than
+                     ""Maximum Reward Points can Assign to a Customer""","""الحد الأقصى لنقاط المكافأة التي يمكن للعميل استخدامها"" لا يمكن أن يكون أكبر من
+                      ""الحد الأقصى لنقاط المكافأة التي يمكن تعيينها للعميل"""
+"""Reward Points On Registration"" can not be greater than
+                     ""Maximum Reward Points can Assign to a Customer""","""نقاط المكافأة عند التسجيل"" لا يمكن أن تكون أكبر من
+                      ""الحد الأقصى لنقاط المكافأة التي يمكن تعيينها للعميل"""
+"""Reward Points On Product Review"" can not be greater than
+                     ""Maximum Reward Points can Assign to a Customer""","""نقاط المكافأة عند مراجعة المنتج"" لا يمكن أن تكون أكبر من
+                      ""الحد الأقصى لنقاط المكافأة التي يمكن تعيينها للعميل"""
+"""Reward Points On Birthday"" can not be greater than
+                     ""Maximum Reward Points can Assign to a Customer""","""نقاط المكافأة في عيد الميلاد"" لا يمكن أن تكون أكبر من
+                      ""الحد الأقصى لنقاط المكافأة التي يمكن تعيينها للعميل"""
+You saved the configuration.,لقد قمت بحفظ التكوين.
+Something went wrong while saving this configuration:,حدث خطأ ما أثناء حفظ هذا التكوين:
+Edit,يحرر
+Individual Details,التفاصيل الفردية
+Website,موقع إلكتروني
+Customer Group,مجموعة العملاء
+Date Range,نطاق الموعد
+Refresh,ينعش
+Statistics,إحصائيات
+Showing Data of,عرض بيانات
+Total Reward Points Rewarded,إجمالي نقاط المكافأة التي تمت مكافأتها
+Total Reward Points Redeemed,إجمالي نقاط المكافأة المستردة
+Average Reward point per Customer,متوسط نقطة المكافأة لكل عميل
+Average Redeemed point per order,متوسط النقاط المستردة لكل طلب
+Total Expired Points,إجمالي النقاط منتهية الصلاحية
+Enter Points,أدخل النقاط
+Reward Point Status,حالة نقطة المكافأة
+Update point for category,نقطة التحديث للفئة
+Update Points,تحديث النقاط
+Update point for product,نقطة التحديث للمنتج
+Apply Reward Point(s),تطبيق نقاط المكافأة
+You have,لديك
+Per Reward Point,لكل نقطة مكافأة
+Amount,كمية
+Enter Your Reward Points:,أدخل نقاط المكافأة الخاصة بك:
+Enter Reward points,أدخل نقاط المكافأة
+Applied Rewards,المكافآت المطبقة
+Using,استخدام
+Rewards,المكافآت
+of,ل
+Cancel,يلغي
+You will Earn,سوف تكسب
+%1 RP,%1 روبية
+Create an account and get %1 Reward Points to begin your shopping experience with us,أنشئ حسابًا واحصل على %1 نقطة مكافأة لتبدأ تجربة التسوق معنا
+Referral Report,تقرير الإحالة
+Invite your friends by,قم بدعوة أصدقائك عن طريق
+Can add multiple address with comma,يمكن إضافة عنوان متعدد بفاصلة
+Send Invites,ارسل دعوات
+Share the referral link,شارك رابط الإحالة
+Copy,ينسخ
+Refer Via Social,الرجوع عبر الاجتماعية
+Referred Users,المستخدمون المُحالون
+Id,بطاقة تعريف
+Date,تاريخ
+Receiver,المتلقي
+Receiver Discount,خصم المتلقي
+Your Earning,كسبك
+Registered,مسجل
+RP,ر.ب
+No records found!,لا توجد سجلات!
+How Referral Program Works,كيف يعمل برنامج الإحالة
+Step 1:,الخطوة 1:
+Send Invitation,إرسال دعوة
+Step 2:,الخطوة 2:
+User Registration,تسجيل المستخدم
+Step 3:,الخطوه 3:
+Please contact to Admin.,يرجى الاتصال بالمسؤول.
+%1 Reward Points will be used to purchase these item(s),احصل %1 نقاط مكافأة لشراء هذه العناصر
+Accrue %1 Reward Points after purchasing these item(s),اجمع %1 نقطة مكافأة بعد شراء هذه العناصر
+Buy for %1 to %2 and ,اشتري مقابل %1 إلى %2 و
+ click here,  انقر هنا
+ to login,  لتسجيل الدخول
+ Reward Points,  نقاط مكافأة
+Current Balance,الرصيد الحالي
+Reward points from your balance is expiring on,تنتهي صلاحية نقاط المكافأة من رصيدك
+Total Earned,إجمالي المكتسبة
+Total Spent,إجمال الصرف
+Reward Information,معلومات المكافأة
+Click here for more information,انقر هنا للمزيد من المعلومات
+Type,يكتب
+Points,نقاط
+Select Type,اختر صنف
+Search by Point,البحث بالنقطة
+Select Status,حدد الحالة
+Save,يحفظ
+Submit,يُقدِّم
+Last Transactions,المعاملات الأخيرة
+Description,وصف
+Expiration Date,تاريخ انتهاء الصلاحية
+Points: ,نقاط:
+No Reward Points,لا توجد نقاط مكافأة
+Shop with Us and Earn Reward Points!,تسوّق معنا واكسب نقاط المكافآت!
+Submit your review to ,أرسل رأيك إلى
+No customers added. Please add customers.,لم تتم إضافة أي عملاء. الرجاء إضافة العملاء.
+Previous Page,الصفحة السابقة
+Next Page,الصفحة التالية
+"Hello %customername, ","مرحبًا %اسم العميل،"
+%message,?رسالة
+"Hello,","مرحبًا،"
+You have got the invitation.,لقد حصلت على الدعوة.
+Open the below link and complete the registration process.,افتح الرابط أدناه وأكمل عملية التسجيل.
+%message1,%رسالة1
+earn,يكسب
+Apply Reward Point,تطبيق نقطة المكافأة
+ equals to ,  يساوي
+Apply Reward Points,تطبيق نقاط المكافأة
+ Rewards ,  المكافآت
+ Rewards ),  المكافآت )
+Apply Reward Point's,تطبيق نقاط المكافأة
+Register for become user and,قم بالتسجيل لتصبح مستخدمًا و
+Earn,يكسب
+click here,انقر هنا
+to Register,للتسجيل
+Are you sure you want to set reward points on selected product?,هل أنت متأكد أنك تريد تعيين نقاط المكافأة على المنتج المحدد؟
+Please Select Products To Assign Reward Points,يرجى تحديد المنتجات لتعيين نقاط المكافأة
+Are you sure you want to set reward points on selected category?,هل أنت متأكد أنك تريد تعيين نقاط المكافأة على الفئة المحددة؟
+Please Select Categories To Assign Reward Points,يرجى تحديد الفئات لتعيين نقاط المكافأة
+Saving,إنقاذ
+Your reward was successfully cancelled,تم إلغاء مكافأتك بنجاح
+Your reward was successfully applied,تم تطبيق مكافأتك بنجاح
+Webkul,ويبكول
+Reward System,نظام المكافأة
+General Settings of Reward Points,الإعدادات العامة لنقاط المكافأة
+Enable Reward System Module,تمكين وحدة نظام المكافآت
+1 Reward Point Value is Equals to,1 قيمة نقطة المكافأة تساوي
+e.g. 10,على سبيل المثال 10
+Maximum Reward Points can Assign to a Customer,الحد الأقصى لنقاط المكافأة التي يمكن تخصيصها للعميل
+e.g. 1000 (Maximum number of points assign to a customer),على سبيل المثال 1000 (الحد الأقصى لعدد النقاط المخصصة للعميل)
+Maximum Reward Points can be Used By a Customer,يمكن للعميل استخدام الحد الأقصى لنقاط المكافأة
+e.g. 1000 (Maximum number of points can be used by the customer at the time of order place),على سبيل المثال 1000 (الحد الأقصى لعدد النقاط التي يمكن للعميل استخدامها وقت تقديم الطلب)
+Allow Reward Points on Registration,السماح بنقاط المكافأة عند التسجيل
+Reward Points On Registration,نقاط المكافأة عند التسجيل
+Allow Reward Points on Product Review,السماح بنقاط المكافأة عند مراجعة المنتج
+Reward Points On Product Review,نقاط المكافأة عند مراجعة المنتج
+Order Placed Reward Points Applied When,تم تطبيق نقاط المكافأة التي تم وضعها عند الطلب
+Reward points for placed order will Approved on the selected event.,ستتم الموافقة على نقاط المكافأة للطلب المقدم في الحدث المحدد.
+Order Placed Reward Points Calculation Based On,طلب حساب نقاط المكافأة بناءً على
+Reward points for placed order will calculate based on Product/Cart/Category.,سيتم حساب نقاط المكافأة للطلب المقدم بناءً على المنتج/عربة التسوق/الفئة.
+Rewards Applied product's Quantity wise,المكافآت المطبقة على كمية المنتج
+If yes then reward points will apply product's quantity wise.,"إذا كانت الإجابة بنعم، فسيتم تطبيق نقاط المكافأة على كمية المنتج."
+Select Attribute Code,حدد رمز السمة
+Please select attribute for attribute rule.,الرجاء تحديد سمة لقاعدة السمة.
+Allow Reward Points on Customer Birthday,السماح بنقاط المكافأة في عيد ميلاد العميل
+Configure Reward Point on Birthday Day(s),تكوين نقطة المكافأة في يوم (أيام) عيد الميلاد
+"Reward points credit to customer after/before days of the customer birthday, if you want to credit reward before the birthday then write days with (-) sign for eg: -3 and if you want to credit reward after birthday then only write number of days for eg: 3 or if you want to credit reward on the day of birthday then write zero (0).","يتم إضافة نقاط المكافأة إلى العميل بعد/قبل أيام من عيد ميلاد العميل، إذا كنت تريد إضافة المكافأة قبل عيد الميلاد، فاكتب الأيام مع علامة (-) على سبيل المثال: -3 وإذا كنت تريد إضافة المكافأة بعد عيد الميلاد، فاكتب فقط عدد النقاط أيام على سبيل المثال: 3 أو إذا كنت تريد إضافة المكافأة في يوم عيد الميلاد فاكتب صفر (0)."
+Reward Points On Birthday,نقاط المكافأة في عيد ميلاد
+Reward points expire after days,تنتهي صلاحية نقاط المكافأة بعد أيام
+Write 0 if you don't want to set expiry for the points,اكتب 0 إذا كنت لا تريد تحديد انتهاء صلاحية النقاط
+Send notification before points expiring (in days),إرسال إشعار قبل انتهاء صلاحية النقاط (بالأيام)
+Set as 'Yes' to show reward information on customer's reward points page,"قم بالتعيين كـ ""نعم"" لإظهار معلومات المكافأة على صفحة نقاط المكافأة الخاصة بالعميل"
+Content,محتوى
+Fill the information that you want to show on customer's reward points page,املأ المعلومات التي تريد إظهارها في صفحة نقاط المكافآت الخاصة بالعميل
+Reward Page Title,عنوان صفحة المكافأة
+e.g Reward Points,"على سبيل المثال، نقاط المكافأة"
+Display Banner,عرض لافتة
+Banner Image,صورة بانر
+Banner Heading,عنوان البانر
+This content will be display over the banner image in the reward program page url-www.yourwebsite.com/reward/index/program,سيتم عرض هذا المحتوى فوق صورة الشعار في صفحة برنامج المكافآت url-www.yourwebsite.com/reward/index/program
+Banner Text,نص البانر
+Reward Page Label1,تسمية صفحة المكافأة1
+Reward Page Content,محتوى صفحة المكافأة
+Reward Flow Image,صورة تدفق المكافأة
+Set as 'Yes' to enable referral program,"قم بتعيين ""نعم"" لتمكين برنامج الإحالة"
+Reward Points For Customer,نقاط المكافأة للعملاء
+Reward Points For Referee,نقاط المكافأة للحكم
+Fill the information that you want to show on referral program page,املأ المعلومات التي تريد إظهارها على صفحة برنامج الإحالة
+Cron Setting,إعداد كرون
+Frequency,تكرار
+Reports Section,قسم التقارير
+Set as 'Yes' to show reward section in the admin reports,"قم بتعيين ""نعم"" لإظهار قسم المكافآت في تقارير المشرف"
+Manage Email Settings,إدارة إعدادات البريد الإلكتروني
+Reward Transaction Template,نموذج معاملة المكافأة
+Reward Expiry Email Template,قالب البريد الإلكتروني لانتهاء المكافأة
+Referral Invitation Email Template,قالب البريد الإلكتروني لدعوة الإحالة
+Cart Rule Status,حالة قاعدة سلة التسوق
+Are you sure to update status of selected Cart Rules?,هل أنت متأكد من تحديث حالة قواعد سلة التسوق المحددة؟
+Attribute Rule Status,حالة قاعدة السمة
+Are you sure to update status of selected Rule(s)?,هل أنت متأكد من تحديث حالة القاعدة (القواعد) المحددة؟
+ID,بطاقة تعريف
+Customer Name,اسم الزبون
+Customer Email,البريد الإلكتروني للعميل
+Phone,هاتف
+ZIP,أَزِيز
+Country,دولة
+State/Province,الولاية/المقاطعة
+Customer Since,العميل منذ
+Web Site,موقع إلكتروني
+Confirmed email,البريد الإلكتروني المؤكد
+Account Created in,تم إنشاء الحساب في
+Billing Address,عنوان وصول الفواتير
+Shipping Address,عنوان الشحن
+Tax VAT Number,الضرائب / رقم ضريبة القيمة المضافة
+Gender,جنس
+Street Address,عنوان الشارع
+City,مدينة
+Fax,فاكس
+VAT Number,ظريبه الشراء
+Company,شركة
+Billing Firstname,الاسم الأول للفوترة
+Billing Lastname,الفواتير اسم العائلة
+Account Lock,قفل الحساب
+Transaction,عملية
+Prefered Action,الإجراء المفضل
+Enter Reward Points.,أدخل نقاط المكافأة.
+Note Message,ملاحظة الرسالة
+Enter your message which you want to show for this transaction.,أدخل رسالتك التي تريد إظهارها لهذه المعاملة.
+Customers,عملاء
+Add Customer,إضافة العميل
+Add Selected Customers,إضافة العملاء المحددين
+Add Customers,إضافة العملاء
+Customer,عميل
+Magento_Ui/js/dynamic-rows/record,Magento_Ui/js/dynamic-rows/record
+Add New Rule,إضافة قاعدة جديدة
+Delete,يمسح
+Delete items,حذف العناصر
+Are you sure you want to delete selected rule(s)?,هل أنت متأكد أنك تريد حذف القاعدة (القواعد) المحددة؟
+Update Attribute Rule,تحديث قاعدة السمات
+Option Label,تسمية الخيار
+Created At,أنشئت في
+Add New Cart Rule,أضف قاعدة سلة التسوق الجديدة
+Are you sure you want to delete selected cart rules?,هل أنت متأكد أنك تريد حذف قواعد سلة التسوق المحددة؟
+Update Cart Rule,تحديث قاعدة سلة التسوق
+Start Date,تاريخ البدء
+Add New Transaction,إضافة معاملة جديدة
+Customer Id,هوية الزبون
+Total Reward Points,إجمالي نقاط المكافأة
+Remaining Reward Points,نقاط المكافأة المتبقية
+Used Reward Points,نقاط المكافأة المستخدمة
+Transaction At,الصفقة في
+Action,فعل
+Note,ملحوظة
+My Reward Points,نقاط المكافأة الخاصة بي
+Reward Points:,نقاط مكافأة:

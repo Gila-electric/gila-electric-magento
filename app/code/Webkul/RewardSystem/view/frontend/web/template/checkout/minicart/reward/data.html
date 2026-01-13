@@ -1,0 +1,9 @@
+<!-- ko if: cart().reward_earn_points -->
+    <span class="wk_rs_minicart_page_greet"></span>
+    <span class="wk_reward_required" data-bind="i18n: 'Checkout now to'"></span>
+    <span class="wk_rs_cart_green wk_rs_bold_text">
+        <!-- ko i18n: 'earn'--><!-- /ko -->
+        <span data-bind="text: cart().reward_earn_points"></span>
+        <!-- ko i18n: 'Reward Points'--><!-- /ko -->
+    </span>
+<!-- /ko -->

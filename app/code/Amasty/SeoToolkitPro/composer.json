@@ -1,0 +1,31 @@
+{
+    "name": "amasty\/module-seo-toolkit-pro",
+    "description": "SEO Toolkit Pro by Amasty",
+    "require": {
+        "php": "^7.1.0",
+        "amasty\/base": "*",
+        "amasty\/meta": ">=1.3.3",
+        "amasty\/module-google-rich-snippets": ">=1.6.1",
+        "amasty\/module-unique-product-url": ">=1.0.24",
+        "amasty\/module-xml-google-sitemap": ">=2.1.2",
+        "amasty\/module-cross-linking": ">=1.2.5",
+        "amasty\/html-sitemap": ">=1.2.5",
+        "amasty\/module-regenerate-url-rewrites": ">=1.1.1",
+        "amasty\/module-alt-tag-generator": ">=1.0.1",
+        "amasty\/module-seo-toolkit": ">=2.1.0"
+    },
+    "homepage": "https:\/\/amasty.com\/",
+    "type": "magento2-module",
+    "version": "1.0.0",
+    "license": [
+        "Commercial"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Amasty\\SeoToolkitPro\\": ""
+        }
+    }
+}

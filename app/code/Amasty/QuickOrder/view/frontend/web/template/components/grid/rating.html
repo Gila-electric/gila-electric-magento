@@ -1,0 +1,26 @@
+<div class="amqorder-rating-wrapper amqorder-item">
+    <!-- ko if: $parent.rating.count > 0 -->
+        <div class="amqorder-rating-container -small"
+             data-bind="
+                attr: {
+                    title: $parent.rating.count > 1 ? $parent.rating.count + ' stars' : $parent.rating.count + ' star'
+                }
+            ">
+            <p class="amqorder-stars"
+               data-bind="
+                    style: {
+                        width: $parent.rating.value + '%'
+                    }
+               ">
+            </p>
+        </div>
+        <a class="amqorder-reviews-count"
+           data-bind="
+                i18n: $parent.rating.count + ' Reviews',
+                attr: { href: $parent.product_url + '#reviews' }">
+        </a>
+    <!-- /ko -->
+    <!-- ko if: $parent.rating.count == 0 -->
+        <p class="amqorder-text" data-bind="i18n: 'No reviews'"></p>
+    <!-- /ko -->
+</div>

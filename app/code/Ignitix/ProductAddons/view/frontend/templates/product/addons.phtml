@@ -1,0 +1,28 @@
+<?php
+/** @var \Ignitix\ProductAddons\Block\Product\Addons $block */
+$addons = $block->getAddons();
+if (!$addons) {
+    return;
+}
+?>
+<div class="ignitix-product-addons" style="margin: 12px 0;">
+    <strong><?= $block->escapeHtml(__('Add-ons')) ?></strong>
+
+    <div class="ignitix-product-addons-list" style="margin-top: 8px;">
+        <?php foreach ($addons as $a): ?>
+            <div class="ignitix-addon-row" style="margin: 6px 0;">
+                <label>
+                    <input type="checkbox"
+                           name="ignitix_addon_skus[]"
+                           value="<?= $block->escapeHtmlAttr($a['sku']) ?>"/>
+                    <span class="ignitix-addon-name">
+                        <?= $block->escapeHtml($a['name']) ?>
+                    </span>
+                    <span class="ignitix-addon-price" style="margin-inline-start: 6px;">
+                        (<?= $block->escapeHtml($a['price_formatted']) ?>)
+                    </span>
+                </label>
+            </div>
+        <?php endforeach; ?>
+    </div>
+</div>

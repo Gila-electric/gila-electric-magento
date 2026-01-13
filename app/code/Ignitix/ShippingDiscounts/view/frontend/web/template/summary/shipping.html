@@ -1,0 +1,26 @@
+<!--
+Shipping row with crossed-out original + discounted shipping,
+plus a separate Shipping Discount row.
+-->
+<tr class="totals shipping excl">
+    <th class="mark" scope="row">
+        <span data-bind="text: title"></span>
+    </th>
+    <td class="amount">
+        <!-- ko if: hasIgnitixShippingDiscount() -->
+        <span class="price ignitix-old-shipping" data-bind="text: getIgnitixOriginalShippingValue()"></span>
+        <!-- /ko -->
+        <span class="price" data-bind="text: getValue()"></span>
+    </td>
+</tr>
+
+<!-- ko if: hasIgnitixShippingDiscount() -->
+<tr class="totals ignitix-shipping-discount">
+    <th class="mark" scope="row">
+        <span data-bind="i18n: 'Shipping Discount'"></span>
+    </th>
+    <td class="amount">
+        <span class="price" dir="ltr" style="unicode-bidi:isolate; display:inline-block;"data-bind="text: getIgnitixShippingDiscountValue()"></span>
+    </td>
+</tr>
+<!-- /ko -->

@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+   <table name="installment_installment" resource="default" engine="innodb" comment="installment_installment is the table name">
+      <column xsi:type="int" name="installment_id" unsigned="true" nullable="false" padding="10" identity="true" comment="Entity Id"/>
+      <constraint xsi:type="primary" referenceId="PRIMARY">
+         <column name="installment_id"/>
+      </constraint>
+
+
+      <column xsi:type="varchar" name="title" nullable="true" length="255" comment="title" />
+      <column xsi:type="varchar" name="interestfees" nullable="true" length="255" comment="interestfees" />
+      <column xsi:type="varchar" name="purshedfees" nullable="true" length="255" comment="purshedfees" />
+      <column xsi:type="varchar" name="cashbackfees" nullable="true" length="255" comment="cashbackfees" />
+      <column xsi:type="varchar" name="different" nullable="true" length="255" comment="different" />
+      <column xsi:type="varchar" name="add" nullable="true" length="255" comment="add" />
+      <column xsi:type="int" name="status"  default= '0' padding="10" nullable="false"  comment="status" />
+      <column xsi:type="int" name="plans"  default= '0' padding="10" nullable="false"  comment="plans" />
+      <column xsi:type="int" name="status_interestfees"  default= '0' padding="10" nullable="false"  comment="status_interestfees" />
+      <column xsi:type="int" name="status_purshedfees"  default= '0' padding="10" nullable="false"  comment="status_purshedfees" />
+      <column xsi:type="int" name="status_cashbackfees"  default= '0' padding="10" nullable="false"  comment="status_cashbackfees" />
+      <column xsi:type="int" name="status_different"  default= '0' padding="10" nullable="false"  comment="status_different" />
+      <column xsi:type="int" name="status_adding"  default= '0' padding="10" nullable="false"  comment="status_adding" />
+      <column xsi:type="int" name="payment_method"  default= '0' padding="10" nullable="false"  comment="payment_method" />
+      <column xsi:type="varchar" name="content" nullable="true" length="255" comment="content" />
+      <column xsi:type="varchar" name="image" nullable="true" length="255" comment="image" />
+      <column xsi:type="timestamp" name="created_at" nullable="true" length="255" comment="created_at" />
+      <column xsi:type="int" name="extr_fees_installment"  default= '0' padding="10" nullable="false"  comment="extr_fees_installment" />
+      <column xsi:type="int" name="discount_installment"   default= '0'  padding="6"   nullable="false"  comment="discount_installment" />
+      <column xsi:type="varchar" name="discount_fees" nullable="true" length="255" comment="discount_fees" />
+      <column xsi:type="varchar" name="discount_en_title" nullable="true" length="255" comment="discount_en_title" />
+      <column xsi:type="varchar" name="discount_ar_title" nullable="true" length="255" comment="discount_ar_title" />
+   </table>
+</schema>
+
+
+
+

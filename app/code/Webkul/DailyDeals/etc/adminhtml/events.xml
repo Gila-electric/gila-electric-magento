@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul_DailyDeals Admin events
+ * @category    Webkul
+ * @package     Webkul_DailyDeals
+ * @author      Webkul Software Private Limited
+ * @copyright   Webkul Software Private Limited (https://webkul.com)
+ * @license     https://store.webkul.com/license.html
+ *
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="catalog_product_save_before">
+    	<observer name="webkul_deals_product_save_before" instance="Webkul\DailyDeals\Observer\CatalogProductSaveBefore" />
+    </event>
+    <event name="catalog_product_save_after">
+    	<observer name="webkul_deals_product_save_after" instance="Webkul\DailyDeals\Observer\CatalogProductSaveAfter" />
+    </event>
+</config>

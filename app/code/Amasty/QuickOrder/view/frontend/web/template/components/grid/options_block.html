@@ -1,0 +1,26 @@
+<!--ko if: $parent.optionsQty() > 2 -->
+    <!--ko if: $parent.optionsVisible(false) --><!--/ko-->
+<!--/ko-->
+
+<form class="amqorder-options-block"
+      data-bind="
+        visible: $parent.optionsVisible() && $parent.optionsQty(),
+        event: {
+            'input change': function() {
+                $parents[1].updateElem($parent);
+            },
+            'swatch.initialized': function(component, event) {
+                $parents[1].preselectConfigurable($parent, event.target);
+            },
+            'grouped.initialized': function(component, event) {
+                $parents[1].preselectGrouped($parent, event.target);
+            }
+        },
+        attr: {
+            'data-amqorder-js': 'form-' + $parent.id
+        },
+        html: $parent.optionsHtml()"
+>
+</form>
+
+<!--ko if: $parents[1].triggerUpdate() -->

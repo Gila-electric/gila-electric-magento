@@ -1,0 +1,1 @@
+/home/abanoub/Desktop/Gila/Gila-project/lib/web/mage/translate.js

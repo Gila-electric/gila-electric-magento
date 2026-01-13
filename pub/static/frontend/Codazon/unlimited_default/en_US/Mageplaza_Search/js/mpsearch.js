@@ -1,0 +1,1 @@
+/home/abanoub/Desktop/Gila/Gila-project/app/code/Mageplaza/Search/view/frontend/web/js/mpsearch.js

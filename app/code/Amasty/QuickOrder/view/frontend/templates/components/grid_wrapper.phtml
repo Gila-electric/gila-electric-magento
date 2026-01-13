@@ -1,0 +1,30 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package Quick Order for Magento 2
+ */
+/** @var \Amasty\QuickOrder\Block\Grid|\Amasty\QuickOrder\Block\Category\Grid $block */
+?>
+
+<section class="amqorder-grid-block"
+         data-amqorder-js="grid"
+         data-bind="scope:'grid'">
+    <!-- ko template: getTemplate() --><!-- /ko -->
+</section>
+
+<?php if ($block->isComponentExist('multiple')): ?>
+    <aside class="amqorder-multiple-block -active"
+           data-amqorder-js="multiple"
+           data-bind="scope:'multiple'">
+        <!-- ko template: getTemplate() --><!-- /ko -->
+    </aside>
+<?php endif; ?>
+
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "Magento_Ui/js/core/app": <?= /** @noEscape */ $block->getJsLayout() ?>
+        }
+    }
+</script>

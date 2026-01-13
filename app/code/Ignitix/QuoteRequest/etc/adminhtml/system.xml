@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="ignitix" translate="label" sortOrder="900">
+            <label>Ignitix</label>
+        </tab>
+
+        <section id="ignitix_quote_request"
+                 translate="label"
+                 type="text"
+                 sortOrder="10"
+                 showInDefault="1"
+                 showInWebsite="1"
+                 showInStore="1">
+            <label>Quote Request</label>
+            <tab>ignitix</tab>
+            <resource>Ignitix_QuoteRequest::config</resource>
+
+            <group id="general" translate="label" type="text" sortOrder="10"
+                   showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+
+                <field id="enabled" translate="label"
+                       type="select" sortOrder="10"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+
+                <field id="recipient_email" translate="label"
+                       type="text" sortOrder="20"
+                       showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Recipient Email(s)</label>
+                    <validate>validate-emails</validate>
+                    <comment>Enter one or more email addresses, separated by commas or semicolons.</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

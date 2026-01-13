@@ -1,0 +1,44 @@
+<?php
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_RewardSystem
+ * @author    Webkul
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+?>
+<?php
+    $rewardViewModel = $block->getRewardViewModel();
+    $helper = $rewardViewModel->getRewardDataHelper();
+    $rewardPriorityStatus = $helper->getrewardPriority();
+    $enableRewardSystem = $helper->enableRewardSystem();
+    $currentCategory = $block->getCurrentCategory();
+    $categoryId = $currentCategory->getId();
+    list($categoryRewardPoints, $status, $message) = $helper->getCategoryRewardToShow($categoryId);
+    $url  = $block->escapeUrl($block->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]));
+    $customerId = $helper->getCustomerId();
+    $loginUrl = $block->getUrl('customer/account/login', ['referer' => base64_encode($url)]);
+?>
+    <?php
+    if ($rewardPriorityStatus == 2 && $enableRewardSystem== 1 && $categoryRewardPoints) {    ?>
+        <div class="wk_rewards_on_category">
+            <h1 class="wk_rs_product_style wk_rs_advertise_product_page_style">
+                <span class="wk_rs_product_page_greet"></span>
+                <?= /* @noEscape */ __('Buy any product and ')?>
+                <span class="wk_rs_cart_green">
+                    <?= /* @noEscape */ __('Earn %1 Reward Points', $categoryRewardPoints); ?>
+                    <?php if ($status) {
+                        /* @noEscape */ echo __(' between')?>
+                    <?php } ?>
+                    <span class="wk_rs_cart_green"><?=  $block->escapeHtml($message); ?>
+                    <?php if (!$customerId) { ?>
+                        <a href="<?= $block->escapeUrl($loginUrl) ; ?>"><?= /* @noEscape */ __(" click here"); ?>
+                        </a>
+                        <?= /* @noEscape */ __(" to login");} ?>
+                    </span>
+                </span>
+            </h1>
+        </div>
+<?php }?>

@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package B2B Company Account for Magento 2
+ */-->
+
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <listingToolbar name="listing_top">
+        <massaction name="listing_massaction">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/tree-massactions</item>
+                </item>
+            </argument>
+            <action name="amasty_assign_company">
+                <argument name="data" xsi:type="array">
+                    <item name="config" xsi:type="array">
+                        <item name="type" xsi:type="string">assign_to_company</item>
+                        <item name="label" xsi:type="string" translate="true">Assign to Company Account</item>
+                        <item name="callback" xsi:type="array">
+                            <item name="provider" xsi:type="string">customer_listing.customer_listing.assign_company_modal</item>
+                            <item name="target" xsi:type="string">openModal</item>
+                        </item>
+                    </item>
+                </argument>
+            </action>
+        </massaction>
+    </listingToolbar>
+    <columns name="customer_columns">
+        <column name="company_name" class="Amasty\CompanyAccount\Ui\Component\Listing\Column\CompanyName">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Company Name</item>
+                </item>
+            </argument>
+        </column>
+    </columns>
+
+    <container name="assign_company_modal">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="componentType" xsi:type="string">modal</item>
+                <item name="component" xsi:type="string">Amasty_CompanyAccount/js/grid/modal/modal-component</item>
+                <item name="saveUrl" xsi:type="url" path="amcompany/customer/massAssign/" />
+                <item name="imports" xsi:type="array">
+                    <item name="customerIds" xsi:type="string">customer_listing.customer_listing.customer_columns.ids:selected</item>
+                </item>
+                <item name="options" xsi:type="array">
+                    <item name="type" xsi:type="string">slide</item>
+                    <item name="title" xsi:type="string" translate="true">Assign to Company Account</item>
+                    <item name="buttons" xsi:type="array">
+                        <item name="0" xsi:type="array">
+                            <item name="text" xsi:type="string" translate="true">Cancel</item>
+                            <item name="actions" xsi:type="array">
+                                <item name="0" xsi:type="string">closeModal</item>
+                            </item>
+                        </item>
+                        <item name="1" xsi:type="array">
+                            <item name="text" xsi:type="string" translate="true">Apply</item>
+                            <item name="class" xsi:type="string">action-primary</item>
+                            <item name="actions" xsi:type="array">
+                                <item name="0" xsi:type="array">
+                                    <item name="targetName" xsi:type="string">index = assign_company_modal</item>
+                                    <item name="actionName" xsi:type="string">assignCompany</item>
+                                </item>
+                                <item name="1" xsi:type="string">closeModal</item>
+                            </item>
+                        </item>
+                    </item>
+                </item>
+            </item>
+        </argument>
+        <insertListing name="company_listing">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="dataScope" xsi:type="string">company_ids</item>
+                    <item name="autoRender" xsi:type="boolean">true</item>
+                    <item name="selectionsProvider" xsi:type="string">amcompany_company_modal_listing.amcompany_company_modal_listing.company_columns.ids</item>
+                    <item name="externalProvider" xsi:type="string">amcompany_company_modal_listing.amcompany_company_modal_listing_data_source</item>
+                    <item name="ns" xsi:type="string">amcompany_company_modal_listing</item>
+                </item>
+            </argument>
+        </insertListing>
+    </container>
+</listing>

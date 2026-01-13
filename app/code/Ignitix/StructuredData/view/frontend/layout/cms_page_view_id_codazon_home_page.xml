@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!-- EN home (CMS identifier: codazon-home-page) -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+    <referenceContainer name="head.additional">
+        <block class="Magento\Framework\View\Element\Text" name="ignitix.sd.init.en">
+            <arguments>
+                <argument name="text" xsi:type="string"><![CDATA[
+<script type="text/x-magento-init">
+{
+  "*": {
+    "Ignitix_StructuredData/js/structured-data": {
+      "baseUrl": "https://gilaelectric.com.eg/",
+      "siteName": "Gila Electric",
+      "orgLogo": "https://gilaelectric.com.eg/media/codazon/logo/4/default/Gilalogo.png",
+      "breadcrumbName": "Home"
+    }
+  }
+}
+</script>
+                ]]></argument>
+            </arguments>
+        </block>
+    </referenceContainer>
+</page>

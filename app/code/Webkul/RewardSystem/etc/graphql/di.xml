@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software
+ *
+ * @category Webkul
+ * @package Webkul_RewardSystem
+ * @author Webkul
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license https://store.webkul.com/license.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\StoreGraphQl\Model\Resolver\Store\StoreConfigDataProvider">
+        <arguments>
+            <argument name="extendedConfigData" xsi:type="array">
+                <item name="rewardsystem_enable" xsi:type="string">rewardsystem/general_settings/enable</item>
+                <item name="rewardsystem_reward_value" xsi:type="string">rewardsystem/general_settings/reward_value</item>
+                <item name="rewardsystem_max_reward_assign" xsi:type="string">rewardsystem/general_settings/max_reward_assign</item>
+                <item name="rewardsystem_max_reward_used" xsi:type="string">rewardsystem/general_settings/max_reward_used</item>
+                <item name="rewardsystem_allow_registration" xsi:type="string">rewardsystem/general_settings/allow_registration</item>
+                <item name="rewardsystem_registration_reward" xsi:type="string">rewardsystem/general_settings/registration_reward</item>
+                <item name="rewardsystem_allow_review" xsi:type="string">rewardsystem/general_settings/allow_review</item>
+                <item name="rewardsystem_review_reward" xsi:type="string">rewardsystem/general_settings/review_reward</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- plugins -->
+    <type name="Magento\Customer\Model\AccountManagement">
+        <plugin name="Webkul_RewardSystem::afterCreateAccount" type="Webkul\RewardSystem\Plugin\GraphQl\Customer\AccountManagement" sortOrder="1" />
+    </type>
+
+    <type name="Magento\SalesGraphQl\Model\Resolver\OrderTotal">
+        <plugin name="Webkul_RewardSystem::afterResolve" type="Webkul\RewardSystem\Plugin\GraphQl\Resolver\OrderTotal" sortOrder="1" />
+    </type>
+    <type name="Magento\SalesGraphQl\Model\Resolver\Invoice\InvoiceTotal">
+        <plugin name="Webkul_RewardSystem::aroundResolve" type="Webkul\RewardSystem\Plugin\GraphQl\Resolver\InvoiceTotal" sortOrder="1" />
+    </type>
+    <type name="Magento\SalesGraphQl\Model\Resolver\CreditMemo\CreditMemoTotal">
+        <plugin name="Webkul_RewardSystem::aroundResolve" type="Webkul\RewardSystem\Plugin\GraphQl\Resolver\CreditMemoTotal" sortOrder="1" />
+    </type>
+
+    <type name="Magento\QuoteGraphQl\Model\Cart\AddProductsToCart">
+        <plugin name="Webkul_RewardSystem::aroundExecute" type="Webkul\RewardSystem\Plugin\GraphQl\Checkout\AddProductsToCart" sortOrder="1" />
+    </type>
+    <type name="Magento\QuoteGraphQl\Model\Cart\UpdateCartItem">
+        <plugin name="Webkul_RewardSystem::aroundExecute" type="Webkul\RewardSystem\Plugin\GraphQl\Checkout\UpdateCartItem" sortOrder="1" />
+    </type>
+    <!-- plugins ends -->
+</config>

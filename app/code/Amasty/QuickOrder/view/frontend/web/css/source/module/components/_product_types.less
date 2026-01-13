@@ -1,0 +1,204 @@
+//
+//  Magento options types styles
+//  ____________________________________________
+
+//
+//  Imports
+//  --------------------------------------------
+
+@import (reference) '../_mixins';
+
+//
+//  Common
+//  --------------------------------------------
+
+& when (@media-common = true) {
+    .amasty_quickorder-index-index .product-options-wrapper {
+        & {
+            flex-basis: 100%;
+            margin: 0;
+            padding: 0 0 @amqorder__indent__xl;
+        }
+
+        .amqorder-options-list > .amqorder-item:not(.-single) {
+            .amqorder-flex(none, none, wrap);
+        }
+
+        .amqorder-options-list > .amqorder-item {
+            margin: 0;
+        }
+
+        .price-container {
+            font-weight: 600;
+        }
+
+        br {
+            display: none;
+        }
+
+        .fieldset {
+            margin: 0;
+        }
+
+        > .fieldset > p.required {
+            color: @amqorder__color__error;
+        }
+
+        .multiselect {
+            max-width: 450px;
+        }
+
+        .swatch-attribute-options {
+            margin-bottom: 0;
+        }
+
+        .amqorder-select {
+            width: auto;
+        }
+
+        .amqorder-radio,
+        .admin__control-radio {
+            margin: 4px @amqorder__indent / 2 0 0;
+        }
+    }
+
+    .amqorder-item.-configurable .product-options-wrapper {
+        .swatch-opt {
+            .amqorder-flex(none, none, wrap);
+
+            flex-basis: 100%;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        .swatch-attribute {
+            & {
+                flex-basis: 100%;
+                box-sizing: border-box;
+                padding-right: 2px;
+                padding-left: 2px;
+                max-width: 100%;
+            }
+
+            &:not(:last-child) {
+                padding-bottom: @amqorder__indent__xl;
+            }
+        }
+    }
+
+    .amqorder-item.-bundle .product-options-wrapper {
+        .amqorder-label {
+            flex-basis: 100%;
+            margin: 0 0 8px;
+            font-weight: 700;
+        }
+
+        .amqorder-option-wrapper {
+            & {
+                .amqorder-flex(none, center, wrap);
+
+                padding: @amqorder__indent 0;
+            }
+
+            &:not(:last-child) {
+                border-bottom: 1px solid #ebeef5;
+            }
+        }
+
+        .amqorder-option {
+            display: flex;
+            align-items: center;
+            flex-basis: 100%;
+        }
+
+        .amqorder-options-list {
+            flex-basis: 100%;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .amqorder-options-list > .amqorder-item {
+            & {
+                flex-wrap: nowrap;
+            }
+
+            &:not(:last-child) {
+                margin: 0 0 @amqorder__indent;
+            }
+        }
+
+        .amqorder-qty-block {
+            & {
+                margin: @amqorder__indent;
+            }
+
+            .amqorder-msg.-error {
+                top: 100%;
+                margin: @amqorder__indent__m 0 0 0;
+            }
+        }
+    }
+
+    .amqorder-item.-downloadable {
+        .downloads .choice:last-child {
+            border-bottom: 0;
+        }
+
+        .legend.links-title {
+            display: none;
+        }
+    }
+
+    .amqorder-item.-giftcard {
+        .giftcard,
+        .price-box {
+            flex-basis: 100%;
+        }
+
+        .amqorder-price .price-box {
+            padding: 0;
+        }
+
+        .price-box {
+            padding: @amqorder__indent__xl 0 0 0;
+        }
+    }
+}
+
+//
+//  Mobile
+//  --------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__s) {
+    .amqorder-item.-bundle .product-options-wrapper {
+        .amqorder-qty-block {
+            justify-content: center;
+            margin: 0;
+        }
+
+        .amqorder-options-list {
+            flex-basis: 55%;
+            max-width: 475px;
+        }
+    }
+}
+
+//
+//  Tablet
+//  --------------------------------------------
+
+.media-width(@extremum, @break) when (@extremum = 'min') and (@break = @screen__l) {
+    .amqorder-item.-configurable .product-options-wrapper {
+        & {
+            margin: 0 -@amqorder__indent__m;
+        }
+
+        .swatch-attribute,
+        .field {
+            flex-basis: auto;
+            padding: 0 @amqorder__indent__m @amqorder__indent;
+            max-width: 50%;
+        }
+    }
+}

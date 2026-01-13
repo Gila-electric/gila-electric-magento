@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <!--     if we want to automatically enable this module when we will install this module,
+             to do so create config.xml file in path app\code\Macademy\Task\etc.-->
+    <default>
+        <GroupedProduct>
+            <general>
+                <enable>1</enable> <!-- 1 => enable
+                                        0 => disable -->
+            </general>
+        </GroupedProduct>
+    </default>
+
+</config>

@@ -1,0 +1,78 @@
+/**
+ * Webkul Software
+ *
+ * @category  Webkul
+ * @package   Webkul_RewardSystem
+ * @author    Webkul
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+
+.wk_rs_reports_switcher {
+    display: inline-block;
+    width: 33%;
+}
+.wk_rs_reports_switcher label.label {
+    display: block;
+    font-weight: 600;
+    padding-bottom: 5px;
+}
+.reports-upper {
+    background: #f8f8f8;
+    border-bottom: 1px solid #e3e3e3;
+    border-top: 1px solid #e3e3e3;
+    border-left: 1px solid #e3e3e3;
+    padding: 1.8rem;
+    margin-bottom: 3rem;
+}
+.reports-upper .reports-switcher {
+    width: 90%;
+    display: inline-block;
+}
+.reports-upper .reports-switcher {
+    width: 90%;
+    display: inline-block;
+}
+.reports-upper .reports-actions-buttons {
+    float: right;
+}
+.reports-upper button.action-primary {
+    height: 40px;
+}
+.reports-main {
+    padding-right: 20px;
+}
+.reports-diagram-container {
+    border: 1px solid #e3e3e3;
+}
+.reports-secondary {
+    padding-right: 20px;
+}
+.reports-item-title {
+    line-height: 35px;
+    margin-bottom: 2rem;
+}
+.reports-item-title .main-title {
+    font-weight: 600;
+    font-size: 22px;
+    margin-right: 5px;
+}
+.reports-item-title .text-title {
+    font-weight: 400;
+    font-size: 15px;
+}
+.reports-item-title .period-title {
+    font-weight: 600;
+    font-size: 15px;
+}
+td.col-text {
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 25px;
+}
+td.wk_rs_stat_points {
+    text-align: right;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 38px;
+}

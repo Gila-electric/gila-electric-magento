@@ -1,0 +1,21 @@
+<div class="amqorder-pager-block" data-bind="visible: isPaginationVisible()">
+    <button class="amqorder-button -arrow -prev -clear"
+            data-bind="
+                click: function() { setCurrentPage(currentPage() - 1) },
+                css: { '-disabled': currentPage() == 1 }
+            ">
+    </button>
+    <ul class="amqorder-items" data-bind="foreach: pagesToDisplay()">
+        <li class="amqorder-item" data-bind="
+                css: { '-selected': $parent.isCurrentPage($data), '-dotted': isNaN(+$parent.getPageTitle($data)) },
+                text: $parent.getPageTitle($data),
+                click: $data !== 0 ? $parent.setCurrentPage.bind($parent, $data) : null
+        "></li>
+    </ul>
+    <button class="amqorder-button -arrow -next -clear"
+            data-bind="
+                click: function() { setCurrentPage(currentPage() + 1) },
+                css: { '-disabled': currentPage() == getLastPage() }
+            ">
+    </button>
+</div>

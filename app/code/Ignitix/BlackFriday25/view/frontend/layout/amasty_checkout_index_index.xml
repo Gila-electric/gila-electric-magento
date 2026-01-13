@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      layout="1column"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+    <head>
+        <css src="Ignitix_BlackFriday25::css/scratch.css"/>
+    </head>
+
+    <body>
+        <referenceContainer name="content">
+            <block class="Ignitix\BlackFriday25\Block\Banner"
+                   name="ignitix.bf25.banner"
+                   template="Ignitix_BlackFriday25::banner.phtml"
+                   before="-"/>
+            <!-- Removed modal overlay block for inline version -->
+            <!-- If you later decide to keep a separate inline template, you could add:
+            <block class="Ignitix\BlackFriday25\Block\Scratch"
+                   name="ignitix.bf25.inline"
+                   template="Ignitix_BlackFriday25::scratch_inline.phtml"
+                   after="ignitix.bf25.banner"/>
+            -->
+        </referenceContainer>
+    </body>
+</page>

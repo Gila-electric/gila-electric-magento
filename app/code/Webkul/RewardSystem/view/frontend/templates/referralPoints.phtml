@@ -1,0 +1,277 @@
+<?php
+/**
+ * Webkul Software
+ *
+ * @category Webkul
+ * @package Webkul_RewardSystem
+ * @author Webkul
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license https://store.webkul.com/license.html
+ */
+?>
+<?php
+    $rewardViewModel = $block->getRewardViewModel();
+    $helper = $rewardViewModel->getRewardDataHelper();
+if ($helper->enableRewardSystem() && $helper->isReferralEnabled()) {
+    $customerId = $helper->getCustomerId();
+    $referralUrl = $block->getReferralUrl($customerId);
+    $referralPointCollection = $block->getReferralDetailCollection($customerId);
+    list($totalReferrals, $totalPointsEarned) = $block->getReferalPointsInfo($referralPointCollection);
+    $monthlyReferralInfo = $block->getMonthlyReferralInfo($customerId);
+    $referralInfoContent = $helper->getReferralInfoContent();
+    $customerRewardOnReferral = $helper->getCustomerRewardOnReferral();
+    $facebookIconUrl = $block->getViewFileUrl('Webkul_RewardSystem::images/social/icon-facebook.png');
+    $twitterIconUrl = $block->getViewFileUrl('Webkul_RewardSystem::images/social/icon-twitter.png');
+    $linkedinIconUrl = $block->getViewFileUrl('Webkul_RewardSystem::images/social/icon-linkedin.png');
+    $mailIconUrl = $block->getViewFileUrl('Webkul_RewardSystem::images/social/icon-mail.png');
+    $whatsappIconUrl = $block->getViewFileUrl('Webkul_RewardSystem::images/social/icon-whatsapp.png');
+    $shareText = 'Register using this link ';
+    $facebookShareUrl = "https://www.facebook.com/sharer/sharer.php?u=$referralUrl&quote=$shareText";
+    $twitterShareUrl = "https://twitter.com/intent/tweet?text=$shareText&url=$referralUrl";
+    $linkedinShareUrl = "https://www.linkedin.com/sharing/share-offsite/?url=$referralUrl";
+    $mailShareUrl = "https://mail.google.com/mail/u/0/?view=cm&to&su=$shareText&body=$referralUrl&bcc&cc&fs=1&tf=1";
+    $whatsappShareUrl = "https://wa.me/?text=$shareText$referralUrl";
+    ?>
+
+    <div class="wk_rs_main">
+        <div class="wk_rs_referral_container_1">
+            <div class="wk_rs_referral_container_1_left">
+                <div class='wk_rs_referral_report_container'>
+                    <span class="wk_rs_referral_bold_text"><?= /* @noEscape */ __('Referral Report') ?></span>
+                </div>
+                <div class='wk_rs_referral_points_container'>
+                    <div class="wk_rs_total_referral_points wk_rs_referral_points_section">
+                        <div class="wk_rs_referral_points_text">
+                            <?= $block->escapeHtml(
+                                __("Total Referrals")
+                            ) ?>
+                        </div>
+                        <div class="wk_rs_referral_points_section_inner wk_rs_tot_left">
+                            <h2><?= /* @noEscape */ $totalReferrals ?></h2>
+                        </div>
+                    </div>
+                    <div class="wk_rs_referral_points_earned wk_rs_referral_points_section">
+                        <div class="wk_rs_referral_points_text">
+                            <?= $block->escapeHtml(
+                                __("Earned Reward Points")
+                            ) ?>
+                        </div>
+                        <div class="wk_rs_referral_points_section_inner wk_rs_tot_right">
+                            <h2><?= /* @noEscape */ $totalPointsEarned ?></h2>
+                        </div>
+                    </div>
+                </div>
+                <div class='wk_rs_referral_chart_container'>
+                    <div id="curve_chart" style="width: 450px; height: 170px"></div>
+                </div>
+            </div>
+            <div class="wk_rs_referral_container_1_right">
+                <div class="wk_rs_invite_container">
+                    <div class="wk_rs_invite_heading">
+                        <span class="wk_rs_referral_bold_text">
+                            <?= /* @noEscape */  __('Invite your friends by')?>
+                        </span>
+                    </div>
+                    <div class="content">
+                        <form class="form invite"
+                            action="<?= /* @noEscape */  $block->getUrl('rewardsystem/referral/sendmail')?>"
+                            method="post" id="invite-validate-detail"
+                            data-mage-init='{"validation":{}}'>
+                            <input type="hidden" name="referral_link" value="<?= /* @noEscape */ $referralUrl ?>">
+                            <div class="field sendinvites">
+                                <div class="control">
+                                    <label for="sendinvites">
+                                        <input name="email" type="text" id="sendinvites"
+                                        placeholder="<?= /* @noEscape */ __('Can add multiple address with comma') ?>"
+                                        data-validate="{required:true}">
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="actions">
+                                <button class="action invite primary" title="Invite" type="submit" aria-label="Invite">
+                                    <span><?= /* @noEscape */ __('Send Invites') ?></span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="wk_rs_referral_link_container">
+                    <div class="wk_rs_referral_link_heading">
+                        <span class="wk_rs_referral_bold_text">
+                            <?= /* @noEscape */  __('Share the referral link')?>
+                        </span>
+                    </div>
+                    <div class="content">
+                        <div class="field referral_link">
+                            <div class="control">
+                                <label for="referral-link">
+                                    <input name="referral_link" type="text" id="referral-link"
+                                        value="<?= /* @noEscape */ $referralUrl ?>"
+                                        readonly>
+                                </label>
+                            </div>
+                        </div>
+                        <div class="actions">
+                            <button class="action copylink primary" title="Copy Link" aria-label="Copy">
+                                <span><?= /* @noEscape */ __('Copy') ?></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="wk_rs_referral_social_container">
+                    <div class="wk_rs_referral_social_heading">
+                        <span class="wk_rs_referral_bold_text">
+                            <?= /* @noEscape */  __('Refer Via Social')?>
+                        </span>
+                    </div>
+                    <div class="social_content">
+                        <span class="wk_rs_social wk_rs_social_facebook">
+                            <a href="<?= /* @noEscape */ $facebookShareUrl ?>">
+                                <img class="wk_rs_social_img" src='<?= $block->escapeUrl($facebookIconUrl) ?>'>
+                            </a>
+                        </span>
+                        <span class="wk_rs_social wk_rs_social_twitter">
+                            <a href="<?= /* @noEscape */ $twitterShareUrl ?>">
+                                <img class="wk_rs_social_img" src='<?= $block->escapeUrl($twitterIconUrl) ?>'>
+                            </a>
+                        </span>
+                        <span class="wk_rs_social wk_rs_social_linkedin">
+                            <a href="<?= /* @noEscape */ $linkedinShareUrl ?>">
+                                <img class="wk_rs_social_img" src='<?= $block->escapeUrl($linkedinIconUrl) ?>'>
+                            </a>
+                        </span>
+                        <span class="wk_rs_social wk_rs_social_mail">
+                            <a href="<?= /* @noEscape */ $mailShareUrl ?>">
+                                <img class="wk_rs_social_img" src='<?= $block->escapeUrl($mailIconUrl) ?>'>
+                            </a>
+                        </span>
+                        <span class="wk_rs_social wk_rs_social_whatsapp">
+                            <a href="<?= /* @noEscape */ $whatsappShareUrl ?>">
+                                <img class="wk_rs_social_img" src='<?= $block->escapeUrl($whatsappIconUrl) ?>'>
+                            </a>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="wk_rs_referral_container_2">
+            <div class='wk_rs_table'>
+                <span class="wk_rs_referral_bold_text"><?= $block->escapeHtml(__('Referred Users'))?></span>
+                <?php
+                if (count($referralPointCollection)) { ?>
+                    <div class='table-wrapper'>
+                        <table class="data table rewardorder">
+                            <thead>
+                                <tr>
+                                    <th scope="col" class="col description">
+                                      <?= $block->escapeHtml(__('Id'))?>
+                                    </th>
+                                    <th scope="col" class="col">
+                                      <?= $block->escapeHtml(__('Date'))?>
+                                    </th>
+                                    <th scope="col" class="col"> 
+                                      <?= $block->escapeHtml(__('Receiver'))?>
+                                    </th>
+                                    <th scope="col" class="col status">
+                                      <?= $block->escapeHtml(__('Status'))?>
+                                    </th>
+                                    <th scope="col" class="col">
+                                      <?= $block->escapeHtml(__('Receiver Discount'))?>
+                                    </th>
+                                    <th scope="col" class="col">
+                                      <?= $block->escapeHtml(__('Your Earning'))?>
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            <?php
+                            foreach ($referralPointCollection as $record) {
+                                $refereeData = $block->getCustomerData($record->getRefereeId());
+                                $refereeEmail = '-';
+                                if ($refereeData) {
+                                    $refereeEmail = $refereeData->getEmail();
+                                }
+                                ?>
+                                <tr>
+                                    <td class="col description">
+                                      #<?= $block->escapeHtml($record->getId()); ?>
+                                    </td>
+                                    <td class="col">
+                                        <?= $block->escapeHtml($record->getCreatedAt()); ?>
+                                    </td>
+                                    <td class="col">
+                                        <?= $block->escapeHtml($refereeEmail);?>
+                                    </td>
+                                    <td class="col status">
+                                        <?php if ($record->getStatus()): ?>
+                                            <?= $block->escapeHtml(__('Registered')); ?>
+                                        <?php else: ?>
+                                            <?= $block->escapeHtml(__('Pending'));?>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td class="col">
+                                        <?= /* @noEscape */ $record->getRefereeRewardPoint().' '.__('RP') ?>
+                                    </td>
+                                    <td class="col">
+                                        <?= /* @noEscape */ $record->getCustomerRewardPoint().' '.__('RP') ?>
+                                    </td>
+                                </tr>
+                    <?php } ?>
+                            </tbody>
+                        </table>
+                    </div>
+                    <?php if ($block->getPagerHtml()): ?>
+                        <div class="order-transaction-toolbar toolbar bottom"><?=  $block->getPagerHtml(); ?></div>
+                    <?php endif ?>
+                <?php } else { ?>
+                    <h5><?= $block->escapeHtml(__('No records found!'));?></h5>
+                <?php } ?>
+            </div>
+        </div>
+        <div class="wk_rs_referral_container_3">
+            <span class="wk_rs_referral_bold_text"><?= $block->escapeHtml(__('How Referral Program Works')) ?></span>
+            <div class="wk_rs_referral_container_3_content">
+                <div class="wk_rs_referral_container_3_left">
+                    <?= /* @noEscape */  $block->getCmsFilterContent($referralInfoContent)?>
+                </div>
+                <div class="wk_rs_referral_container_3_right">
+                    <div class="wk_rs_referral_steps">
+                        <span class="wk_rs_referral_step_left">
+                            <?= /* @noEscape */  __('Step 1:') ?>
+                        </span>
+                        <span class="wk_rs_referral_step_right">
+                            <?= /* @noEscape */  __('Send Invitation') ?>
+                        </span>
+                    </div>
+                    <div class="wk_rs_referral_steps">
+                        <span class="wk_rs_referral_step_left">
+                            <?= /* @noEscape */  __('Step 2:') ?>
+                        </span>
+                        <span class="wk_rs_referral_step_right">
+                            <?= /* @noEscape */  __('User Registration') ?>
+                        </span>
+                    </div>
+                    <div class="wk_rs_referral_steps">
+                        <span class="wk_rs_referral_step_left">
+                            <?= /* @noEscape */  __('Step 3:') ?>
+                        </span>
+                        <span class="wk_rs_referral_step_right">
+                            <?= /* @noEscape */  __('Earn %1 Reward Points', $customerRewardOnReferral) ?>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php } else { ?>
+            <h3><?=  $block->escapeHtml(__('Please contact to Admin.'))?></h3>
+<?php	} ?>
+<script type="text/x-magento-init">
+    {
+        "*": {
+            "referralPoints": {
+                "referralInfo": <?= /** @noEscape */ $helper->getJsonSerializer()->serialize($monthlyReferralInfo) ?>
+            }
+        }
+    }
+</script>

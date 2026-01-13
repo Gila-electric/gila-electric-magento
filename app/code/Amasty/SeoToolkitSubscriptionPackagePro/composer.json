@@ -1,0 +1,29 @@
+{
+    "name": "amasty/module-seo-toolkit-subscription-package-pro",
+    "description": "Seo Toolkit Subscription Package Pro by Amasty",
+    "require": {
+        "php": ">=7.3",
+        "amasty/base": ">=1.14.7",
+        "amasty/module-seo-toolkit": "*"
+    },
+    "suggest": {
+        "amasty/module-google-rich-snippets-graphql": "Install module-google-rich-snippets-graphql module to activate Graphql and Seo Rich Data integration.",
+        "amasty/module-seo-toolkit-lite-graphql": "Install module-seo-toolkit-lite-graphql module to activate Graphql and Toolkit Lite integration.",
+        "amasty/module-seo-html-sitemap-hyva": "Install this module to activate the integration HTML Sitemap with Hyva Theme.",
+        "amasty/module-cross-linking-hyva": "Install this module to activate the integration Seo Cross Linking with Hyva Theme.",
+        "amasty/module-seo-toolkit-lite-hyva": "Install this module to activate the integration Seo Toolkit Core with Hyva Theme.",
+        "amasty/module-seo-rich-data-hyva": "Install this package to ensure the Seo Rich Data extension works with Hyv\u00e4 Theme."
+    },
+    "homepage": "https://amasty.com/",
+    "type": "magento2-module",
+    "version": "2.4.0",
+    "license": "proprietary",
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Amasty\\SeoToolkitSubscriptionPackagePro\\": ""
+        }
+    }
+}

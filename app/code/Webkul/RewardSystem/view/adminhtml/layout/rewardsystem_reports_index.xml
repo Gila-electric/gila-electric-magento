@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul RewardSystem.
+ *
+ * @category  Webkul
+ * @package   Webkul_RewardSystem
+ * @author    Webkul
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <script src="https://www.gstatic.com/charts/loader.js" src_type="url"/>
+        <css src="Webkul_RewardSystem::css/reports.css"/>
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block template="Webkul_RewardSystem::reports/index.phtml" name="reward_reports" ifconfig="rewardsystem/reports/enable">
+                <arguments>
+                    <argument name="reward_view_model" xsi:type="object">Webkul\RewardSystem\ViewModel\Reward</argument>
+                </arguments>
+                <block class="Webkul\RewardSystem\Block\Adminhtml\Reports\Chart\Switcher" name="reports.rewardChartSwitcher" as="rewardChartSwitcher" />
+                <block class="Webkul\RewardSystem\Block\Adminhtml\Reports\Statistics\Info" name="reports.rewardStatistics" as="rewardStatistics" />
+            </block>
+        </referenceContainer>
+    </body>
+</page>

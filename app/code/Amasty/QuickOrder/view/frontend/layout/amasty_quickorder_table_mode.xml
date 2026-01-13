@@ -1,0 +1,126 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package Quick Order for Magento 2
+ */-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <block class="Amasty\QuickOrder\Block\Category\ProductList" name="amquickorder.category.mode">
+            <block class="Amasty\QuickOrder\Block\Category\Grid"
+                   name="amquickorder.grid"
+                   as="grid"
+                   template="Amasty_QuickOrder::components/grid_wrapper.phtml">
+                <arguments>
+                    <argument name="jsLayout" xsi:type="array">
+                        <item name="components" xsi:type="array">
+                            <item name="grid_title" xsi:type="array">
+                                <item name="component"  xsi:type="string">uiComponent</item>
+                                <item name="config" xsi:type="array">
+                                    <item name="template" xsi:type="string">Amasty_QuickOrder/components/grid/title</item>
+                                </item>
+                            </item>
+                            <item name="select_all" xsi:type="array">
+                                <item name="component" xsi:type="string">uiComponent</item>
+                                <item name="config" xsi:type="array">
+                                    <item name="template" xsi:type="string">Amasty_QuickOrder/components/grid/selectall_button</item>
+                                </item>
+                            </item>
+                            <item name="selected_toolbar" xsi:type="array">
+                                <item name="component"  xsi:type="string">Amasty_QuickOrder/js/components/pages/category/selected-toolbar</item>
+                                <item name="config" xsi:type="array">
+                                    <item name="template" xsi:type="string">Amasty_QuickOrder/components/pages/category/selected-toolbar</item>
+                                </item>
+                            </item>
+                            <item name="massaction_toolbar" xsi:type="array">
+                                <item name="component"  xsi:type="string">uiComponent</item>
+                                <item name="config" xsi:type="array">
+                                    <item name="template" xsi:type="string">Amasty_QuickOrder/components/pages/category/massaction_toolbar</item>
+                                    <item name="onBottom" xsi:type="boolean">true</item>
+                                    <item name="onTop" xsi:type="boolean">true</item>
+                                </item>
+                            </item>
+                            <item name="grid" xsi:type="array">
+                                <item name="component" xsi:type="string">Amasty_QuickOrder/js/components/pages/category/grid</item>
+                                <item name="config" xsi:type="array">
+                                    <item name="template" xsi:type="string">Amasty_QuickOrder/components/pages/category/grid</item>
+                                    <item name="ratingEnabled" xsi:type="boolean">true</item>
+                                </item>
+                            </item>
+                            <item name="product_image" xsi:type="array">
+                                <item name="component" xsi:type="string">uiComponent</item>
+                                <item name="config" xsi:type="array">
+                                    <item name="template" xsi:type="string">Amasty_QuickOrder/components/grid/product_image</item>
+                                </item>
+                            </item>
+                            <item name="product_title" xsi:type="array">
+                                <item name="component" xsi:type="string">uiComponent</item>
+                                <item name="config" xsi:type="array">
+                                    <item name="template" xsi:type="string">Amasty_QuickOrder/components/grid/product_title</item>
+                                </item>
+                            </item>
+                            <item name="sku" xsi:type="array">
+                                <item name="component" xsi:type="string">uiComponent</item>
+                                <item name="config" xsi:type="array">
+                                    <item name="template" xsi:type="string">Amasty_QuickOrder/components/grid/sku</item>
+                                </item>
+                            </item>
+                            <item name="rating" xsi:type="array">
+                                <item name="component"  xsi:type="string">uiComponent</item>
+                                <item name="config" xsi:type="array">
+                                    <item name="template" xsi:type="string">Amasty_QuickOrder/components/grid/rating</item>
+                                </item>
+                            </item>
+                            <item name="qty" xsi:type="array">
+                                <item name="component" xsi:type="string">uiComponent</item>
+                                <item name="config" xsi:type="array">
+                                    <item name="template" xsi:type="string">Amasty_QuickOrder/components/grid/qty</item>
+                                </item>
+                            </item>
+                            <item name="price" xsi:type="array">
+                                <item name="component" xsi:type="string">uiComponent</item>
+                                <item name="config" xsi:type="array">
+                                    <item name="template" xsi:type="string">Amasty_QuickOrder/components/grid/price</item>
+                                </item>
+                            </item>
+                            <item name="checkbox" xsi:type="array">
+                                <item name="component" xsi:type="string">Amasty_QuickOrder/js/components/grid/checkbox</item>
+                                <item name="displayArea" xsi:type="string">checkbox</item>
+                                <item name="config" xsi:type="array">
+                                    <item name="template" xsi:type="string">Amasty_QuickOrder/components/grid/checkbox</item>
+                                </item>
+                            </item>
+                            <item name="options_button" xsi:type="array">
+                                <item name="component"  xsi:type="string">uiComponent</item>
+                                <item name="config" xsi:type="array">
+                                    <item name="template" xsi:type="string">Amasty_QuickOrder/components/grid/options_button</item>
+                                </item>
+                            </item>
+                            <item name="options_block" xsi:type="array">
+                                <item name="component"  xsi:type="string">uiComponent</item>
+                                <item name="config" xsi:type="array">
+                                    <item name="template" xsi:type="string">Amasty_QuickOrder/components/grid/options_block</item>
+                                </item>
+                            </item>
+                            <item name="item_errors" xsi:type="array">
+                                <item name="component"  xsi:type="string">uiComponent</item>
+                                <item name="config" xsi:type="array">
+                                    <item name="template" xsi:type="string">Amasty_QuickOrder/components/grid/item_errors</item>
+                                </item>
+                            </item>
+                            <item name="move_buttons" xsi:type="array">
+                                <item name="component"  xsi:type="string">Amasty_QuickOrder/js/components/pages/category/move</item>
+                                <item name="config" xsi:type="array">
+                                    <item name="template" xsi:type="string">Amasty_QuickOrder/components/grid/move_buttons</item>
+                                    <item name="add_mode" xsi:type="const">Amasty\QuickOrder\Model\Cart\AddProductsPool::FROM_CATEGORY</item>
+                                </item>
+                            </item>
+                        </item>
+                    </argument>
+                </arguments>
+            </block>
+        </block>
+    </body>
+</page>

@@ -1,0 +1,32 @@
+﻿Off,خصم
+Save On Deal ,انقاذ على الصفقة
+Deal Ends in ,ينتهي العرض في
+A total of %1 record(s) were updated.,تم تحديث إجمالي %1 من السجلات.
+Something went wrong while updating the product(s) attributes.,حدث خطأ ما أثناء تحديث سمات المنتج (المنتجات).
+Something went wrong in getting spin wheel.,حدث خطأ ما أثناء الحصول على عجلة الدوران.
+Deals Collection,مجموعة الصفقات
+Fixed,عرض مثبت
+Percent,نسبه مئويه
+Disable,اغلاق
+Enable,تفعيل
+Deal value should not be less than 0.,يجب ألا تقل قيمة الصفقة عن 0.
+"In case of percent type discount, the deal value should not be more than 100.","في حالة خصم نوع النسبة المئوية، يجب ألا تزيد قيمة الصفقة عن 100."
+"In case of fixed type discount, the deal value should not be more than product price.","في حالة الخصم من النوع الثابت، يجب ألا تزيد قيمة الصفقة عن سعر المنتج."
+"In case of fixed type discount, the deal value should not be same with regular price.","في حالة الخصم من النوع الثابت، يجب ألا تكون قيمة الصفقة هي نفسها مع السعر العادي."
+"In case of Percent type discount, the deal value should not be 100 percent.","في حالة خصم نوع النسبة المئوية، يجب ألا تكون قيمة الصفقة 100 بالمائة."
+Top Deals of the Day,أفضل العروض لهذا اليوم
+Top Sales of the Day,أعلى مبيعات اليوم
+Top Viewed Deals,أعلى العروض مشاهدة
+Deals Ends in,العروض ينتهي في 
+Save On Deal,احتفظ بالعرض
+Days,أيام
+Hours,ساعات
+Minutes,دقائق
+Seconds,ثواني
+Webkul,ويبكول
+Daily Deal,العروض اليومية
+General Settings,الاعدادات العامة
+Enable Daily Deal,تفعيل العروض اليومية
+Deal From,عرض ساري من
+Deal To,عرض لـ 
+Daily Deals,العروض اليومية

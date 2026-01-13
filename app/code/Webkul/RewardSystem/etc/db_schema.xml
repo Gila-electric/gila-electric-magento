@@ -1,0 +1,151 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_RewardSystem
+ * @author    Webkul
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="wk_rs_reward_record" resource="default" engine="innodb">
+    <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"/>
+    <column xsi:type="int" name="customer_id" padding="10" unsigned="true" nullable="true" identity="false"/>
+    <column xsi:type="decimal" name="total_reward_point" unsigned="false" nullable="false" default="0.00" onCreate="migrateDataFrom(total_reward_point)" scale="2" precision="12"/>
+    <column xsi:type="decimal" name="remaining_reward_point" unsigned="false" nullable="false" default="0.00" onCreate="migrateDataFrom(remaining_reward_point)" scale="2" precision="12"/>
+    <column xsi:type="decimal" name="used_reward_point" unsigned="false" nullable="false" default="0.00" onCreate="migrateDataFrom(used_reward_point)" scale="2" precision="12"/>
+    <column xsi:type="timestamp" name="updated_at" on_update="false" nullable="true"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="WK_RS_REWARD_RECORD_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID" table="wk_rs_reward_record" column="customer_id" referenceTable="customer_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+  </table>
+  <table name="wk_rs_reward_details" resource="default" engine="innodb">
+    <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"/>
+    <column xsi:type="int" name="customer_id" padding="10" unsigned="true" nullable="true" identity="false"/>
+    <column xsi:type="int" name="review_id" padding="10" unsigned="true" nullable="true" identity="false"/>
+    <column xsi:type="decimal" name="reward_point" unsigned="false" nullable="false" default="0.00" onCreate="migrateDataFrom(reward_point)" scale="2" precision="12"/>
+    <column xsi:type="decimal" name="amount" scale="2" precision="12" unsigned="true" nullable="false" default="0"/>
+    <column xsi:type="int" name="status" padding="10" unsigned="true" nullable="false" identity="false" default="0"/>
+    <column xsi:type="text" name="action" nullable="true"/>
+    <column xsi:type="int" name="order_id" padding="10" unsigned="true" nullable="false" identity="false" default="0"/>
+    <column xsi:type="timestamp" name="transaction_at" on_update="false" nullable="true"/>
+    <column xsi:type="text" name="currency_code" nullable="true"/>
+    <column xsi:type="decimal" name="curr_amount" scale="2" precision="12" unsigned="true" nullable="false" default="0"/>
+    <column xsi:type="text" name="transaction_note" nullable="true"/>
+    <column xsi:type="int" name="is_revert" padding="10" unsigned="true" nullable="false" identity="false" default="0"/>
+    <column xsi:type="decimal" name="reward_used" unsigned="false" nullable="false" default="0.00" scale="2" precision="12"/>
+    <column xsi:type="int" name="is_expired" padding="10" unsigned="true" nullable="false" identity="false" default="0"/>
+    <column xsi:type="int" name="is_expiration_email_sent" padding="10" unsigned="true" nullable="false" identity="false" default="0"/>
+    <column xsi:type="date" name="expires_at" nullable="true"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="WK_RS_REWARD_DETAILS_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID" table="wk_rs_reward_details" column="customer_id" referenceTable="customer_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+  </table>
+  <table name="wk_rs_referral_details" resource="default" engine="innodb">
+    <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"/>
+    <column xsi:type="int" name="customer_id" padding="10" unsigned="true" nullable="true" identity="false"/>
+    <column xsi:type="int" name="referee_id" padding="10" unsigned="true" nullable="true" identity="false"/>
+    <column xsi:type="decimal" name="customer_reward_point" unsigned="false" nullable="false" default="0.00" scale="2" precision="12"/>
+    <column xsi:type="decimal" name="referee_reward_point" unsigned="false" nullable="false" default="0.00" scale="2" precision="12"/>
+    <column xsi:type="int" name="status" padding="10" unsigned="true" nullable="false" identity="false" default="0"/>
+    <column xsi:type="date" name="created_at" nullable="true"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="WK_RS_REFERRAL_DETAILS_CUSTOMER_ID_CUSTOMER_ENTITY_ENTITY_ID" table="wk_rs_referral" column="customer_id" referenceTable="customer_entity" referenceColumn="entity_id" onDelete="CASCADE"/>
+  </table>
+  <table name="wk_rs_reward_products" resource="default" engine="innodb">
+    <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"/>
+    <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="true" identity="false"/>
+    <column xsi:type="decimal" name="points" unsigned="false" nullable="false" default="0.00" onCreate="migrateDataFrom(points)" scale="2" precision="12"/>
+    <column xsi:type="int" name="status" padding="10" unsigned="true" nullable="false" identity="false" default="0"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+  </table>
+  <table name="wk_rs_reward_category" resource="default" engine="innodb">
+    <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"/>
+    <column xsi:type="int" name="category_id" padding="10" unsigned="true" nullable="true" identity="false"/>
+    <column xsi:type="decimal" name="points" unsigned="false" nullable="false" default="0.00" onCreate="migrateDataFrom(points)" scale="2" precision="12"/>
+    <column xsi:type="int" name="status" padding="10" unsigned="true" nullable="false" identity="false" default="0"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+  </table>
+  <table name="wk_rs_reward_cart" resource="default" engine="innodb">
+    <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"/>
+    <column xsi:type="decimal" name="points" unsigned="false" nullable="false" default="0.00" onCreate="migrateDataFrom(points)" scale="2" precision="12"/>
+    <column xsi:type="decimal" name="amount_from" scale="2" precision="12" unsigned="true" nullable="false" default="0"/>
+    <column xsi:type="decimal" name="amount_to" scale="2" precision="12" unsigned="true" nullable="false" default="0"/>
+    <column xsi:type="date" name="start_date"/>
+    <column xsi:type="date" name="end_date"/>
+    <column xsi:type="timestamp" name="created_at" on_update="false" nullable="true"/>
+    <column xsi:type="smallint" name="status" padding="6" unsigned="false" nullable="true" identity="false" default="0"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+  </table>
+  <table name="quote_address" resource="default">
+    <column xsi:type="decimal" name="reward_amount" scale="2" precision="12" unsigned="false" nullable="false"/>
+    <column xsi:type="decimal" name="base_reward_amount" scale="2" precision="12" unsigned="false" nullable="false"/>
+  </table>
+  <table name="sales_order" resource="default">
+    <column xsi:type="decimal" name="reward_amount" scale="2" precision="12" unsigned="false" nullable="false"/>
+    <column xsi:type="decimal" name="base_reward_amount" scale="2" precision="12" unsigned="false" nullable="false"/>
+  </table>
+  <table name="quote" resource="default">
+    <column xsi:type="decimal" name="reward_amount" scale="2" precision="12" unsigned="false" nullable="false"/>
+    <column xsi:type="decimal" name="base_reward_amount" scale="2" precision="12" unsigned="false" nullable="false"/>
+    <column xsi:type="text" name="reward_info" nullable="true" comment=""/>
+  </table>
+  <table name="wk_rs_reward_products_specific" resource="default" engine="innodb">
+    <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"/>
+    <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="true" identity="false"/>
+    <column xsi:type="decimal" name="points" unsigned="false" nullable="false" default="0.00" onCreate="migrateDataFrom(points)" scale="2" precision="12"/>
+    <column xsi:type="text" name="start_time" nullable="true"/>
+    <column xsi:type="text" name="end_time" nullable="true"/>
+    <column xsi:type="int" name="status" padding="10" unsigned="true" nullable="false" identity="false" default="0"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+  </table>
+  <table name="wk_rs_reward_category_specific" resource="default" engine="innodb">
+    <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"/>
+    <column xsi:type="int" name="category_id" padding="10" unsigned="true" nullable="true" identity="false"/>
+    <column xsi:type="decimal" name="points" unsigned="false" nullable="false" default="0.00" onCreate="migrateDataFrom(points)" scale="2" precision="12"/>
+    <column xsi:type="text" name="start_time" nullable="true"/>
+    <column xsi:type="text" name="end_time" nullable="true"/>
+    <column xsi:type="int" name="status" padding="10" unsigned="true" nullable="false" identity="false" default="0"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+  </table>
+  <table name="wk_rs_reward_attribute" resource="default" engine="innodb">
+    <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"/>
+    <column xsi:type="decimal" name="points" unsigned="false" nullable="false" default="0.00" onCreate="migrateDataFrom(points)" scale="2" precision="12"/>
+    <column xsi:type="text" name="attribute_code" nullable="false"/>
+    <column xsi:type="int" name="option_id" padding="10" unsigned="true" nullable="false" identity="false" default="0"/>
+    <column xsi:type="text" name="option_label" nullable="false"/>
+    <column xsi:type="timestamp" name="created_at" on_update="false" nullable="true"/>
+    <column xsi:type="smallint" name="status" padding="6" unsigned="false" nullable="true" identity="false" default="0"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+  </table>
+  <table name="wk_rs_reward_order_details" resource="default" engine="innodb">
+    <column xsi:type="int" name="entity_id" padding="10" unsigned="true" nullable="false" identity="true"/>
+    <column xsi:type="int" name="order_id" padding="10" unsigned="true" nullable="false" identity="false"/>
+    <column xsi:type="int" name="item_id" padding="10" unsigned="true" nullable="false" identity="false" default="0"/>
+    <column xsi:type="decimal" name="points" unsigned="false" nullable="false" default="0.00" onCreate="migrateDataFrom(points)" scale="2" precision="12"/>
+    <column xsi:type="int" name="qty" padding="6" unsigned="false" nullable="false" identity="false" default="0"/>
+    <column xsi:type="int" name="is_qty_wise" padding="6" unsigned="false" nullable="false" identity="false" default="0"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="entity_id"/>
+    </constraint>
+  </table>
+</schema>

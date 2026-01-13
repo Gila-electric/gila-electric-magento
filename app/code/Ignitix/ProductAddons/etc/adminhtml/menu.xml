@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Ignitix_ProductAddons::root"
+             title="Product Add-ons"
+             module="Ignitix_ProductAddons"
+             sortOrder="999"
+             parent="Magento_Catalog::catalog"
+             resource="Ignitix_ProductAddons::rules"/>
+
+        <add id="Ignitix_ProductAddons::rules"
+             title="Rules"
+             module="Ignitix_ProductAddons"
+             sortOrder="10"
+             parent="Ignitix_ProductAddons::root"
+             action="ignitix_productaddons/rule/index"
+             resource="Ignitix_ProductAddons::rules"/>
+    </menu>
+</config>

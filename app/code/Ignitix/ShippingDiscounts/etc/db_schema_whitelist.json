@@ -1,0 +1,18 @@
+{
+  "quote_address": {
+    "column": {
+      "ignitix_original_shipping_incl_tax": true,
+      "ignitix_base_original_shipping_incl_tax": true,
+      "ignitix_shipping_discount_amount": true,
+      "ignitix_base_shipping_discount_amount": true
+    }
+  },
+  "sales_order": {
+    "column": {
+      "ignitix_original_shipping_incl_tax": true,
+      "ignitix_base_original_shipping_incl_tax": true,
+      "ignitix_shipping_discount_amount": true,
+      "ignitix_base_shipping_discount_amount": true
+    }
+  }
+}

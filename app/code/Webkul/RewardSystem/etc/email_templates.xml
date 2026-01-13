@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software
+ *
+ * @category Webkul
+ * @package Webkul_RewardSystem
+ * @author Webkul
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license https://store.webkul.com/license.html
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Email:etc/email_templates.xsd">
+    <template id="rewardsystem_email_settings_rewardsystem_transaction" label="Reward System Transaction" file="transaction.html" type="html" module="Webkul_RewardSystem" area="frontend"/>
+    <template id="rewardsystem_email_settings_rewards_expiry" label="Reward Expiry Transaction" file="expire_notification.html" type="html" module="Webkul_RewardSystem" area="frontend"/>
+    <template id="rewardsystem_email_settings_referral_invitation" label="Referral Invitation Email" file="referral_invitation.html" type="html" module="Webkul_RewardSystem" area="frontend"/>
+</config>

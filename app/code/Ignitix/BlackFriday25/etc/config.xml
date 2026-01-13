@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <ignitix_blackfriday25>
+            <general>
+                <enabled>1</enabled>
+                <start>2025-01-01 00:00:00</start>
+                <end>2025-12-31 23:59:59</end>
+
+                <!-- Baseline eligibility -->
+                <min_total>10000</min_total>
+                <!-- Legacy fallback (kept for backward compatibility) -->
+                <threshold>0</threshold>
+
+                <!-- New rule thresholds -->
+                <high_tier_min_total>20000</high_tier_min_total>
+                <category_tier_category_id>508</category_tier_category_id>
+                <category_tier_min_subtotal>12000</category_tier_min_subtotal>
+            </general>
+
+            <!-- Baseline prizes (drawn when cart ≥ min_total) -->
+            <prizes_baseline>
+                <sku_baseline_1>PME1WB-GR</sku_baseline_1>
+                <weight_baseline_1>100</weight_baseline_1>
+
+                <sku_baseline_2></sku_baseline_2>
+                <weight_baseline_2>0</weight_baseline_2>
+
+                <sku_baseline_3></sku_baseline_3>
+                <weight_baseline_3>0</weight_baseline_3>
+
+                <sku_baseline_4></sku_baseline_4>
+                <weight_baseline_4>0</weight_baseline_4>
+            </prizes_baseline>
+
+            <!-- High-tier prize (pooled with baseline when cart ≥ high_tier_min_total) -->
+            <prizes_high>
+                <sku_high></sku_high>
+                <weight_high>0</weight_high>
+            </prizes_high>
+
+            <!-- Category-tier prizes (ONLY drawn when subtotal of category_tier_category_id ≥ category_tier_min_subtotal) -->
+            <prizes_category_tier>
+                <sku_cat_1></sku_cat_1>
+                <weight_cat_1>0</weight_cat_1>
+
+                <sku_cat_2></sku_cat_2>
+                <weight_cat_2>0</weight_cat_2>
+
+                <sku_cat_3></sku_cat_3>
+                <weight_cat_3>0</weight_cat_3>
+            </prizes_category_tier>
+        </ignitix_blackfriday25>
+    </default>
+</config>

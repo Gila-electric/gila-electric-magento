@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul DailyDeals DI
+ * @category  Webkul
+ * @package   Webkul_DailyDeals
+ * @author    Webkul Software Private Limited
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="\Magento\Catalog\Block\Product\ListProduct">
+        <plugin name="Webkul_DailyDeals::productlist"
+                type="Webkul\DailyDeals\Block\Plugin\ProductListUpdateForDeals"
+                sortOrder="10" />
+    </type>
+    <virtualType name="Magento\CatalogSearch\Block\SearchResult\ListProduct">
+        <plugin name="block-product-list" type="Webkul\DailyDeals\Block\Plugin\ProductListUpdateForDeals" />
+    </virtualType>
+    <virtualType name="Magento\CatalogSearch\Block\SearchResult\ListProduct">
+        <plugin name="Webkul_DailyDeals::searchproductlist"
+                type="Webkul\DailyDeals\Block\Plugin\ProductListUpdateForDeals" />
+    </virtualType>
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="disable_dailydeals" xsi:type="object">Webkul\DailyDeals\Console\Command\DisableDailyDeals</item>
+            </argument>
+        </arguments>
+    </type>
+     <type name="Magento\Directory\Controller\Currency\SwitchAction">
+        <plugin name="webkul_dailydeals_after_currency_switch_plugin" 
+                type="Webkul\DailyDeals\Plugin\Currency\SwitchAction"
+                sortOrder="10" 
+                disabled="false"/>
+    </type>
+     <type name="Magento\Review\Observer\CatalogBlockProductCollectionBeforeToHtmlObserver">
+        <plugin name="Webkul_DailyDeals::aroundExecute"
+                type="Webkul\DailyDeals\Block\Plugin\CatalogBlockProductCollectionBeforeToHtmlObserver"
+                sortOrder="10" />
+    </type>
+     <type name="\Magento\Catalog\Block\Product\Compare\ListCompare">
+        <plugin name="Webkul_DailyDeals::AfterCompareListProduct"
+                type="Webkul\DailyDeals\Plugin\Block\ProductListCompare"/>
+    </type>
+    <!-- add deal from date and deal to date in mass update product attribute page -->
+    <type name="Magento\Catalog\Block\Adminhtml\Product\Edit\Action\Attribute\Tab\Attributes">
+        <plugin name="Webkul_DailyDeals::afterGetAttributes"
+                type="Webkul\DailyDeals\Plugin\Block\Adminhtml\Product\Edit\Action\Attribute\Tab\Attributes"/>
+    </type>
+    <!-- Plugin to validate data  -->
+    <type name="\Magento\Catalog\Controller\Adminhtml\Product\Action\Attribute\Save">
+        <plugin name="Webkul_DailyDeals::beforeExecute"
+                type="Webkul\DailyDeals\Plugin\Controller\Adminhtml\Product\Action\Attribute\Save"/>
+    </type>
+    <preference for="Magento\Wishlist\Block\Customer\Wishlist\Item\Column\Cart" type="Webkul\DailyDeals\Block\Customer\Wishlist\Item\Column\Cart" />
+</config>

@@ -1,0 +1,29 @@
+<!--@subject Reward Update {{var customername}}  @-->
+<!--@vars {
+"var this.getUrl($store, 'customer/account/')":"Customer Account URL",
+"var transactiondetails":" Transaction Details",
+"var customername":"Customer Name",
+"var remainingdetails": "Details"
+} @-->
+
+{{template config_path="design/email/header_template"}}
+
+<table>
+    <tr class="email-intro">
+        <td>
+            <p class="greeting">{{trans "Hello %customername, " customername=$customername}}</p>
+        </td>
+    </tr>
+    <tr>
+    	<td>
+        	<p>{{trans "%message" message=$transactiondetails}}</p>
+        </td>
+    </tr>
+    <tr>
+    	<td>
+        	<p>{{trans "%message1" message1=$remainingdetails}}</p>
+        </td>
+    </tr>
+</table>
+
+{{template config_path="design/email/footer_template"}}

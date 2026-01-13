@@ -1,0 +1,11 @@
+<?php if ($product = $block->getProduct()): ?>
+<meta property="og:type" content="product" />
+<meta property="og:title" content="<?= $block->escapeHtml($product->getName()) ?>" />
+<meta property="og:description" content="<?= $block->escapeHtml($block->getDescription()) ?>" />
+<meta property="og:image" content="<?= $block->getImageUrl() ?>" />
+<meta property="og:url" content="<?= $block->getProductUrl() ?>" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="<?= $block->escapeHtml($product->getName()) ?>" />
+<meta name="twitter:description" content="<?= $block->escapeHtml($block->getDescription()) ?>" />
+<meta name="twitter:image" content="<?= $block->getImageUrl() ?>" />
+<?php endif; ?>

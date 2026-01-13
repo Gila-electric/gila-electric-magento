@@ -1,0 +1,32 @@
+Off,Off
+"Save On Deal ","Save On Deal "
+"Deal Ends in ","Deal Ends in "
+"A total of %1 record(s) were updated.","A total of %1 record(s) were updated."
+"Something went wrong while updating the product(s) attributes.","Something went wrong while updating the product(s) attributes."
+"Something went wrong in getting spin wheel.","Something went wrong in getting spin wheel."
+"Deals Collection","Deals Collection"
+Fixed,Fixed
+Percent,Percent
+Disable,Disable
+Enable,Enable
+"Deal value should not be less than 0.","Deal value should not be less than 0."
+"In case of percent type discount, the deal value should not be more than 100.","In case of percent type discount, the deal value should not be more than 100."
+"In case of fixed type discount, the deal value should not be more than product price.","In case of fixed type discount, the deal value should not be more than product price."
+"In case of fixed type discount, the deal value should not be same with regular price.","In case of fixed type discount, the deal value should not be same with regular price."
+"In case of Percent type discount, the deal value should not be 100 percent.","In case of Percent type discount, the deal value should not be 100 percent."
+"Top Deals of the Day","Top Deals of the Day"
+"Top Sales of the Day","Top Sales of the Day"
+"Top Viewed Deals","Top Viewed Deals"
+"Deals Ends in","Deals Ends in"
+"Save On Deal","Save On Deal"
+Days,Days
+Hours,Hours
+Minutes,Minutes
+Seconds,Seconds
+Webkul,Webkul
+"Daily Deal","Daily Deal"
+"General Settings","General Settings"
+"Enable Daily Deal","Enable Daily Deal"
+"Deal From","Deal From"
+"Deal To","Deal To"
+"Daily Deals","Daily Deals"

@@ -1,0 +1,64 @@
+<?php
+/**
+ * Webkul Software
+ *
+ * @category  Webkul
+ * @package   Webkul_RewardSystem
+ * @author    Webkul
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+?>
+<?php
+$totalPoints = $block->getTotalRewardPoints();
+$usedPoints = $block->getUsedRewardPoints();
+$expiredPoints = $block->getExpiredRewardPoints();
+$averageRewardPerCustomer = $block->getAveragePerCustomer($totalPoints);
+$averageRedeemedPerOrder = $block->getAveragePerOrder($usedPoints);
+?>
+<div class="reports-item-content">
+    <table class="admin__table-primary reports-data" id="rewardStatistics_table">
+        <tbody>
+            <tr class="wk_rs_row even">
+                <td class="col-text">
+                    <?= /** @noEscape */ __('Total Reward Points Rewarded') ?>
+                </td>
+                <td class="col-total a-right last wk_rs_stat_points" id="total_rewarded">
+                    <?= /** @noEscape */ $totalPoints ?>
+                </td>
+            </tr>
+            <tr class="wk_rs_row">
+                <td class="col-text">
+                    <?= /** @noEscape */ __('Total Reward Points Redeemed') ?>
+                </td>
+                <td class="col-total a-right last wk_rs_stat_points" id="total_redeemed">
+                    <?= /** @noEscape */ $usedPoints ?>
+                </td>
+            </tr>
+            <tr class="wk_rs_row even">
+                <td class="col-text">
+                    <?= /** @noEscape */ __('Average Reward point per Customer') ?>
+                </td>
+                <td class="col-total a-right last wk_rs_stat_points" id="average_rewarded">
+                    <?= /** @noEscape */ $averageRewardPerCustomer ?>
+                </td>
+            </tr>
+            <tr class="wk_rs_row">
+                <td class="col-text">
+                    <?= /** @noEscape */ __('Average Redeemed point per order') ?>
+                </td>
+                <td class="col-total a-right last wk_rs_stat_points" id="average_redeemed">
+                    <?= /** @noEscape */ $averageRedeemedPerOrder ?>
+                </td>
+            </tr>
+            <tr class="wk_rs_row even">
+                <td class="col-text">
+                    <?= /** @noEscape */ __('Total Expired Points') ?>
+                </td>
+                <td class="col-total a-right last wk_rs_stat_points" id="total_expired">
+                    <?= /** @noEscape */ $expiredPoints ?>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

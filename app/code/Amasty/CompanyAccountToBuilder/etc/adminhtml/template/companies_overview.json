@@ -1,0 +1,102 @@
+{
+  "name": "Amasty Company Account Report",
+  "main_entity": "company",
+  "store_ids": {"0": "0"},
+  "is_use_period": "0",
+  "display_chart": "0",
+  "columns": {
+    "company_id": {
+      "column_id": "company.company_id",
+      "is_date_filter": "0",
+      "aggregation_type": "",
+      "filter": "",
+      "visibility": "1",
+      "position": "0",
+      "order": "2"
+    },
+    "company_name": {
+      "column_id": "company.company_name",
+      "is_date_filter": "0",
+      "aggregation_type": "",
+      "filter": "",
+      "visibility": "1",
+      "position": "1",
+      "order": "0"
+    },
+    "status": {
+      "column_id": "company.status",
+      "is_date_filter": "0",
+      "aggregation_type": "",
+      "filter": "",
+      "visibility": "1",
+      "position": "2",
+      "order": "0"
+    },
+    "customer_id": {
+      "column_id": "company_customer.customer_id",
+      "is_date_filter": "0",
+      "aggregation_type": "count",
+      "filter": "",
+      "visibility": "1",
+      "position": "3",
+      "order": "0"
+    },
+    "category_name": {
+      "column_id": "catalog_category.name",
+      "is_date_filter": "0",
+      "aggregation_type": "group_concat",
+      "filter": "",
+      "visibility": "1",
+      "position": "4",
+      "order": "0"
+    },
+    "grand_total": {
+      "column_id": "order.grand_total",
+      "is_date_filter": "0",
+      "aggregation_type": "",
+      "filter": "",
+      "visibility": "1",
+      "position": "5",
+      "order": "0"
+    },
+    "be_paid": {
+      "column_id": "company_credit.be_paid",
+      "is_date_filter": "0",
+      "aggregation_type": "",
+      "filter": "",
+      "visibility": "1",
+      "position": "6",
+      "order": "0"
+    }
+  },
+  "scheme": {
+    "company_customer": {
+      "source_entity": "company",
+      "entity": "company_customer"
+    },
+    "company_order": {
+      "source_entity": "company",
+      "entity": "company_order"
+    },
+    "order": {
+      "source_entity": "company_order",
+      "entity": "order"
+    },
+    "order_item": {
+      "source_entity": "order",
+      "entity": "order_item"
+    },
+    "catalog_product": {
+      "source_entity": "order_item",
+      "entity": "catalog_product"
+    },
+    "catalog_category": {
+      "source_entity": "catalog_product",
+      "entity": "catalog_category"
+    },
+    "company_credit": {
+      "source_entity": "company",
+      "entity": "company_credit"
+    }
+  }
+}

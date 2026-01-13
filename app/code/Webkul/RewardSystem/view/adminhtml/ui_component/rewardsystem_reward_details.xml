@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- /**
+ * Webkul Software
+ *
+ * @category Webkul
+ * @package Webkul_RewardSystem
+ * @author Webkul
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license https://store.webkul.com/license.html
+ */ -->
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Ui/etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">rewardsystem_reward_details.rewardsystem_reward_details_data_source</item>
+            <item name="deps" xsi:type="string">rewardsystem_reward_details.rewardsystem_reward_details_data_source</item>
+        </item>
+        <item name="spinner" xsi:type="string">wk_rs_reward_record_columns</item>
+        <item name="buttons" xsi:type="array">
+            <item name="add" xsi:type="array">
+                <item name="name" xsi:type="string">add</item>
+                <item name="label" xsi:type="string" translate="true">Add New Transaction</item>
+                <item name="class" xsi:type="string">primary</item>
+                <item name="url" xsi:type="string">*/*/new</item>
+            </item>
+        </item>
+    </argument>
+    <dataSource name="rewardsystem_reward_details_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider</argument>
+            <argument name="name" xsi:type="string">rewardsystem_reward_details_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">entity_id</argument>
+            <argument name="requestFieldName" xsi:type="string">entity_id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <container name="listing_top">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="template" xsi:type="string">ui/grid/toolbar</item>
+            </item>
+        </argument>
+        <exportButton name="export_button">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="selectProvider" xsi:type="string">rewardsystem_reward_details.rewardsystem_reward_details.wk_rs_reward_record_columns.ids</item>
+                </item>
+            </argument>
+        </exportButton>
+        <bookmark name="bookmarks">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/controls/bookmarks/bookmarks</item>
+                    <item name="displayArea" xsi:type="string">dataGridActions</item>
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="saveUrl" xsi:type="url" path="mui/bookmark/save"/>
+                        <item name="deleteUrl" xsi:type="url" path="mui/bookmark/delete"/>
+                        <item name="namespace" xsi:type="string">rewardsystem_reward_details</item>
+                    </item>
+                </item>
+            </argument>
+        </bookmark>
+        <component name="columns_controls">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="columnsData" xsi:type="array">
+                        <item name="provider" xsi:type="string">rewardsystem_reward_details.rewardsystem_reward_details.wk_rs_reward_record_columns</item>
+                    </item>
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/controls/columns</item>
+                    <item name="displayArea" xsi:type="string">dataGridActions</item>
+                </item>
+            </argument>
+        </component>
+        <filters name="listing_filters"/>
+        <paging name="listing_paging"/>
+    </container>
+    <columns name="wk_rs_reward_record_columns">
+      <selectionsColumn name="ids">
+         <argument name="data" xsi:type="array">
+              <item name="config" xsi:type="array">
+                  <item name="resizeEnabled" xsi:type="boolean">false</item>
+                  <item name="resizeDefaultWidth" xsi:type="string">55</item>
+                  <item name="indexField" xsi:type="string">entity_id</item>
+                  <item name="sortOrder" xsi:type="number">1</item>
+              </item>
+          </argument>
+      </selectionsColumn>
+      <column name="customer_id">
+          <argument name="data" xsi:type="array">
+              <item name="config" xsi:type="array">
+                  <item name="filter" xsi:type="string">textRange</item>
+                  <item name="label" xsi:type="string" translate="true">Customer Id</item>
+                  <item name="sortOrder" xsi:type="number">2</item>
+              </item>
+          </argument>
+      </column>
+      <column name="email">
+          <argument name="data" xsi:type="array">
+              <item name="config" xsi:type="array">
+                  <item name="filter" xsi:type="string">text</item>
+                  <item name="label" xsi:type="string" translate="true">Customer Email</item>
+                  <item name="sortOrder" xsi:type="number">3</item>
+              </item>
+          </argument>
+      </column>
+      <column name="name">
+          <argument name="data" xsi:type="array">
+              <item name="config" xsi:type="array">
+                  <item name="filter" xsi:type="string">text</item>
+                  <item name="label" xsi:type="string" translate="true">Customer Name</item>
+                  <item name="sortOrder" xsi:type="number">4</item>
+              </item>
+          </argument>
+      </column>
+      <column name="total_reward_point">
+          <argument name="data" xsi:type="array">
+              <item name="config" xsi:type="array">
+                  <item name="filter" xsi:type="string">textRange</item>
+                  <item name="label" xsi:type="string" translate="true">Total Reward Points</item>
+                  <item name="sortOrder" xsi:type="number">5</item>
+              </item>
+          </argument>
+      </column>
+      <column name="remaining_reward_point">
+          <argument name="data" xsi:type="array">
+              <item name="config" xsi:type="array">
+                  <item name="filter" xsi:type="string">textRange</item>
+                  <item name="label" xsi:type="string" translate="true">Remaining Reward Points</item>
+                  <item name="sortOrder" xsi:type="number">6</item>
+              </item>
+          </argument>
+      </column>
+      <column name="used_reward_point">
+          <argument name="data" xsi:type="array">
+              <item name="config" xsi:type="array">
+                  <item name="filter" xsi:type="string">textRange</item>
+                  <item name="label" xsi:type="string" translate="true">Used Reward Points</item>
+                  <item name="sortOrder" xsi:type="number">7</item>
+              </item>
+          </argument>
+      </column>
+      <column name="updated_at" class="Magento\Ui\Component\Listing\Columns\Date">
+          <argument name="data" xsi:type="array">
+              <item name="config" xsi:type="array">
+                  <item name="sorting" xsi:type="string">desc</item>
+                  <item name="filter" xsi:type="string">dateRange</item>
+                  <item name="component" xsi:type="string">Magento_Ui/js/grid/columns/date</item>
+                  <item name="dataType" xsi:type="string">date</item>
+                  <item name="label" xsi:type="string" translate="true">Transaction At</item>
+                  <item name="sortOrder" xsi:type="number">8</item>
+              </item>
+          </argument>
+      </column>
+      <actionsColumn name="actions" class="Webkul\RewardSystem\Ui\Component\Listing\Column\RewardrecordActions">
+          <argument name="data" xsi:type="array">
+              <item name="config" xsi:type="array">
+                  <item name="indexField" xsi:type="string">entity_id</item>
+                  <item name="viewUrlPath" xsi:type="string">rewardsystem/reward/individualdetail</item>
+                  <item name="sortOrder" xsi:type="number">200</item>
+              </item>
+          </argument>
+      </actionsColumn>
+    </columns>
+</listing>

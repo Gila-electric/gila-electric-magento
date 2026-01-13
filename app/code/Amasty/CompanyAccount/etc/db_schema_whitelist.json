@@ -1,0 +1,158 @@
+{
+    "amasty_company_account_company": {
+        "column": {
+            "company_id": true,
+            "company_name": true,
+            "status": true,
+            "legal_name": true,
+            "company_email": true,
+            "vat_tax_id": true,
+            "reseller_id": true,
+            "comment": true,
+            "street": true,
+            "city": true,
+            "country_id": true,
+            "region": true,
+            "region_id": true,
+            "postcode": true,
+            "telephone": true,
+            "customer_group_id": true,
+            "sales_representative_id": true,
+            "super_user_id": true,
+            "reject_reason": true,
+            "rejected_at": true,
+            "restricted_payments": true,
+            "use_company_group": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AMASTY_COMPANY_ACCOUNT_COMPANY_COUNTRY_ID_DIR_COUNTRY_COUNTRY_ID": true,
+            "FK_A0CA27A638A2BA27DF7E86359E691BB8": true,
+            "FK_106C37CCAF8F697F137B2EBA17D2AABB": true,
+            "FK_ECBB6FD6084A185E5885E35A58108ACD": true,
+            "AMASTY_COMPANY_ACCOUNT_COMPANY_SPR_USR_ID_CSTR_ENTT_ENTT_ID": true
+        }
+    },
+    "amasty_company_account_role": {
+        "column": {
+            "role_id": true,
+            "role_name": true,
+            "company_id": true,
+            "role_type_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_2803A4DB5BBB23D512E69D39C8980523": true,
+            "AMASTY_COMPANY_ACCOUNT_ROLE_ROLE_ID": true
+        }
+    },
+    "amasty_company_account_customer": {
+        "column": {
+            "customer_id": true,
+            "company_id": true,
+            "job_title": true,
+            "telephone": true,
+            "role_id": true,
+            "status": true
+        },
+        "index": {
+            "AMASTY_COMPANY_ACCOUNT_CUSTOMER_ROLE_ID_COMPANY_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_1A9CE53366DDCBAD03566F6ABA61F889": true,
+            "AMASTY_COMPANY_ACCOUNT_CSTR_CSTR_ID_CSTR_ENTT_ENTT_ID": true,
+            "FK_4EF8B59BC3DFF8886BCDA7C7DFAD7109": true,
+            "AMASTY_COMPANY_ACCOUNT_CUSTOMER_CUSTOMER_ID": true
+        }
+    },
+    "amasty_company_account_permission": {
+        "column": {
+            "permission_id": true,
+            "role_id": true,
+            "resource_id": true
+        },
+        "index": {
+            "AMASTY_COMPANY_ACCOUNT_PERMISSION_ROLE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_93A32EADB5920F73CE05EDE9433AC2DC": true,
+            "AMASTY_COMPANY_ACCOUNT_PERMISSION_PERMISSION_ID": true
+        }
+    },
+    "amasty_company_account_order": {
+        "column": {
+            "company_order_id": true,
+            "company_id": true,
+            "company_name": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_017975B21B6C93FEB6451B9206315B3E": true
+        }
+    },
+    "amasty_company_credit": {
+        "column": {
+            "id": true,
+            "company_id": true,
+            "balance": true,
+            "credit": true,
+            "be_paid": true,
+            "currency_code": true,
+            "allow_overdraft": true,
+            "overdraft_limit": true,
+            "overdraft_repay_period": true,
+            "overdraft_repay_digit": true,
+            "overdraft_repay_type": true,
+            "overdraft_penalty": true
+        },
+        "index": {
+            "AMASTY_COMPANY_CREDIT_COMPANY_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_FA1AD0A7C76D7E975C389277DE88FC24": true
+        }
+    },
+    "amasty_company_credit_event": {
+        "column": {
+            "id": true,
+            "credit_id": true,
+            "user_id": true,
+            "user_type": true,
+            "type": true,
+            "amount": true,
+            "currency_credit": true,
+            "currency_event": true,
+            "rate": true,
+            "rate_credit": true,
+            "balance": true,
+            "datetime": true,
+            "comment": true
+        },
+        "index": {
+            "AMASTY_COMPANY_CREDIT_EVENT_CREDIT_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AMASTY_COMPANY_CREDIT_EVENT_CREDIT_ID_AMASTY_COMPANY_CREDIT_ID": true
+        }
+    },
+    "amasty_company_credit_overdraft": {
+        "column": {
+            "id": true,
+            "credit_id": true,
+            "start_date": true,
+            "repay_date": true
+        },
+        "index": {
+            "AMASTY_COMPANY_CREDIT_OVERDRAFT_REPAY_DATE": true,
+            "AMASTY_COMPANY_CREDIT_OVERDRAFT_CREDIT_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_BB22A8AE343CA1C4D26A45BBE3E81CA4": true
+        }
+    }
+}

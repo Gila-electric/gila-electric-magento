@@ -1,0 +1,51 @@
+Legend
+
++ Features
+- Bugs
+
+-------------------------------- Version 4.0.3--------------------------------------
+    + Implemented graphql api
+    - Bugs Fixed
+
+-------------------------------- Version 4.0.2--------------------------------------
+    + Compatible With Magento 2.4.6 and above
+    - Remove html code from php files
+
+-------------------------------- Version 4.0.1--------------------------------------
+    + Compatible with Magento 2.4.*
+    - Cart items and cart subtotal automatically updated once the daily deal time is over
+    - Fixed issue while adding product in admin
+    
+-------------------------------- Version 4.0.0--------------------------------------
+    - Compatible with Magento 2.4.*
+    + Version upgrade
+-------------------------------- Version 3.0.1--------------------------------------
+    - Bugs Fixed
+    + Version upgrade
+
+-------------------------------- Version 3.0.0--------------------------------------
+    - Bugs Fixed
+
+-------------------------------- Version 2.1.0--------------------------------------
+    + Magento 2.3 Compatible
+    
+-------------------------------- Version 2.0.3--------------------------------------
+    - Bugs Fixed
+
+-------------------------------- Version 2.0.2--------------------------------------
+    + Deal Design updated
+    + Updated according to magento 2.2.x version
+
+-------------------------------- Version 2.0.1--------------------------------------
+    + Display deal clock on congiguration product associate product 
+
+-------------------------------- Version 2.0.0 --------------------------------------
+
+    + Working with all magento2 version.
+    + Fully open source and easy to manage from admin.
+    + Seprate page for deals products.
+    + Deals also display on category page.
+    + Top selling deals and top viewed deals block.
+    + interactive time counter.
+
+

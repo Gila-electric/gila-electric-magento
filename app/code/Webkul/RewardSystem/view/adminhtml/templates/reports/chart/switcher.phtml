@@ -1,0 +1,64 @@
+<?php
+/**
+ * Webkul Software
+ *
+ * @category  Webkul
+ * @package   Webkul_RewardSystem
+ * @author    Webkul
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+?>
+<?php
+$websiteOptions = $block->getWebsiteOptions();
+$customerGroupOptions = $block->getCustomerGroupOptions();
+$datePeriods = $block->getDatePeriodOptions();
+?>
+<div class="reports-switcher">
+    <div class="reports-website-switcher wk_rs_reports_switcher">
+        <label for="reports_chart_website" class="label"><?= $escaper->escapeHtml(__('Website')) ?></label>
+        <select name="website" id="reports_chart_website" class="admin__control-select">
+            <?php foreach ($websiteOptions as $website): ?>
+                <option value="<?= $escaper->escapeHtmlAttr($website['value']) ?>"
+                    <?php if ($block->getRequest()->getParam('website') === $website['value']): ?>
+                        selected="selected"
+                    <?php endif; ?>
+                ><?= $escaper->escapeHtml($website['label']) ?></option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+    <div class="reports-custgroup-switcher wk_rs_reports_switcher">
+        <label for="reports_chart_custgroup" class="label"><?= $escaper->escapeHtml(__('Customer Group')) ?></label>
+        <select name="custgroup" id="reports_chart_custgroup" class="admin__control-select">
+            <?php foreach ($customerGroupOptions as $customerGroup): ?>
+                <option value="<?= $escaper->escapeHtmlAttr($customerGroup['value']) ?>"
+                    <?php if ($block->getRequest()->getParam('custgroup') === $customerGroup['value']): ?>
+                        selected="selected"
+                    <?php endif; ?>
+                ><?= $escaper->escapeHtml($customerGroup['label']) ?></option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+    <div class="reports-dateperiod-switcher wk_rs_reports_switcher">
+        <label for="reports_chart_dateperiod" class="label"><?= $escaper->escapeHtml(__('Date Range')) ?></label>
+        <select name="dateperiod" id="reports_chart_dateperiod" class="admin__control-select">
+            <?php foreach ($datePeriods as $value => $label): ?>
+                <?php
+                if ($value === 'custom') {
+                    continue;
+                }
+                ?>
+                <option value="<?= $escaper->escapeHtmlAttr($value) ?>"
+                    <?php if ($block->getRequest()->getParam('dateperiod') === $value): ?>
+                        selected="selected"
+                    <?php endif; ?>
+                ><?= $escaper->escapeHtml($label) ?></option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+</div>
+<div class="reports-actions-buttons">
+    <button class="action-primary" id="reports_refresh_btn" type="submit" title="Refresh">
+        <?= $escaper->escapeHtml(__('Refresh')) ?>
+    </button>
+</div>

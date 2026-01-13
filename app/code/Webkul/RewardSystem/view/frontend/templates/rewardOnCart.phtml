@@ -1,0 +1,77 @@
+<?php
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_RewardSystem
+ * @author    Webkul
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+?>
+<?php
+$rewardViewModel = $block->getRewardViewModel();
+$helper = $rewardViewModel->getRewardDataHelper();
+$rewardPriorityStatus = $helper->getrewardPriority();
+$enableRewardSystem = $helper->enableRewardSystem();
+$cartQty = $helper->getCartData();
+$cartRewardDetails = $helper->getCartReward();
+$grandTotal = $block->getQuote()->getBaseGrandTotal();
+$rewardValue = $helper->getRewardValue();
+$pointsRequired = $grandTotal/$rewardValue;
+$totalRewardPoints = 0;
+$quantityWise = $helper->getrewardQuantityWise();
+
+if ($cartQty) {
+    $cartAllData =  $helper->getCartAllData();
+    foreach ($cartAllData as $singleItem) {
+         $productId = $singleItem->getProductId();
+         $pdtQty = $singleItem->getQty();
+         list($productRewardPoints, $status, $message) = $helper->getProductRewardToShow($productId);
+        if ($singleItem['parent_item_id'] != null) {
+            $singleItem->getParentItem();
+            $pdtQty = $singleItem->getParentItem()->getQty();
+        }
+        if ($quantityWise) {
+            $totalRewardPoints += ($pdtQty*$productRewardPoints);
+        } else {
+            $totalRewardPoints += $productRewardPoints;
+        }
+    }
+}
+$cartRewardPoints = isset($cartRewardDetails['reward']) ? $cartRewardDetails['reward'] : 0;
+$amountFrom = $helper->getformattedPrice($cartRewardDetails['amount_from']);
+$amountTo = $helper->getformattedPrice($cartRewardDetails['amount_to']);
+$customerId = $helper->getCustomerId();
+$url  = $block->getUrl('*/*/*', ['_current' => true, '_use_rewrite' => true]);
+$loginUrl = $block->escapeHtml($block->getUrl('customer/account/login', ['referer' => base64_encode($url)]));
+
+if ($enableRewardSystem== 1 && $pointsRequired): ?>
+    <span class="wk_reward_required">
+        <?= /* @noEscape */ __('%1 Reward Points will be used to purchase these item(s)', $pointsRequired)?>
+    </span>
+<?php endif;
+
+if ($enableRewardSystem && $totalRewardPoints && $rewardPriorityStatus == 0):?>
+    <br>
+    <span class="wk_reward_required">
+        <?= /* @noEscape */ __('Accrue %1 Reward Points after purchasing these item(s)', $totalRewardPoints)?>
+    </span>
+<?php endif;
+
+if ($rewardPriorityStatus == 1 && $cartQty && $enableRewardSystem == 1 && $cartRewardPoints) { ?>
+    <div>
+        <h3 class="wk_rs_product_style wk_rs_advertise_product_style">
+            <span class="wk_rs_product_greet"></span>
+            <?= $block->escapeHtml(__('Buy for %1 to %2 and ', $amountFrom, $amountTo))?>
+            <span class="wk_rs_cart_green">
+                <?= $block->escapeHtml(__('Earn %1 Reward Points', $cartRewardPoints)); ?>
+                <?php if (!$customerId) {?>
+                <a href="<?= $block->escapeUrl($loginUrl); ?>">
+                    <?= $block->escapeHtml(__(" click here")); ?>
+                </a>
+                <?= $block->escapeHtml(__(" to login"));} ?>
+            </span>
+        </h3>
+    </div>
+<?php } ?>

@@ -1,0 +1,263 @@
+/**
+ * Webkul_DailyDeals css.
+ * @category  Webkul
+ * @package   Webkul_DailyDeals
+ * @author    Webkul Software Private Limited
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+
+.wk_cat_count_clock{
+    font-weight: 600;
+}
+.product-info-main .wk_cat_count_clock{
+    /*float: right;*/
+}
+.wk-daily-deal .save-box{
+    margin-left:4%;
+}
+.deal-collection .products-grid .product-item{
+    width: 24.4%;
+    min-width: 175px;
+}
+.deal-collection .product-item-info{
+    width: 240px;
+    max-width: 100%;
+}
+.clear-left{
+    clear: left;
+}
+.block-topdeals .wk_cat_count_clock,
+.block-topdeals .save-box{
+    /* display: none; */
+}
+.wk_cat_count_clock.notavilable{
+    display: inline-block;
+    margin-left: 10%;
+}
+.catalog-product-view .wk-daily-deal.hide{
+    display :none;
+}
+.catalog-product-view .wk-daily-deal{
+    display: inline-block;
+    vertical-align: top;
+    width: 230px;
+    padding-left: 10%;
+    padding-bottom: 10px;
+}
+.catalog-category-view .wk-daily-deal, .catalogsearch-result-index .wk-daily-deal, .catalogsearch-advanced-result .wk-daily-deal, .dailydeals-index-index .wk-daily-deal, .wishlist-index-index .wk-daily-deal, .catalog-product-compare-index .wk-daily-deal{
+    display: inline-block;
+    width: 100%;
+}
+.catalog-category-view .wk-deal-ends-label, .catalogsearch-result-index .wk-deal-ends-label, .catalogsearch-advanced-result .wk-deal-ends-label, .dailydeals-index-index .wk-deal-ends-label, .wishlist-index-index .wk-deal-ends-label, .catalog-product-compare-index .wk-deal-ends-label{
+    float: left;
+}
+.catalog-category-view .wk-deal-font-weight-600, .catalogsearch-result-index .wk-deal-font-weight-600, .catalogsearch-advanced-result .wk-deal-font-weight-600, .dailydeals-index-index .wk-deal-font-weight-600, .wishlist-index-index .wk-deal-font-weight-600, .catalog-product-compare-index .wk-deal-font-weight-600{
+    font-weight: 600;
+}
+.catalog-category-view .deal-price-label, .catalogsearch-result-index .deal-price-label, .catalogsearch-advanced-result .deal-price-label, .dailydeals-index-index .deal-price-label, .wishlist-index-index .deal-price-label, .catalog-product-compare-index .deal-price-label{
+    color: white;
+    background: #4caa52;
+    padding: 3px;
+    font-weight: 700;
+    display: inline-block;
+}
+.catalog-category-view .grid .wk-deal-off-box, .catalogsearch-result-index .grid .wk-deal-off-box, .catalogsearch-advanced-result .grid .wk-deal-off-box, .dailydeals-index-index .grid .wk-deal-off-box, .wishlist-index-index .products-grid .wk-deal-off-box, .catalog-product-compare-index .table-wrapper .wk-deal-off-box{
+    position: absolute;
+    z-index: 1;
+    top: 20px;
+    left: 2px;
+}
+.catalog-category-view .products-list .wk-deal-off-box, .catalogsearch-result-index .products-list .wk-deal-off-box, .catalogsearch-advanced-result .products-list .wk-deal-off-box, .dailydeals-index-index .products-list .wk-deal-off-box, .wishlist-index-index .products-list .wk-deal-off-box, .catalog-product-compare-index .table-wrapper .wk-deal-off-box{
+    position: absolute;
+    left: 21%;
+    z-index: 1;
+}
+.catalog-category-view .wk-deal-left-border, .catalogsearch-result-index .wk-deal-left-border, .catalogsearch-advanced-result .wk-deal-left-border, .dailydeals-index-index .column.main .wk-deal-left-border, .wishlist-index-index .wk-deal-left-border, .catalog-product-compare-index .wk-deal-left-border{
+    height: 36px;
+    width: 1px;
+    background: #4caa52;
+    display: inline-block;
+    top: -5px;
+    position: absolute;
+}
+.product-item:hover + .wk-daily-deal{
+    position: unset;
+}
+.catalog-category-view .grid .wk-daily-deal, .catalogsearch-result-index .grid .wk-daily-deal, .catalogsearch-advanced-result .grid .wk-daily-deal, .dailydeals-index-index .grid .wk-daily-deal, .wishlist-index-index .products-grid .wk-daily-deal, .catalog-product-compare-index .table-wrapper .wk-daily-deal{
+    position: unset!important;
+}
+.wk_front_dd_set_time {
+    width: 52px;
+    display: inline-block;
+}
+.wk_front_dd_set_time_days {
+    width: 70px;
+    display: inline-block;
+}
+.wk-deal-clock-span {
+    font-size: 3rem;
+}
+.wk-deal-clock-label-dd {
+    float:left;
+    font-size: 1.3rem;
+}
+.wk-deal-clock-label-hr {
+    float:left;
+    font-size: 1.3rem;
+}
+.wk-deal-clock-label-mi {
+    float:left;
+    font-size: 1.3rem;
+}
+.wk-deal-clock-label-sec {
+    float:left;
+    font-size: 1.3rem;
+}
+.product-info-main .wk-deal-off{
+    color: white;
+    background: #4caa52;
+    padding: 3px;
+    font-weight: 700;
+}
+.product-info-main .product-info-stock-sku{
+    padding-left: unset;
+}
+.catalog-product-compare-index .table-wrapper .wk-deal-off-box {
+    bottom: 315px;
+    left: 0;
+}
+@media  screen and (max-width: 768px) and (min-width:0px){
+    .toolbar-amount {
+        position: static;
+    }
+}
+@media  screen and (max-width: 1145px) and (min-width:767px){
+    .wk-deal-clock-span {
+        font-size: 2rem;
+    }
+    .wk-deal-clock-label-dd {
+        float:left;
+        font-size: 0.9rem;
+    }
+    .wk-deal-clock-label-hr {
+        float:left;
+        font-size: 0.9rem;
+    }
+    .wk-deal-clock-label-mi {
+        float:left;
+        font-size: 0.9rem;
+    }
+    .wk-deal-clock-label-sec {
+        float:left;
+        font-size: 0.9rem;
+    }
+    .wk_front_dd_set_time_days{
+         width: 50px;
+    }
+    .wk_front_dd_set_time {
+        width: 45px;
+    }
+    .wk-daily-deal .save-box {
+        margin-left: 2%;
+    }
+    .catalog-product-view .save-label {
+        font-size: 10px;
+    }
+}
+@media  screen and (max-width: 470px) and (min-width:0px){
+    .wk-deal-clock-span {
+        font-size: 2rem;
+    }
+    .wk-deal-clock-label-dd {
+        float:left;
+        font-size: 0.9rem;
+    }
+    .wk-deal-clock-label-hr {
+        float:left;
+        font-size: 0.9rem;
+    }
+    .wk-deal-clock-label-mi {
+        float:left;
+        font-size: 0.9rem;
+    }
+    .wk-deal-clock-label-sec {
+        float:left;
+        font-size: 0.9rem;
+    }
+    .wk_front_dd_set_time_days{
+         width: 45px;
+    }
+    .wk_front_dd_set_time {
+        width: 36px;
+    }
+    .wk-daily-deal .save-box {
+        margin-left: 2%;
+    }
+    .catalog-product-view .save-label {
+        font-size: 10px;
+    }
+    .catalog-category-view .grid .wk-deal-off-box, .catalogsearch-result-index .grid .wk-deal-off-box, .catalogsearch-advanced-result .grid .wk-deal-off-box, .dailydeals-index-index .grid .wk-deal-off-box, .wishlist-index-index .products-grid .wk-deal-off-box, .catalog-product-compare-index .table-wrapper .wk-deal-off-box {
+        bottom: 310px;
+    }
+}
+.wk-deal-timer {
+    padding-bottom: 12px;
+}
+.catalog-category-view .products.list li.product, .catalogsearch-result-index .products.list li.product, .catalogsearch-advanced-result .products.list li.product, .dailydeals-index-index .products.list li.product {
+    position: relative;
+}
+.catalog-product-view table.grouped  .deal.wk-daily-deal{
+    display: inline-block;
+    vertical-align: top;
+    width: 230px;
+    /* padding-left: 10%; */
+    padding: 10px 0px;
+ }
+ @media  screen and (max-width: 767px){
+    .compare.wrapper, [class*='block-compare'] {
+        display: block;
+    }
+}
+@media screen and (max-width: 743px){
+    .dailydeals-index-index .block-compare .product-item .product-item-name {
+        margin-left: 0px;
+    }  
+}
+
+.dailydeals-index-index .block-compare .product-item .product-item-name {
+    margin-left: 0px;
+}  
+
+.wk-deal-clock-label-hr span, 
+.wk-deal-clock-label-mi span, 
+.wk-deal-clock-label-sec span,
+.wk-deal-clock-label-dd span {
+    white-space: nowrap;     
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    width: 58px; 
+    display: inline-block;
+}
+span.deal-price-label {
+    color: white;
+    background: #4caa52;
+    padding: 3px;
+    font-weight: 700;
+    display: inline-block;
+}
+
+.wk-deal-left-border {
+    height: 36px;
+    width: 1px;
+    background: #4caa52;
+    display: inline-block;
+    top: -5px;
+    position: absolute;
+}
+
+.wk-deal-off-box {
+    position: absolute;
+    top: 22px;
+    z-index: 1;
+}

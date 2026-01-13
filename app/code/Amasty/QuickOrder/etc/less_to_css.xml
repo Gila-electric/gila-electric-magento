@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package Quick Order for Magento 2
+ */-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:amasty:module:Amasty_Base:etc/less_to_css.xsd">
+    <module name="Amasty_QuickOrder">
+        <handle name="amasty_quickorder_index_index" />
+        <cssOptions fileName="amqorder" path="css/source/mkcss" />
+        <ifconfig>am_quick_order/general/enabled</ifconfig>
+    </module>
+</config>

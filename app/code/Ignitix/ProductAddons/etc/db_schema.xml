@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+
+    <table name="ignitix_productaddons_rule" resource="default" engine="innodb" comment="Ignitix Product Addons Rules">
+        <column xsi:type="int" name="rule_id" unsigned="true" nullable="false" identity="true" comment="Rule ID"/>
+        <column xsi:type="varchar" name="name" nullable="false" length="255" comment="Name"/>
+        <column xsi:type="smallint" name="is_active" nullable="false" default="1" comment="Is Active"/>
+        <column xsi:type="int" name="sort_order" nullable="false" default="0" comment="Sort Order"/>
+
+        <column xsi:type="varchar" name="addon_sku" nullable="false" length="64" comment="Addon SKU"/>
+
+        <column xsi:type="text" name="target_product_ids" nullable="true" comment="Target Product IDs (CSV)"/>
+        <column xsi:type="text" name="target_product_skus" nullable="true" comment="Target Product SKUs (CSV)"/>
+        <column xsi:type="text" name="target_category_ids" nullable="true" comment="Target Category IDs (CSV)"/>
+
+        <column xsi:type="timestamp" name="created_at" nullable="false" default="CURRENT_TIMESTAMP" comment="Created At"/>
+        <column xsi:type="timestamp" name="updated_at" nullable="false" default="CURRENT_TIMESTAMP" on_update="true" comment="Updated At"/>
+
+        <constraint xsi:type="primary" referenceId="PRIMARY">
+            <column name="rule_id"/>
+        </constraint>
+
+        <index referenceId="IGNITIX_PRODADDONS_RULE_ACTIVE" indexType="btree">
+            <column name="is_active"/>
+        </index>
+        <index referenceId="IGNITIX_PRODADDONS_RULE_ADDONSKU" indexType="btree">
+            <column name="addon_sku"/>
+        </index>
+    </table>
+
+</schema>

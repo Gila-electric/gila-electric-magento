@@ -1,0 +1,200 @@
+<?php
+/** @var \Ignitix\BlackFriday25\Block\Banner $block */
+$symbol    = $block->getCurrencySymbol();
+$eligible  = $block->isEligible();
+$remaining = $block->getRemaining();
+$threshold = $block->getThreshold();
+$products  = $block->getPrizeProducts();   // includes legacy + cat-tier SKUs
+$wonItem   = $block->getWonPrizeItem();
+
+// JSON for JS (safe-escaped)
+$bannerCfgJson = $block->getCheckoutConfigJson(); // already HEX-escaped in Block
+?>
+<div id="bf25-banner"
+     class="bf25-banner"
+     data-config='<?= $bannerCfgJson ?>'>
+  <div class="bf25-card">
+    <div class="bf25-title"><?= $block->escapeHtml(__('Black Friday Gift')) ?></div>
+
+    <?php if ($wonItem): ?>
+      <div class="bf25-congrats">
+        <?= $block->escapeHtml(__('Congratulations, You Received "%1"', $wonItem->getName())) ?>
+      </div>
+      <?php
+      $img = null;
+      try {
+          $product = \Magento\Framework\App\ObjectManager::getInstance()
+              ->get(\Magento\Catalog\Api\ProductRepositoryInterface::class)
+              ->get($wonItem->getSku());
+          $img = $block->getImageUrl($product);
+      } catch (\Exception $e) {}
+      ?>
+      <?php if ($img): ?>
+        <div class="bf25-won-image">
+          <img src="<?= $block->escapeUrl($img) ?>"
+               alt="<?= $block->escapeHtmlAttr($wonItem->getName()) ?>"
+               width="100" height="100"/>
+        </div>
+      <?php endif; ?>
+
+    <?php else: ?>
+
+      <?php if (!$eligible): ?>
+        <div class="bf25-subtext">
+          <?= $block->escapeHtml(__('Add %1 EGP more to get a free gift', number_format($remaining, 2))) ?>
+        </div>
+      <?php else: ?>
+        <div class="bf25-subtext">
+          <?= $block->escapeHtml(__('Click Here to Get A Free Gift')) ?>
+        </div>
+        <div class="bf25-cta">
+          <button id="bf25-open-gift" type="button" class="bf25-button">
+            <?= $block->escapeHtml(__('Get Gift')) ?>
+          </button>
+        </div>
+
+        <!-- Inline scratch card (hidden until button is clicked) -->
+        <div id="bf25-inline"
+             class="ignitix-bf25-inline"
+             style="display:none; margin-top:14px;"
+             data-apply-url='<?= $block->escapeUrl($block->getUrl('ignitix_bf25/prize/apply')) ?>'
+             data-status-url='<?= $block->escapeUrl($block->getUrl('ignitix_bf25/prize/status')) ?>'
+             data-preselect-url='<?= $block->escapeUrl($block->getUrl('ignitix_bf25/prize/preselect')) ?>'
+             data-fireworks-seconds="10"
+             data-reload-ms="5000">
+
+          <div class="ignitix-bf25-card" style="position:relative; display:inline-block;">
+            <!-- Underlay: left EMPTY; JS injects the single won image here -->
+            <div id="bf25-inline-underlay"
+                 class="ignitix-bf25-underlay"
+                 style="position:absolute; inset:0; border-radius:8px; overflow:hidden; z-index:0;">
+              <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:#f5f7fb;">
+                <span style="opacity:0;"><?= $block->escapeHtml(__('Scratch to reveal your gift!')) ?></span>
+              </div>
+            </div>
+
+            <!-- Text layer above underlay, below canvas -->
+            <div class="ignitix-bf25-prize" id="ignitix-bf25-inline-prize" aria-live="polite"
+                 style="position:relative; z-index:1; width:clamp(260px,80vw,360px); aspect-ratio:2/1; border-radius:8px; background:transparent; display:flex; align-items:center; justify-content:center; font-size:20px; font-weight:600; color:#333; padding:10px; box-shadow:inset 0 0 0 1px #e5e7eb; overflow:hidden;">
+              <span><?= $block->escapeHtml(__('Scratch to reveal your gift!')) ?></span>
+            </div>
+
+            <!-- Scratch canvas -->
+            <canvas id="ignitix-bf25-inline-canvas"
+                    width="360" height="180"
+                    style="position:absolute; left:0; top:0; border-radius:8px; z-index:2; width:100%; height:100%;"></canvas>
+          </div>
+
+          <div class="ignitix-bf25-result" id="ignitix-bf25-inline-result" style="display:none; margin-top:10px;">
+            <strong><?= $block->escapeHtml(__('You won:')) ?></strong>
+            <span id="ignitix-bf25-inline-result-name"></span>
+          </div>
+        </div>
+        <!-- /inline scratch card -->
+      <?php endif; ?>
+
+      <?php if ($products): ?>
+        <div class="bf25-grid">
+          <?php foreach ($products as $prod): ?>
+            <?php
+            try { $url = $block->getImageUrl($prod); } catch (\Exception $e) { $url = null; }
+            if (!$url) continue;
+            ?>
+            <div class="bf25-gift">
+              <img src="<?= $block->escapeUrl($url) ?>"
+                   alt="<?= $block->escapeHtmlAttr($prod->getName()) ?>"
+                   width="100" height="100"/>
+              <div class="bf25-gift-name"><?= $block->escapeHtml($prod->getName()) ?></div>
+            </div>
+          <?php endforeach; ?>
+        </div>
+      <?php endif; ?>
+
+    <?php endif; ?>
+  </div>
+</div>
+
+<style>
+#bf25-banner .bf25-card {background:#fff;border:1px solid #e3e3e3;border-radius:12px;padding:16px;margin:16px 0;}
+#bf25-banner .bf25-title {font-weight:600;font-size:24px;margin-bottom:8px;text-align:center;color:red;}
+#bf25-banner .bf25-subtext {margin:8px 0;color:#333;text-align:center;font-size:16px;}
+#bf25-banner .bf25-grid {display:flex;flex-wrap:wrap;gap:12px;margin-top:12px;justify-content:center;}
+#bf25-banner .bf25-gift {text-align:center;width:110px;}
+#bf25-banner .bf25-gift img {border-radius:8px;border:1px solid #eee;}
+#bf25-banner .bf25-gift-name {font-size:12px;margin-top:6px;color:#444;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+#bf25-banner .bf25-cta {margin-top:12px;text-align:center;}
+#bf25-banner .bf25-button {padding:8px 14px;border-radius:8px;border:1px solid #111;background:#111;color:#fff;cursor:pointer;}
+#bf25-banner .bf25-won-image {text-align:center;margin-top:12px;}
+#bf25-banner .bf25-congrats {margin:8px 0;font-weight:500;text-align:center;font-size:16px;}
+#bf25-inline .ignitix-bf25-prize { width: clamp(260px, 80vw, 360px); aspect-ratio: 2 / 1; }
+#bf25-inline { text-align: center; }
+
+/* --- Phone slider (CSS scroll-snap; no JS, no Owl) --- */
+@media (max-width: 767px){
+  #bf25-banner .bf25-grid{
+    display:flex !important;
+    flex-wrap:nowrap !important;
+    justify-content:flex-start !important;
+    gap:12px;
+    overflow-x:auto !important;
+    overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;
+    scroll-snap-type:x mandatory;
+    touch-action:pan-x;
+    padding-bottom:8px;
+  }
+  #bf25-banner .bf25-gift{
+    flex:0 0 130px;          /* slide width */
+    scroll-snap-align:start; /* snap each card */
+  }
+  /* optional: hide OS scrollbar on WebKit */
+  #bf25-banner .bf25-grid::-webkit-scrollbar{ display:none; }
+}
+</style>
+
+<script>
+require(['jquery', 'Ignitix_BlackFriday25/js/scratch', 'domReady!'], function ($, bf25Init) {
+  var cfgFromBanner = $('#bf25-banner').attr('data-config');
+  try { cfgFromBanner = cfgFromBanner ? JSON.parse(cfgFromBanner) : {}; } catch (e) { cfgFromBanner = {}; }
+  if (typeof bf25Init === 'function') { bf25Init(cfgFromBanner); }
+
+  function setUnderlayToSingleImage($inline, url, alt) {
+    var $underlay = $inline.find('#bf25-inline-underlay');
+    if (!$underlay.length || !url) return;
+    $underlay.empty().append(
+      $('<div/>',{css:{width:'100%',height:'100%',display:'flex',alignItems:'center',justifyContent:'center'}})
+        .append($('<img/>',{src:url,alt:alt||'',css:{maxWidth:'100%',maxHeight:'100%',objectFit:'contain',display:'block'}}))
+    );
+  }
+
+  $(document).on('click', '#bf25-open-gift', function (e) {
+    e.preventDefault();
+    var $inline = $('#bf25-inline');
+    if (!$inline.length) return;
+
+    if ($inline.is(':hidden')) { $inline.stop(true,true).slideDown(200); }
+
+    if (!$inline.data('bf25-initialized')) {
+      var cfg = Object.assign({}, cfgFromBanner);
+      cfg.applyUrl = $inline.data('apply-url');
+      cfg.statusUrl = $inline.data('status-url');
+      cfg.preselectUrl = $inline.data('preselect-url');
+      cfg.fireworksSeconds = parseInt($inline.data('fireworks-seconds'),10) || 10;
+      cfg.postRevealReloadMs = parseInt($inline.data('reload-ms'),10) || 5000;
+
+      if (cfg.preselectUrl && !$inline.data('bf25-preselected')) {
+        $.getJSON(cfg.preselectUrl).done(function (resp) {
+          if (resp && resp.success && resp.product && resp.product.image) {
+            setUnderlayToSingleImage($inline, resp.product.image, resp.product.name || '');
+          }
+        }).always(function(){ $inline.data('bf25-preselected', true); });
+      }
+
+      if (window.IgnitixBf25 && typeof window.IgnitixBf25.initInline === 'function') {
+        window.IgnitixBf25.initInline('#bf25-inline', cfg);
+      }
+      $inline.data('bf25-initialized', true);
+    }
+  });
+});
+</script>

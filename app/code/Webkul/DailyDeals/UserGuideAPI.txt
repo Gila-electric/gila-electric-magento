@@ -1,0 +1,676 @@
+Module's blog url: http://webkul.com/blog/magento2-daily-deals/
+
+(A): GRAPHQL API
+
+1. Get Category List data
+
+{
+  categoryList(filters: {ids: {eq: "3"}}) {
+    products {
+      total_count
+      items{
+        id
+        sku
+        name
+        url_key
+         deal_status
+	      deal_discount_type
+	      deal_discount_percentage
+	      deal_value
+	      deal_from_date
+	      deal_to_date
+	        new_from_date
+        new_to_date
+        special_price
+        special_from_date
+        special_to_date
+        gift_message_available
+        country_of_manufacture
+        stock_status
+        image{
+          url
+          label
+          position
+        }
+        small_image{
+          url
+          label
+          position
+        }
+        thumbnail{
+          url
+          label
+          position
+        }
+        short_description{
+          html
+        }
+        description{
+          html
+        }
+        price_range{
+          minimum_price{
+            regular_price{
+              value
+              currency
+            }
+            final_price{
+              value
+              currency
+            }
+          }
+          maximum_price{
+            regular_price{
+              value
+              currency
+            }
+            final_price{
+              value
+              currency
+            }
+          }
+        }
+      
+        price_tiers{
+          quantity
+          final_price{
+            value
+            currency
+          }
+          discount{
+            amount_off
+            percent_off
+          }
+        }
+      }
+      page_info {
+        current_page
+        page_size
+      }
+    }
+  }
+}
+
+Response (json) : -
+
+{
+    "data": {
+        "categoryList": [
+            {
+                "products": {
+                    "total_count": 1,
+                    "items": [
+                        {
+                            "id": 43,
+                            "sku": "test webkul1",
+                            "name": "test webkul1",
+                            "url_key": "test-webkul1",
+                            "deal_status": 1,
+                            "deal_discount_type": "fixed",
+                            "deal_discount_percentage": null,
+                            "deal_value": "20",
+                            "deal_from_date": "2022-11-25 13:16:00",
+                            "deal_to_date": "2022-11-26 13:16:00",
+                            "new_from_date": null,
+                            "new_to_date": null,
+                            "special_price": "20",
+                            "special_from_date": "2022-11-25 13:16:00",
+                            "special_to_date": "2022-11-26 13:16:00",
+                            "gift_message_available": "2",
+                            "country_of_manufacture": null,
+                            "stock_status": "IN_STOCK",
+                            "image": {
+                                "url": "http://192.168.15.253/245p1/pub/static/version1669213289/frontend/Magento/luma/en_US/Magento_Catalog/images/product/placeholder/image.jpg",
+                                "label": "test webkul1",
+                                "position": null
+                            },
+                            "small_image": {
+                                "url": "http://192.168.15.253/245p1/pub/static/version1669213289/frontend/Magento/luma/en_US/Magento_Catalog/images/product/placeholder/small_image.jpg",
+                                "label": "test webkul1",
+                                "position": null
+                            },
+                            "thumbnail": {
+                                "url": "http://192.168.15.253/245p1/pub/static/version1669213289/frontend/Magento/luma/en_US/Magento_Catalog/images/product/placeholder/thumbnail.jpg",
+                                "label": "test webkul1",
+                                "position": null
+                            },
+                            "short_description": {
+                                "html": ""
+                            },
+                            "description": {
+                                "html": ""
+                            },
+                            "price_range": {
+                                "minimum_price": {
+                                    "regular_price": {
+                                        "value": 100,
+                                        "currency": "USD"
+                                    },
+                                    "final_price": {
+                                        "value": 100,
+                                        "currency": "USD"
+                                    }
+                                },
+                                "maximum_price": {
+                                    "regular_price": {
+                                        "value": 100,
+                                        "currency": "USD"
+                                    },
+                                    "final_price": {
+                                        "value": 100,
+                                        "currency": "USD"
+                                    }
+                                }
+                            },
+                            "price_tiers": []
+                        }
+                    ],
+                    "page_info": {
+                        "current_page": 1,
+                        "page_size": 20
+                    }
+                }
+            }
+        ]
+    }
+}
+
+2.Get Product Page data
+
+{
+  products(filter: { sku: { eq: "test2" } }) {
+    items {
+      name
+        sku
+        url_key
+        stock_status
+        country_of_manufacture
+        created_at
+       deal_status
+      deal_discount_type
+      deal_discount_percentage
+      deal_value
+      deal_from_date
+      deal_to_date
+        special_from_date
+        special_price
+        special_to_date
+        tier_price
+        updated_at
+          price_range {
+            minimum_price {
+              regular_price {
+                value
+                currency
+              }
+            }
+          }
+    }
+    total_count
+    page_info {
+      page_size
+    }
+  }
+}
+
+
+Response (json) :-
+{
+    "data": {
+        "products": {
+            "items": [
+                {
+                    "name": "test2",
+                    "sku": "test2",
+                    "url_key": "test2",
+                    "stock_status": "IN_STOCK",
+                    "country_of_manufacture": null,
+                    "created_at": "2022-11-25 11:58:07",
+                    "deal_status": 1,
+                    "deal_discount_type": "fixed",
+                    "deal_discount_percentage": "96",
+                    "deal_value": "10",
+                    "deal_from_date": "2022-11-25 11:57:00",
+                    "deal_to_date": "2022-11-25 13:01:00",
+                    "special_from_date": "2022-11-25 11:57:00",
+                    "special_price": "10",
+                    "special_to_date": "2022-11-24 00:00:00",
+                    "tier_price": null,
+                    "updated_at": "2022-11-25 13:01:22",
+                    "price_range": {
+                        "minimum_price": {
+                            "regular_price": {
+                                "value": 250,
+                                "currency": "USD"
+                            }
+                        }
+                    }
+                }
+            ],
+            "total_count": 1,
+            "page_info": {
+                "page_size": 20
+            }
+        }
+    }
+}
+
+COMPLETE CHECKOUT PROCESS WITH DAILY DEAL
+Note: All the steps from 1 to 10 needs customer authorization.
+
+Step 1. Generate customer token for already registered customer (You have to create a new customer if no customer exists.)
+Request:
+mutation {
+    generateCustomerToken(
+        email: "johndoe@example.com"
+        password: "Admin123"
+    ) {
+        token
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "generateCustomerToken": {
+            "token": "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjEsInV0eXBpZCI6MywiaWF0IjoxNjY4NTEwMjIzLCJleHAiOjE2Njg1MTM4MjN9.PRXBLvtzU_OxBmq8gRd5LXrtQisPszUm1LpWwvSK9LU"
+        }
+    }
+}
+
+
+Step 2. Create a customer cart
+Request:
+
+{
+    customerCart {
+        id
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "customerCart": {
+            "id": "y1Wo4YZ2pLheDOzuNb8AeRBZ5plPrhJs"
+        }
+    }
+}
+
+
+Step 3. Add products to the cart (The cart_id value comes from the response of Step 2. Create a customer cart)
+Request:
+
+mutation {
+    addSimpleProductsToCart(
+        input: {
+            cart_id: "y1Wo4YZ2pLheDOzuNb8AeRBZ5plPrhJs"
+            cart_items: [
+                {
+                    data: {
+                        quantity: 1
+                        sku: "AdminSimple2"
+                    }
+                }
+            ]
+        }
+    ) {
+        cart {
+            items {
+                id
+                uid
+                product {
+                    sku
+                    stock_status
+                }
+                quantity
+            }
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "addSimpleProductsToCart": {
+            "cart": {
+                "items": [
+                    {
+                        "id": "91",
+                        "uid": "OTE=",
+                        "product": {
+                            "sku": "AdminSimple2",
+                            "stock_status": "IN_STOCK"
+                        },
+                        "quantity": 1
+                    }
+                ]
+            }
+        }
+    }
+}
+
+
+Step 4. Get customer address information
+Request:
+{
+    customer {
+        firstname
+        lastname
+        suffix
+        email
+        addresses {
+            id
+            firstname
+            lastname
+            street
+            city
+            region {
+                region_code
+                region
+            }
+            postcode
+            country_code
+            telephone
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "customer": {
+            "firstname": "John",
+            "lastname": "Doe",
+            "suffix": null,
+            "email": "johndoe@example.com",
+            "addresses": [
+                {
+                    "id": 1,
+                    "firstname": "John",
+                    "lastname": "Doe",
+                    "street": [
+                        "Pratap Vihar"
+                    ],
+                    "city": "Ghaziabad",
+                    "region": {
+                        "region_code": "UP",
+                        "region": "Uttar Pradesh"
+                    },
+                    "postcode": "201009",
+                    "country_code": "IN",
+                    "telephone": "01111111111"
+                }
+            ]
+        }
+    }
+}
+
+
+Step 5. Set the shipping address (The cart_id value comes from the response of Step 2. Create a customer cart. The customer_address_id value comes from the response of Step 5. Get customer address information)
+Request:
+mutation {
+    setShippingAddressesOnCart(
+        input: {
+            cart_id: "y1Wo4YZ2pLheDOzuNb8AeRBZ5plPrhJs"
+            shipping_addresses: [
+                {
+                    customer_address_id: 1
+                }
+            ]
+        }
+    ) {
+        cart {
+            shipping_addresses {
+                firstname
+                lastname
+                company
+                street
+                city
+                region {
+                    code
+                    label
+                }
+                postcode
+                telephone
+                country {
+                    code
+                    label
+                }
+                available_shipping_methods {
+                    carrier_code
+                    carrier_title
+                    method_code
+                    method_title
+                }
+            }
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "setShippingAddressesOnCart": {
+            "cart": {
+                "shipping_addresses": [
+                    {
+                        "firstname": "John",
+                        "lastname": "Doe",
+                        "company": null,
+                        "street": [
+                            "Pratap Vihar"
+                        ],
+                        "city": "Ghaziabad",
+                        "region": {
+                            "code": "UP",
+                            "label": "Uttar Pradesh"
+                        },
+                        "postcode": "201009",
+                        "telephone": "01111111111",
+                        "country": {
+                            "code": "IN",
+                            "label": "IN"
+                        },
+                        "available_shipping_methods": [
+                            {
+                                "carrier_code": "flatrate",
+                                "carrier_title": "Flat Rate",
+                                "method_code": "flatrate",
+                                "method_title": "Fixed"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}
+
+
+Step 6. Set the billing address (The cart_id value comes from the response of Step 2. Create a customer cart. The customer_address_id value comes from the response of Step 5. Get customer address information)
+Request:
+mutation {
+    setBillingAddressOnCart(
+        input: {
+            cart_id: "y1Wo4YZ2pLheDOzuNb8AeRBZ5plPrhJs"
+            billing_address: {
+                customer_address_id: 1
+            }
+        }
+    ) {
+        cart {
+            billing_address {
+                firstname
+                lastname
+                company
+                street
+                city
+                region{
+                    code
+                    label
+                }
+                postcode
+                telephone
+                country {
+                    code
+                    label
+                }
+            }
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "setBillingAddressOnCart": {
+            "cart": {
+                "billing_address": {
+                    "firstname": "John",
+                    "lastname": "Doe",
+                    "company": null,
+                    "street": [
+                        "Pratap Vihar"
+                    ],
+                    "city": "Ghaziabad",
+                    "region": {
+                        "code": "UP",
+                        "label": "Uttar Pradesh"
+                    },
+                    "postcode": "201009",
+                    "telephone": "01111111111",
+                    "country": {
+                        "code": "IN",
+                        "label": "IN"
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+Step 7. Set the delivery method (The carrier_code and method_code values come from the response of the setShippingAddressesOnCart mutation in Step 6)
+Request:
+mutation {
+    setShippingMethodsOnCart(input: {
+        cart_id: "y1Wo4YZ2pLheDOzuNb8AeRBZ5plPrhJs"
+        shipping_methods: [
+            {
+                carrier_code: "flatrate"
+                method_code: "flatrate"
+            }
+        ]
+    }) {
+        cart {
+            shipping_addresses {
+                selected_shipping_method {
+                    carrier_code
+                    method_code
+                    carrier_title
+                    method_title
+                }
+            }
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "setShippingMethodsOnCart": {
+            "cart": {
+                "shipping_addresses": [
+                    {
+                        "selected_shipping_method": {
+                            "carrier_code": "flatrate",
+                            "method_code": "flatrate",
+                            "carrier_title": "Flat Rate",
+                            "method_title": "Fixed"
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}
+
+
+Step 8. Use the following cart query to determine which payment methods which are available for your order.
+Request:
+query {
+    cart(cart_id: "y1Wo4YZ2pLheDOzuNb8AeRBZ5plPrhJs") {
+        available_payment_methods {
+            code
+            title
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "cart": {
+            "available_payment_methods": [
+                {
+                    "code": "checkmo",
+                    "title": "Check / Money order"
+                }
+            ]
+        }
+    }
+}
+
+
+Step 9. Set the payment method (The code value comes from the response of previous Step 8.)
+Request:
+mutation {
+    setPaymentMethodOnCart(input: {
+            cart_id: "y1Wo4YZ2pLheDOzuNb8AeRBZ5plPrhJs"
+            payment_method: {
+                code: "checkmo"
+            }
+    }) {
+        cart {
+            selected_payment_method {
+                code
+            }
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "setPaymentMethodOnCart": {
+            "cart": {
+                "selected_payment_method": {
+                    "code": "checkmo"
+                }
+            }
+        }
+    }
+}
+
+
+Step 10. Place the order
+Request:
+mutation {
+    placeOrder(input: {cart_id: "y1Wo4YZ2pLheDOzuNb8AeRBZ5plPrhJs"}) {
+        order {
+            order_number
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "placeOrder": {
+            "order": {
+                "order_number": "000000031"
+            }
+        }
+    }
+}

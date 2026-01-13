@@ -1,0 +1,33 @@
+/**
+ * Webkul Software
+ *
+ * @category  Webkul
+ * @package   Webkul_RewardSystem
+ * @author    Webkul
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+
+td.wk_rs_stat_points {
+    font-weight: bold;
+}
+.wk_rs_dashboard_switcher {
+    display: inline-block;
+    width: 33%;
+}
+.wk_rs_dashboard_switcher label.label {
+    display: block;
+    font-weight: 600;
+    padding-bottom: 5px;
+}
+.dashboard-upper {
+    background: #f8f8f8;
+    border-bottom: 1px solid #e3e3e3;
+    border-top: 1px solid #e3e3e3;
+    border-left: 1px solid #e3e3e3;
+    padding: 2rem;
+    margin-bottom: 3rem;
+}
+.dashboard-upper .dashboard-dropdown-container {
+    width: 80%;
+}

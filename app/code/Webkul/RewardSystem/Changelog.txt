@@ -1,0 +1,72 @@
+Legend
+
++ Features
+- Bugs
+
+-------------------------------- Version 4.0.5 --------------------------------------
+	+ Added Referral Program functionality
+	+ Added Reward Points report in admin panel
+	+ Added Referral Program Page on frontend
+	+ Added more reward information in mini-cart and checkout page
+	- Fixed issue with 'updateProductRewardPoint' graphql api.
+
+-------------------------------- Version 4.0.4 --------------------------------------
+	+ Added GRAPHQL API
+
+-------------------------------- Version 4.0.3 --------------------------------------
+	- Bug fixed and enhancement completed.
+	+ Compatible with Magento 2.4.5 or above
+
+-------------------------------- Version 4.0.2 --------------------------------------
+	- Bug fixed and enhancement completed.
+	+ Compatible with Magento 2.4.5 or above
+
+-------------------------------- Version 4.0.1 --------------------------------------
+	- Bugs fixed.
+
+-------------------------------- Version 4.0.0 --------------------------------------
+	+ Compatible with Magento 2.4.*
+
+-------------------------------- Version 3.0.1 --------------------------------------
+	+ Added Reward Points on Birthday.
+	+ Customer will be able to do partial payment with reward points.
+	+ Added Reward point expiration feature.
+	+ Show product amount in reward points on product and cart page.
+	
+-------------------------------- Version 3.0.0 --------------------------------------
+	+ Added Apply Reward Points Block On Cart Page
+	+ Added SKU in Product Grid In Admin Panel
+	+ Added Registration Reward Point Message For Guest User Checkout
+
+-------------------------------- Version 2.2.0 --------------------------------------
+	- Fixed Issue Reward point is not getting credited to the customer account.
+	- Fixed Timezone Issue.
+	- Fixed Issue while listing cart price rule on checkout page.
+
+-------------------------------- Version 2.1.1 --------------------------------------
+	+ Admin can credit/debit reward points to customer.
+	+ admin can export the reports in csv & xml.
+	+ Reward manage on cancel/credit memo of the order.
+
+-------------------------------- Version 2.1.0 --------------------------------------
+	+ Compatible with Magento 2.3.X.
+
+-------------------------------- Version 2.0.2 --------------------------------------
+
+	+ Admin can create Reward for Attribute as well.
+	+ Admin can create Reward for the time interval as well for product and category.
+	- Bugs fixed.
+
+-------------------------------- Version 2.0.1 --------------------------------------
+
+	+ Compatible with magento version 2.2.x.
+
+-------------------------------- Version 2.0.0 --------------------------------------
+
+ 	+ Admin can set price per credit point.
+	+ Admin can create cart reward rules.
+	+ Buyer can see their reward details.
+	+ Admin can set reward category,Product,Cart based on checkout.
+	+ Buyer can get Review Register,Review and Order purchased.
+	+ Buyer can apply Reward on order purchase.
+	+ Admin can check all reward transactions details from their panel.

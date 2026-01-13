@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<!--
+/** Webkul DailyDeals system xml
+ * @category  Webkul
+ * @package   Webkul_DailyDeals
+ * @author    Webkul Software Private Limited
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Config/etc/system_file.xsd">
+    <system>
+        <tab id="webkul" translate="label" sortOrder="10" class="wk-config-tab-class">
+            <label>Webkul</label>
+        </tab>
+        <section id="dailydeals" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Daily Deal</label>
+            <tab>webkul</tab>
+            <resource>Webkul_DailyDeals::config_dailydeals</resource>
+            <group id="daildeals_product_information" translate="label" type="text" sortOrder="700" showInDefault="1"
+                   showInWebsite="1" showInStore="1">
+                <label>Daily Deals Information</label>
+                <field id="author" translate="label" type="note" sortOrder="1" showInDefault="1" showInWebsite="1"
+                       showInStore="1">
+                    <label><![CDATA[<p>Author: <a target="_blank" title="Webkul Software Private Limited" href="https://webkul.com/">Webkul</a></p>
+                        <p>User Guide: <a target="_blank" href="https://webkul.com/blog/magento2-daily-deals/">Click here</a></p>
+                        <p>Store Extension: <a target="_blank" href="https://store.webkul.com/magento2-daily-deal.html">Click here</a></p>
+                        <p>Ticket/Customisations: <a target="_blank" href="https://webkul.uvdesk.com/en/customer/create-ticket/">Click here</a></p>
+                        <p>Services: <a target="_blank" href="https://webkul.com/magento-development/">Click here</a></p>
+					]]></label>
+                    <frontend_model>Webkul\DailyDeals\Block\Adminhtml\System\Config\ModuleInfo</frontend_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

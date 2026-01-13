@@ -1,0 +1,14 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package Quick Order for Magento 2
+ */ /** @var \Amasty\QuickOrder\Block\Script\Grouped $block */ ?>
+
+<script type="text/x-magento-init">
+{
+    "[data-amqorder-js=\"item\"][data-item-id=\"<?= $block->escapeHtml($block->getItemId()) ?>\"] #super-product-table": {
+        "Amasty_QuickOrder/js/catalog/subtotal/grouped-options": <?= /* @noEscape */ $block->getJsonConfig() ?>
+    }
+}
+</script>

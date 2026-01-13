@@ -1,0 +1,31 @@
+<!--ko if: $parents[1].isQtyShowed($parent) -->
+    <div class="amqorder-item -qty amqorder-qty-block"
+         data-bind="mageInit: { 'amqorderQty':{} },
+                    attr: { 'data-label': $t('Qty') + ':' },
+                    css: $parents[1].getStockStatus($parent) ? '' : '-disabled'">
+        <div class="amqorder-qty-wrapper" data-amqorder-js="qty-wrapper">
+                <input class="amqorder-input"
+                       data-amqorder-js="input"
+                       name="qty"
+                       type="number"
+                       min="1"
+                       data-bind="attr: {
+                            'value': $parent.qty ? $parent.qty : 1,
+                            'min': $parent.min_qty,
+                            'max': $parents[1].getAvailableQty($parent)
+                      },
+                      event: {
+                            change: function(item, e) {
+                                $parent.qty(e.target.value)
+                            }
+                      }"
+                >
+                <!--ko if: !$parents[1].getStockStatus($parent) -->
+                    <span class="amqorder-text" data-bind="i18n: 'Out of Stock'"></span>
+                <!--/ko-->
+        </div>
+    </div>
+<!--/ko-->
+<!--ko ifnot: $parents[1].isQtyShowed($parent) -->
+    <div class="amqorder-item -qty amqorder-qty-block"></div>
+<!--/ko-->

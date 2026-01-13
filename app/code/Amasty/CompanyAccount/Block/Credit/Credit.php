@@ -1,0 +1,18 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package B2B Company Account for Magento 2
+ */
+
+namespace Amasty\CompanyAccount\Block\Credit;
+
+use Magento\Framework\View\Element\Template;
+
+class Credit extends Template
+{
+
+}

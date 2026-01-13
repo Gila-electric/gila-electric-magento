@@ -1,0 +1,48 @@
+<?php
+   /**
+    * Webkul_DailyDeals View On Category.
+    * @category  Webkul
+    * @package   Webkul_DailyDeals
+    * @author    Webkul Software Private Limited
+    * @copyright Webkul Software Private Limited (https://webkul.com)
+    * @license   https://store.webkul.com/license.html
+    */
+?>
+<?php
+   $dealDetail = $block->getDealDetail();
+   $dailyDealUrl = $block->getUrl("dailydeals/index/gettimes");
+   
+   
+if (!empty($dealDetail)) {
+    $saveBoxAvl = isset($dealDetail['saved-amount']) ? '' : 'notavilable';
+    ?>
+<div style="display:none" class="deal wk-daily-deal" data-deal-id="<?= $block->escapeHtml($dealDetail['entity_id']); ?>"
+   data-update-url="<?= $block->escapeHtml($dealDetail['update_url']); ?>">
+   <div class="wk-deal-off-box">
+      <div class="wk-deal-left-border"></div>
+      <span class="deal-price-label">
+      <?= $block->escapeHtml($dealDetail['discount-percent'].'% '.__('Off'))?></span>
+   </div>
+   <span class="price-box ">
+   <span class="wk-deal-ends-label">
+    <?= $block->escapeHtml(__('Deal Ends in ')); ?></span>
+   <p class="wk_cat_count_clock wk-deal-font-weight-600'   <?= $block->escapeHtml($saveBoxAvl);?>'" data-stoptime="'
+      <?= $block->escapeHtml($dealDetail['stoptime'])?>"
+       data-diff-timestamp ="<?= $block->escapeHtml($dealDetail['diff_timestamp'])?>"></p>
+    <?php if (isset($dealDetail['saved-amount'])) {?>
+   <span class="wk-save-box "><span class="save-label"><?= $block->escapeHtml(__('Save On Deal '))?>
+   <span class="wk-deal-font-weight-600"><?= $block->escapeHtml($dealDetail['saved-amount']);?>
+   </span></span></span><br><br>
+   <?php }?>
+</div>
+<?php }?>
+<script type="text/x-magento-init">
+   {
+       "*": {
+            "viewoncategory":
+                   {
+                       "dailyDealUrl" : "<?= /* @noEscape */ $dailyDealUrl  ?>"
+                   }
+       }
+   }
+</script>

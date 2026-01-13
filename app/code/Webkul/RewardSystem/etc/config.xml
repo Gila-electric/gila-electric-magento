@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software
+ *
+ * @category    Webkul
+ * @package     Webkul_RewardSystem
+ * @author      Webkul
+ * @copyright   Webkul Software Private Limited (https://webkul.com)
+ * @license     https://store.webkul.com/license.html
+ */ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <rewardsystem>
+            <general_settings>
+                <enable>0</enable>
+                <reward_value>1</reward_value>
+                <allow_registration>0</allow_registration>
+                <allow_review>0</allow_review>
+                <reward_on_birthday>1</reward_on_birthday>
+                <birthday_after_days>1</birthday_after_days>
+                <birthday_reward>10</birthday_reward>
+                <expires_after_days>365</expires_after_days>
+                <send_before_expiring_days>10</send_before_expiring_days>
+            </general_settings>
+            <reward_information>
+                <enable>1</enable>
+                <content><![CDATA[<ul>
+                <li>Collaboratively ipsum interoperable solutions whereas lorem-and-ipsum portals. Completely negotiate out-of-the-box doler.</li>
+                <li>Interactively ipsum business e-commerce doler lorem driven strategic ipsum sit amer.</li>
+                <li>Efficiently lorem unique ipsum doler sit future-proof referal programs.</li>
+                </ul>]]></content>
+                <pagetitle>Reward Points</pagetitle>
+                <displaybanner>1</displaybanner>
+                <banner>reward-page-banner.png</banner>
+                <bannerheading>Discover All the Ways you can Win</bannerheading>
+                <bannertext>Earning is Effortless.  Redeeming Points is simple.</bannertext>
+                <pagelabel1>Welcome to Reward Point Loyalty Program</pagelabel1>
+                <pagecontent><![CDATA[<div class="wk-rs-rewardpage-content-upper" style="font-weight: 400; font-size: 20px; line-height: 35px;">We are dedicated to providing an exceptional customer experience and rewarding our loyal customers.<br>That's why we are excited to announce our Reward Point Loyalty Program, where you can earn points with every purchase and redeem them for exclusive rewards and discounts.</div>
+                <div class="wk-rs-rewardpage-content-lower">
+                <div style="font-weight: 400; font-size: 26px; line-height: 33px;">Here's how the program works:</div><br>
+                <div style="font-weight: 400;font-size: 20px;line-height: 27px;"><ul><li><span style="font-weight:700;">Earn Points:</span> You'll earn [x] reward points for every dollar spent on purchases. Additionally, you can earn bonus points through special promotions, birthdays & events, and by referring friends.</li><li><span style="font-weight:700;">Redeem Points:</span> Redeem your points for discounts on future purchases & special offers. With a wide range of rewards to choose from, there's something for everyone.</li><li><span style="font-weight:700;">Track Your Progress:</span> Keep track of your reward points.</li><li><span style="font-weight:700;">Stay in the Loop:</span> Stay up-to-date with the latest rewards and promotions by subscribing to our email list.</li></ul></div>
+                <div style="font-weight: 400; font-size: 20px; line-height: 30px;">We believe that our Reward Point Loyalty Program is the perfect way to say thank you to our valued customers. So, join now and start earning reward points today!</div><br>
+                <div style="font-weight: 400;font-size: 20px;line-height: 33px;">*Terms and conditions apply. Please refer to our website for details.</div>
+                </div>]]></pagecontent>
+                <flowimage>reward-page-flow.png</flowimage>
+            </reward_information>
+            <referral>
+                <enable>1</enable>
+                <customer_reward>10</customer_reward>
+                <referee_reward>10</referee_reward>
+                <content><![CDATA[<p>Are you looking for a great way to earn Reward Points? Look no further than our referral program! Simply share your unique referral link with your friends, family, and social media followers and start earning commission.</p>]]></content>
+            </referral>
+            <reports>
+                <enable>1</enable>
+            </reports>
+            <email_settings>
+                <rewardsystem_transaction>rewardsystem_email_settings_rewardsystem_transaction</rewardsystem_transaction>
+                <rewards_expiry>rewardsystem_email_settings_rewards_expiry</rewards_expiry>
+            </email_settings>
+        </rewardsystem>
+    </default>
+</config>

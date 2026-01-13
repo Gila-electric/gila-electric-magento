@@ -1,0 +1,22 @@
+<div class="amqorder-item -checkbox amqorder-checkbox-container"
+     data-bind="css: $data.grid().getStockStatus($parent) ? '' : '-disabled', attr: { title: $t('Select for adding') }">
+    <label class="amqorder-label">
+        <input class="amqorder-input"
+               name="checked"
+               type="checkbox"
+               value="1"
+               data-bind="
+                css: $data.grid().getStockStatus($parent) ? '' : '-disabled',
+                checked: isChecked($parent.id),
+                attr: {
+                    'data-amqorder-js': 'checked-' + $parent.id
+                },
+                event: {
+                    'change': function() {
+                        $data.grid().checkItem($parent)
+                    }
+                }
+        ">
+        <span class="amqorder-mark"></span>
+    </label>
+</div>

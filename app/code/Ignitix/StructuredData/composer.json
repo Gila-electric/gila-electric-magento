@@ -1,0 +1,12 @@
+{
+  "name": "ignitix/module-structured-data",
+  "description": "Injects JSON-LD (WebSite, Organization, BreadcrumbList) on EN/AR homepages",
+  "type": "magento2-module",
+  "version": "1.0.0",
+  "license": "proprietary",
+  "autoload": {
+    "psr-4": {
+      "Ignitix\\StructuredData\\": ""
+    }
+  }
+}

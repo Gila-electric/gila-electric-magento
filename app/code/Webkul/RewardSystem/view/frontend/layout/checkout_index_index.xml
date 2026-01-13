@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<!--
+ /**
+ * Webkul Software
+ *
+ * @category Webkul
+ * @package Webkul_RewardSystem
+ * @author Webkul
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license https://store.webkul.com/license.html
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="checkout" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Webkul_RewardSystem::css/reward.css"/>
+    </head>
+    <body>
+        <referenceBlock name="checkout.root">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="checkout" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="steps" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="shipping-step" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                 <item name="shippingAddress" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                      <item name="customer-email" xsi:type="array">
+                                                        <item name="children" xsi:type="array">
+                                                          <item name="before-login-form" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="reward_login_message" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Webkul_RewardSystem/js/view/checkout/rewardmessage</item>
+                                                                </item>
+                                                            </item>
+                                                          </item>
+                                                        </item>
+                                                      </item>
+                                                    </item>
+                                                 </item>
+                                            </item>
+                                        </item>
+                                        <item name="billing-step" xsi:type="array">
+                                            <item name="component" xsi:type="string">uiComponent</item>
+                                            <item name="children" xsi:type="array">
+                                                <item name="payment" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="afterMethods" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="reward_amount" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Webkul_RewardSystem/js/view/payment/rewardamount</item>
+                                                                    <item name="children" xsi:type="array">
+                                                                        <item name="errors" xsi:type="array">
+                                                                            <item name="sortOrder" xsi:type="string">30</item>
+                                                                            <item name="component" xsi:type="string">Webkul_RewardSystem/js/view/payment/discount-messages</item>
+                                                                            <item name="displayArea" xsi:type="string">messages</item>
+                                                                        </item>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                                <item name="sidebar" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="summary" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="totals" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="reward_amount" xsi:type="array">
+                                                            <item name="component"  xsi:type="string">Webkul_RewardSystem/js/view/checkout/cart/totals/rewardamount</item>
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="title" xsi:type="string" translate="true">Rewarded Amount</item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                                <item name="itemsAfter" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="reward_side_message" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Webkul_RewardSystem/js/view/checkout/summary/rewardinfo</item>
+                                                            <item name="displayArea" xsi:type="string">reward_side_message</item>
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="template" xsi:type="string">Webkul_RewardSystem/checkout/summary/rewardinfo</item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+        <referenceContainer name="content">
+            <block class="Magento\Framework\View\Element\Template" name="reward_checkout_message" template="Webkul_RewardSystem::checkout/summary/message.phtml" after="-">
+                <arguments>
+                    <argument name="reward_view_model" xsi:type="object">Webkul\RewardSystem\ViewModel\Reward</argument>
+                </arguments>
+            </block>
+        </referenceContainer>
+    </body>
+</page>

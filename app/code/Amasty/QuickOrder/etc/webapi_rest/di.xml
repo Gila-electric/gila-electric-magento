@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package Quick Order for Magento 2
+ */-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- start: make search in quickorder_search_container always wildcard as *searchTerm* -->
+    <type name="Magento\Elasticsearch\Elasticsearch5\SearchAdapter\Mapper">
+        <plugin name="Amasty_QuickOrder::Wildcard" type="Amasty\QuickOrder\Plugin\Elasticsearch\Elasticsearch5\SearchAdapter\MapperPlugin" />
+    </type>
+    <type name="Amasty\ElasticSearch\Model\Search\GetRequestQuery">
+        <plugin name="Amasty_QuickOrder::Wildcard" type="Amasty\QuickOrder\Plugin\Elasticsearch\Model\Search\GetRequestQueryPlugin" />
+    </type>
+    <!-- end: make search in quickorder_search_container always wildcard as *searchTerm* -->
+</config>

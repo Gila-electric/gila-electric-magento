@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package Quick Order for Magento 2
+ */-->
+
+<items>
+    <item>
+        <sku>MH01</sku>
+        <qty>4</qty>
+        <option1>Size:XS</option1>
+        <option2>Color:Black</option2>
+        <option3>customOption:customOptionValue</option3>
+    </item>
+    <item>
+        <sku>24-WG085_Group</sku>
+        <qty>5</qty>
+        <option1>Sprite Yoga Strap 6 foot:7</option1>
+    </item>
+</items>

@@ -1,0 +1,12 @@
+<div data-bind="foreach: buttons,
+                attr: {
+                    'class': 'amqorder-buttons-block -qty-' + buttons.length
+                }">
+    <button data-bind="text: title,
+                       click: $parent.moveItems.bind($parent, url),
+                       attr: { class: classes },
+                       css: {
+                           '-disabled': $parent.isDisabled()
+                       }">
+    </button>
+</div>

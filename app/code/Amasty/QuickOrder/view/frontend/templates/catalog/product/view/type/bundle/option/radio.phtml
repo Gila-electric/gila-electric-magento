@@ -1,0 +1,87 @@
+<?php
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package Quick Order for Magento 2
+ */
+
+/**
+ * @var $block \Magento\Bundle\Block\Catalog\Product\View\Type\Bundle\Option\Radio
+ * @var \Magento\Framework\Escaper $escaper
+ */
+
+$_option = $block->getOption();
+$_selections  = $_option->getSelections();
+$_default     = $_option->getDefaultSelection();
+list($_defaultQty, $_canChangeQty) = $block->getDefaultValues();
+?>
+
+<div class="amqorder-option-wrapper -radio">
+    <label class="amqorder-label <?= /* @noEscape */ $_option->getRequired() ? '-required': '' ?>">
+        <span><?= $escaper->escapeHtml($_option->getTitle()) ?></span>
+    </label>
+    <div class="amqorder-option -radio">
+        <ul class="amqorder-options-list">
+            <?php if ($block->showSingle()): ?>
+                <li class="amqorder-item -single">
+                    <?= /* @noEscape */ $block->getSelectionTitlePrice($_selections[0]) ?>
+                    <?= /* @noEscape */ $block->getTierPriceRenderer()->renderTierPrice($_selections[0]) ?>
+                    <input id="bundle-option-<?= (int)$_option->getId() ?>-<?= (int)$_selections[0]->getSelectionId() ?>"
+                           type="hidden"
+                           class="bundle-option-<?= (int)$_option->getId() ?> product bundle option"
+                           name="bundle_option[<?= (int)$_option->getId() ?>]"
+                           value="<?= (int)$_selections[0]->getSelectionId() ?>"
+                           checked="checked"/>
+                </li>
+            <?php else: ?>
+            <?php if (!$_option->getRequired()): ?>
+                <li class="amqorder-item">
+                    <input id="bundle-option-<?= $escaper->escapeHtmlAttr($_option->getId()) ?>"
+                           type="radio"
+                           class="amqorder-radio bundle option"
+                           name="bundle_option[<?= $escaper->escapeHtmlAttr($_option->getId()) ?>]"
+                           data-selector="bundle_option[<?= $escaper->escapeHtmlAttr($_option->getId()) ?>]"
+                           <?= /* @noEscape */ ($_default && $_default->isSalable()) ? '' : 'checked="checked" ' ?>
+                           value=""/>
+                    <label for="bundle-option-<?= $escaper->escapeHtmlAttr($_option->getId()) ?>">
+                        <?= $escaper->escapeHtml(__('None')) ?>
+                    </label>
+                </li>
+            <?php endif; ?>
+                <?php foreach ($_selections as $_selection): ?>
+                <li class="amqorder-item">
+                    <input id="bundle-option-<?= $escaper->escapeHtmlAttr($_option->getId()) ?>-<?= $escaper->escapeHtmlAttr($_selection->getSelectionId()) ?>"
+                           type="radio"
+                           class="amqorder-radio bundle option"
+                           <?= /* @noEscape */ $block->isSelected($_selection) ? 'checked="checked"' : '' ?>
+                           <?= /* @noEscape */ !$_selection->isSaleable() ? 'disabled="disabled"' : '' ?>
+                           <?= /* @noEscape */ $_option->getRequired() ? 'data-validate="{\'validate-one-required-by-name\':true}"' : '' ?>
+                           name="bundle_option[<?= $escaper->escapeHtmlAttr($_option->getId()) ?>]"
+                           data-selector="bundle_option[<?= $escaper->escapeHtmlAttr($_option->getId()) ?>]"
+                           value="<?= $escaper->escapeHtmlAttr($_selection->getSelectionId()) ?>"/>
+                    <label for="bundle-option-<?= $escaper->escapeHtmlAttr($_option->getId()) ?>-<?= $escaper->escapeHtmlAttr($_selection->getSelectionId()) ?>">
+                        <?= /* @noEscape */ $block->getSelectionTitlePrice($_selection) ?>
+                        <br/>
+                        <?= /* @noEscape */ $block->getTierPriceRenderer()->renderTierPrice($_selection) ?>
+                    </label>
+                </li>
+            <?php endforeach; ?>
+            <?php endif; ?>
+        </ul>
+        <div class="amqorder-qty-block <?= /* @noEscape */ !$_canChangeQty ? '-disabled' : '' ?>"
+             data-mage-init='{"amqorderQty": {}}'>
+            <div class="amqorder-qty-wrapper" data-amqorder-js="qty-wrapper">
+                <input id="bundle-option-<?= $escaper->escapeHtmlAttr($_option->getId()) ?>-qty-input"
+                       class="amqorder-input qty <?= /* @noEscape */ !$_canChangeQty ? 'qty-disabled' : '' ?>"
+                       type="number"
+                       min="0"
+                       name="bundle_option_qty[<?= $escaper->escapeHtmlAttr($_option->getId()) ?>]"
+                       data-amqorder-js="input"
+                       data-selector="bundle_option_qty[<?= $escaper->escapeHtmlAttr($_option->getId()) ?>]"
+                       value="<?= $escaper->escapeHtmlAttr($_defaultQty) ?>"
+                    <?= $_canChangeQty ? '' : ' disabled="disabled"' ?>/>
+            </div>
+        </div>
+    </div>
+    <div id="bundle-option-<?= $escaper->escapeHtmlAttr($_option->getId()) ?>-container"></div>
+</div>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @author Amasty Team
+* @copyright Copyright (c) 2022 Amasty (https://www.amasty.com)
+* @package Company Account to Builder for Magento 2 (System)
+*/-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:amasty:module:Amasty_ReportBuilder:etc/entity_scheme.xsd">
+    <amasty_report_builder_entities>
+        <entity name="customer">
+            <relations>
+                <relation name="company_customer" type="column">
+                    <column>entity_id</column>
+                    <reference_column>customer_id</reference_column>
+                    <relationship_type>one_to_one</relationship_type>
+                </relation>
+            </relations>
+        </entity>
+    </amasty_report_builder_entities>
+</config>

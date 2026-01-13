@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @author Amasty Team
+* @copyright Copyright (c) 2022 Amasty (https://www.amasty.com)
+* @package Company Account to Builder for Magento 2 (System)
+*/-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:amasty:module:Amasty_ReportBuilder:etc/entity_scheme.xsd">
+    <amasty_report_builder_entities>
+        <entity name="company" primary="true">
+            <title>Amasty CA Company</title>
+            <main_table>amasty_company_account_company</main_table>
+
+            <columns>
+                <column name="company_id" primary="true" />
+
+                <column name="status">
+                    <source_model>Amasty\CompanyAccount\Model\Source\Company\Status</source_model>
+                </column>
+            </columns>
+
+            <relations>
+                <relation name="company_customer" type="column">
+                    <column>company_id</column>
+                    <reference_column>company_id</reference_column>
+                    <relationship_type>one_to_many</relationship_type>
+                </relation>
+                <relation name="company_order" type="column">
+                    <column>company_id</column>
+                    <reference_column>company_id</reference_column>
+                    <relationship_type>one_to_many</relationship_type>
+                    <join_type>left</join_type>
+                </relation>
+                <relation name="company_credit" type="column">
+                    <column>company_id</column>
+                    <reference_column>company_id</reference_column>
+                    <relationship_type>one_to_one</relationship_type>
+                </relation>
+            </relations>
+        </entity>
+    </amasty_report_builder_entities>
+</config>

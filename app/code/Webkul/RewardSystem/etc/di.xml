@@ -1,0 +1,249 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Webkul Software
+ *
+ * @category Webkul
+ * @package Webkul_RewardSystem
+ * @author Webkul
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license https://store.webkul.com/license.html
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!-- plugins -->
+    <type name="Magento\Review\Model\ResourceModel\Review">
+        <plugin name="Webkul_RewardSystem::afterAggregate" type="Webkul\RewardSystem\Plugin\Model\ResourceModel\Review" sortOrder="1" />
+    </type>
+    <type name="Magento\Framework\App\Action\AbstractAction">
+        <plugin name="wk-abstractaction-context-plugin" type="Webkul\RewardSystem\Plugin\App\Action\Context" sortOrder="15"/>
+    </type>
+    <type name="\Magento\Catalog\Block\Product\ListProduct">
+        <plugin name="Webkul_RewardSystem::productlist" type="Webkul\RewardSystem\Plugin\Block\ProductListUpdate" sortOrder="10" />
+    </type>
+    <!-- plugins ends -->
+    <preference for="Webkul\RewardSystem\Api\Data\RewardattributeSearchResultsInterface"
+                type="Webkul\RewardSystem\Model\RewardattributeSearchResults" />
+    <preference for="Webkul\RewardSystem\Api\Data\RewardcartSearchResultsInterface"
+                type="Webkul\RewardSystem\Model\RewardcartSearchResults" />
+    <preference for="Webkul\RewardSystem\Api\Data\RewardcategorySearchResultsInterface"
+                type="Webkul\RewardSystem\Model\RewardcategorySearchResults" />
+    <preference for="Webkul\RewardSystem\Api\Data\RewardcategorySpecificSearchResultsInterface"
+                type="Webkul\RewardSystem\Model\RewardcategorySpecificSearchResults" />
+    <preference for="Webkul\RewardSystem\Api\Data\RewarddetailSearchResultsInterface"
+                type="Webkul\RewardSystem\Model\RewarddetailSearchResults" />
+    <preference for="Webkul\RewardSystem\Api\Data\RewardorderDetailSearchResultsInterface"
+                type="Webkul\RewardSystem\Model\RewardorderDetailSearchResults" />
+    <preference for="Webkul\RewardSystem\Api\Data\RewardproductSearchResultsInterface"
+                type="Webkul\RewardSystem\Model\RewardproductSearchResults" />
+    <preference for="Webkul\RewardSystem\Api\Data\RewardproductSpecificSearchResultsInterface"
+                type="Webkul\RewardSystem\Model\RewardproductSpecificSearchResults" />
+    <preference for="Webkul\RewardSystem\Api\Data\RewardrecordSearchResultsInterface"
+                type="Webkul\RewardSystem\Model\RewardrecordSearchResults" />
+    <preference for="Webkul\RewardSystem\Api\Data\ReferralDetailSearchResultsInterface"
+                type="Webkul\RewardSystem\Model\ReferralDetailSearchResults" />
+
+    <preference for="Webkul\RewardSystem\Api\Data\CategoryInterface" type="Webkul\RewardSystem\Model\Category"/>
+    <preference for="Webkul\RewardSystem\Api\Data\RewardrecordInterface" type="Webkul\RewardSystem\Model\Rewardrecord"/>
+    <preference for="Webkul\RewardSystem\Api\Data\RewarddetailInterface" type="Webkul\RewardSystem\Model\Rewarddetail"/>
+    <preference for="Webkul\RewardSystem\Api\Data\RewardorderDetailInterface" type="Webkul\RewardSystem\Model\RewardorderDetail"/>
+    <preference for="Webkul\RewardSystem\Api\Data\RewardproductInterface" type="Webkul\RewardSystem\Model\Rewardproduct"/>
+    <preference for="Webkul\RewardSystem\Api\Data\RewardcategoryInterface" type="Webkul\RewardSystem\Model\Rewardcategory"/>
+    <preference for="Webkul\RewardSystem\Api\Data\RewardcategorySpecificInterface" type="Webkul\RewardSystem\Model\RewardcategorySpecific"/>
+    <preference for="Webkul\RewardSystem\Api\Data\RewardproductSpecificInterface" type="Webkul\RewardSystem\Model\RewardproductSpecific"/>
+    <preference for="Webkul\RewardSystem\Api\Data\RewardattributeInterface" type="Webkul\RewardSystem\Model\Rewardattribute"/>
+    <preference for="Webkul\RewardSystem\Api\Data\RewardcartInterface" type="Webkul\RewardSystem\Model\Rewardcart"/>
+    <preference for="Webkul\RewardSystem\Api\Data\ReferralDetailInterface" type="Webkul\RewardSystem\Model\ReferralDetail"/>
+
+    <preference for="Webkul\RewardSystem\Api\RewardRepositoryInterface" type="Webkul\RewardSystem\Model\RewardRepository" />
+    <preference for="Webkul\RewardSystem\Api\RewardrecordRepositoryInterface" type="Webkul\RewardSystem\Model\RewardrecordRepository"/>
+    <preference for="Webkul\RewardSystem\Api\RewarddetailRepositoryInterface" type="Webkul\RewardSystem\Model\RewarddetailRepository"/>
+    <preference for="Webkul\RewardSystem\Api\RewardorderDetailRepositoryInterface" type="Webkul\RewardSystem\Model\RewardorderDetailRepository"/>
+    <preference for="Webkul\RewardSystem\Api\RewardproductRepositoryInterface" type="Webkul\RewardSystem\Model\RewardproductRepository"/>
+    <preference for="Webkul\RewardSystem\Api\RewardcategoryRepositoryInterface" type="Webkul\RewardSystem\Model\RewardcategoryRepository"/>
+    <preference for="Webkul\RewardSystem\Api\RewardcategorySpecificRepositoryInterface" type="Webkul\RewardSystem\Model\RewardcategorySpecificRepository"/>
+    <preference for="Webkul\RewardSystem\Api\RewardproductSpecificRepositoryInterface" type="Webkul\RewardSystem\Model\RewardproductSpecificRepository"/>
+    <preference for="Webkul\RewardSystem\Api\RewardattributeRepositoryInterface" type="Webkul\RewardSystem\Model\RewardattributeRepository"/>
+    <preference for="Webkul\RewardSystem\Api\RewardcartRepositoryInterface" type="Webkul\RewardSystem\Model\RewardcartRepository"/>
+    <preference for="Webkul\RewardSystem\Api\ReferralDetailRepositoryInterface" type="Webkul\RewardSystem\Model\ReferralDetailRepository"/>
+
+    <type name="Webkul\RewardSystem\Logger\Handler">
+        <arguments>
+            <argument name="filesystem" xsi:type="object">Magento\Framework\Filesystem\Driver\File</argument>
+        </arguments>
+    </type>
+
+     <type name="Webkul\RewardSystem\Logger\RewardLogger">
+        <arguments>
+            <argument name="name" xsi:type="string">rewardlogger</argument>
+            <argument name="handlers"  xsi:type="array">
+                <item name="system" xsi:type="object">Webkul\RewardSystem\Logger\Handler</item>
+            </argument>
+        </arguments>
+    </type>  
+
+
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Webkul\RewardSystem\Api\Data\RewardrecordInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">wk_rs_reward_record</item>
+                    <item name="identifierField" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Webkul\RewardSystem\Api\Data\RewarddetailInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">wk_rs_reward_details</item>
+                    <item name="identifierField" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Webkul\RewardSystem\Api\Data\RewardproductInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">wk_rs_reward_products</item>
+                    <item name="identifierField" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+     <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Webkul\RewardSystem\Api\Data\RewardcategoryInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">wk_rs_reward_category</item>
+                    <item name="identifierField" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Webkul\RewardSystem\Api\Data\RewardcategorySpecificInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">wk_rs_reward_category_specific</item>
+                    <item name="identifierField" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Webkul\RewardSystem\Api\Data\RewardproductSpecificInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="string">wk_rs_reward_products_specific</item>
+                    <item name="identifierField" xsi:type="string">entity_id</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="rewardsystem_category_data_source" xsi:type="string">Webkul\RewardSystem\Model\ResourceModel\Category\Grid\Collection</item>
+                <item name="rewardsystem_reward_details_data_source" xsi:type="string">Webkul\RewardSystem\Model\ResourceModel\Rewardrecord\Grid\Collection</item>
+                <item name="rewardsystem_reward_individual_details_data_source" xsi:type="string">Webkul\RewardSystem\Model\ResourceModel\Rewarddetail\Grid\Collection</item>
+                <item name="reward_transaction_customer_listing_data_source" xsi:type="string">Magento\Customer\Model\ResourceModel\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <virtualType name="Webkul\RewardSystem\Model\ResourceModel\Rewarddetail\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">wk_rs_reward_details</argument>
+            <argument name="eventPrefix" xsi:type="string">reward_detail_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">rewarddetail_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Webkul\RewardSystem\Model\ResourceModel\Rewarddetail</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Webkul\RewardSystem\Model\ResourceModel\Rewardrecord\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">wk_rs_reward_record</argument>
+            <argument name="eventPrefix" xsi:type="string">rewardsystem_rewardrecord_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">rewardrecord_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Webkul\RewardSystem\Model\ResourceModel\Rewardrecord</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="Webkul\RewardSystem\Model\ResourceModel\Category\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">catalog_category_entity</argument>
+            <argument name="eventPrefix" xsi:type="string">rewardsystem_category_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">rewardsystem_category_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Webkul\RewardSystem\Model\ResourceModel\Category</argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="RewardcartGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Webkul\RewardSystem\Model\ResourceModel\Rewardcart\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">RewardcartGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="rewardSystem_rewardcart_data_source" xsi:type="string">Webkul\RewardSystem\Model\ResourceModel\Rewardcart\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Webkul\RewardSystem\Model\ResourceModel\Rewardcart\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">wk_rs_reward_cart</argument>
+            <argument name="eventPrefix" xsi:type="string">webkul_rewardSystem_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">webkul_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Webkul\RewardSystem\Model\Resource\Rewardcart</argument>
+        </arguments>
+    </type>
+    <virtualType name="RewardattributeGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+        <arguments>
+            <argument name="collection" xsi:type="object" shared="false">Webkul\RewardSystem\Model\ResourceModel\Rewardattribute\Collection</argument>
+            <argument name="filterPool" xsi:type="object" shared="false">RewardattributeGirdFilterPool</argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="rewardSystem_attribute_data_source" xsi:type="string">Webkul\RewardSystem\Model\ResourceModel\Rewardattribute\Grid\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Webkul\RewardSystem\Model\ResourceModel\Rewardattribute\Grid\Collection">
+        <arguments>
+            <argument name="mainTable" xsi:type="string">wk_rs_reward_attribute</argument>
+            <argument name="eventPrefix" xsi:type="string">webkul_rewardAttribute_grid_collection</argument>
+            <argument name="eventObject" xsi:type="string">webkul_attribute_grid_collection</argument>
+            <argument name="resourceModel" xsi:type="string">Webkul\RewardSystem\Model\Resource\Rewardattribute</argument>
+        </arguments>
+    </type>
+    <type name="Webkul\RewardSystem\Ui\Component\MassAction\Status\CartStatus">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="urlPath" xsi:type="string">rewardsystem/cart/massUpdate</item>
+                <item name="paramName" xsi:type="string">cartruleupdate</item>
+                <item name="confirm" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">Cart Rule Status</item>
+                    <item name="message" xsi:type="string" translate="true">Are you sure to update status of selected Cart Rules?</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Webkul\RewardSystem\Ui\Component\MassAction\Status\AttributeStatus">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="urlPath" xsi:type="string">rewardsystem/attribute/massUpdate</item>
+                <item name="paramName" xsi:type="string">attributeruleupdate</item>
+                <item name="confirm" xsi:type="array">
+                    <item name="title" xsi:type="string" translate="true">Attribute Rule Status</item>
+                    <item name="message" xsi:type="string" translate="true">Are you sure to update status of selected Rule(s)?</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="Magento\Config\Controller\Adminhtml\System\Config\Save" type="Webkul\RewardSystem\Rewrite\System\Config\Save"/>
+</config>

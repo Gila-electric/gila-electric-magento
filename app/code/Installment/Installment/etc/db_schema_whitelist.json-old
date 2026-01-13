@@ -1,0 +1,11 @@
+{
+    "installment_installment": {
+        "column": {
+            "extr_fees_installment": true,
+            "discount_installment": true,
+            "discount_fees": true,
+            "discount_en_title": true,
+            "discount_ar_title": true
+        }
+    }
+}

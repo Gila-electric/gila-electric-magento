@@ -1,0 +1,5 @@
+interface ProductInterface @doc(description: "Contains fields that are common to all types of products.") {
+    special_price: String @doc(description: "change Special price")  @resolver(class: "Webkul\\DailyDeals\\Model\\Resolver\\Product\\SpecialPrice")
+    special_from_date: String @doc(description: "change Special From Date")  @resolver(class: "Webkul\\DailyDeals\\Model\\Resolver\\Product\\SpecialFromDate")
+    special_to_date: String @doc(description: "change Special From Date")  @resolver(class: "Webkul\\DailyDeals\\Model\\Resolver\\Product\\SpecialToDate")
+}

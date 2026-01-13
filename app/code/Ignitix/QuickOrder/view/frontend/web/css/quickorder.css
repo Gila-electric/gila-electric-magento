@@ -1,0 +1,81 @@
+.quick-order-page {
+    padding: 20px;
+}
+#quick-order-search {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+#quick-order-search-section {
+    position: relative;
+}
+.autocomplete-suggestions {
+    border: 1px solid #ccc;
+    max-height: 180px;
+    overflow-y: auto;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background: #fff;
+    position: absolute;
+    width: 100%;
+    max-width: none;
+    box-sizing: border-box;
+    z-index: 100;
+}
+.autocomplete-suggestions li {
+    padding: 8px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.autocomplete-suggestions li img {
+    max-width: 25px;
+    height: auto;
+}
+.autocomplete-suggestions li:hover {
+    background: #f0f0f0;
+}
+.table-wrapper {
+    max-height: 400px;
+    overflow-y: auto;
+    border: 1px solid #eee;
+    margin-bottom: 10px;
+}
+#quick-order-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+#quick-order-table th, #quick-order-table td {
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    text-align: left;
+}
+#quick-order-table img {
+    height: 50px;
+}
+.qty-input {
+    width: 60px;
+}
+.checkmark {
+    color: green;
+}
+.error {
+    color: red;
+}
+.delete-btn {
+    color: red;
+    cursor: pointer;
+}
+.rtl-layout #quick-order-table th, .rtl-layout #quick-order-table td {
+    text-align: right!important;
+}
+.qo-total-items , .qo-total-price {
+	display: block;
+	margin-top: 10px;
+}
+.qo-total-items > span , .qo-total-price > span {
+	font-size: 25px;
+}

@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package Quick Order for Magento 2
+ */-->
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Amasty\QuickOrder\Api\SearchInterface" type="Amasty\QuickOrder\Model\Search" />
+
+    <type name="Amasty\QuickOrder\Model\Import\Source\SourceReaderAdapter">
+        <arguments>
+            <argument name="config" xsi:type="array">
+                <item name="csv" xsi:type="array">
+                    <item name="code" xsi:type="const">Amasty\QuickOrder\Model\Import\Source\Type\Csv\Reader::TYPE_ID</item>
+                    <item name="readerClass" xsi:type="string">Amasty\QuickOrder\Model\Import\Source\Type\Csv\Reader</item>
+                </item>
+                <item name="xml" xsi:type="array">
+                    <item name="code" xsi:type="const">Amasty\QuickOrder\Model\Import\Source\Type\Xml\Reader::TYPE_ID</item>
+                    <item name="readerClass" xsi:type="string">Amasty\QuickOrder\Model\Import\Source\Type\Xml\Reader</item>
+                </item>
+                <item name="range" xsi:type="array">
+                    <item name="code" xsi:type="const">Amasty\QuickOrder\Model\Import\Source\Type\Range\Reader::TYPE_ID</item>
+                    <item name="readerClass" xsi:type="string">Amasty\QuickOrder\Model\Import\Source\Type\Range\Reader</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- add childs sku in parent index for search. work for MySQL & elastic engines -->
+    <type name="Magento\CatalogSearch\Model\Indexer\Fulltext\Action\DataProvider">
+        <plugin name="Amasty_QuickOrder::IndexChildsSku" type="Amasty\QuickOrder\Plugin\CatalogSearch\Model\Indexer\Fulltext\Action\DataProviderPlugin" />
+    </type>
+
+    <type name="Amasty\QuickOrder\Plugin\Elasticsearch\AdditionalFieldMapper">
+        <arguments>
+            <argument name="fields" xsi:type="array">
+                <item name="quickorder_stock_status" xsi:type="string">integer</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Amasty\QuickOrder\Plugin\Elasticsearch\Model\Indexer\Data\Product\ProductDataMapperPlugin">
+        <arguments>
+            <argument name="dataMappers" xsi:type="array">
+                <item name="quickorder_stock_status" xsi:type="object">Amasty\QuickOrder\Model\Elasticsearch\Adapter\DataMapper\StockStatus</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!-- start: add mapper for stock status in magento elastic -->
+    <type name="Magento\Elasticsearch\Model\Adapter\FieldMapper\ProductFieldMapper">
+        <plugin name="Amasty_QuickOrder::AdditionalFieldMapper"
+                type="Amasty\QuickOrder\Plugin\Elasticsearch\AdditionalFieldMapper" />
+        <plugin name="Amasty_QuickOrder::add-analyzer-for-quicksearch-sku-mapping"
+                type="Amasty\QuickOrder\Plugin\Elasticsearch\Model\FieldMapper\ProductFieldMapper\AddAnalyzerForQuickSearchSku" />
+    </type>
+    <type name="Magento\Elasticsearch\Elasticsearch5\Model\Adapter\FieldMapper\ProductFieldMapperProxy">
+        <plugin name="Amasty_QuickOrder::AdditionalFieldMapper5"
+                type="Amasty\QuickOrder\Plugin\Elasticsearch\AdditionalFieldMapper" />
+        <plugin name="Amasty_QuickOrder::add-analyzer-for-quicksearch-sku"
+                type="Amasty\QuickOrder\Plugin\Elasticsearch\Elasticsearch5\Model\Adapter\FieldMapper\ProductFieldMapperProxy\AddAnalyzerForQuickSearchSku" />
+    </type>
+    <type name="Magento\Elasticsearch\Model\Adapter\BatchDataMapper\ProductDataMapper">
+        <plugin name="Amasty_QuickOrder::AdditionalBatchDataMapper"
+                type="Amasty\QuickOrder\Plugin\Elasticsearch\Model\Indexer\Data\Product\ProductDataMapperPlugin" />
+    </type>
+    <type name="Magento\Elasticsearch\Elasticsearch5\Model\Adapter\DataMapper\ProductDataMapper">
+        <plugin name="Amasty_QuickOrder::AdditionalBatchDataMapper5"
+                type="Amasty\QuickOrder\Plugin\Elasticsearch\Model\Indexer\Data\Product\ProductDataMapperPlugin" />
+    </type>
+    <!-- end: add mapper for stock status in magento elastic -->
+
+    <!-- start: add mapper for stock status in amasty elastic -->
+    <type name="Amasty\ElasticSearch\Model\Indexer\Structure\EntityBuilder\Product">
+        <plugin name="Amasty_QuickOrder::AdditionalFieldMapper"
+                type="Amasty\QuickOrder\Plugin\Elasticsearch\AdditionalFieldMapper" />
+    </type>
+    <type name="Amasty\ElasticSearch\Model\Indexer\Data\Product\ProductDataMapper">
+        <plugin name="Amasty_QuickOrder::AdditionalBatchDataMapper"
+                type="Amasty\QuickOrder\Plugin\Elasticsearch\Model\Indexer\Data\Product\ProductDataMapperPlugin"/>
+        <plugin name="Amasty_QuickOrder::disable_exclude_quick_order_sku_from_merge"
+                type="Amasty\QuickOrder\Plugin\Elasticsearch\Model\Indexer\Data\Product\ProductDataMapper\DisableExcludeQuickOrderSkuFromMerge"/>
+    </type>
+    <!-- end: add mapper for stock status in amasty elastic -->
+
+    <virtualType name="quickOrderSelectContainerBuilder" type="Amasty\QuickOrder\Model\Di\Wrapper">
+        <arguments>
+            <argument name="name" xsi:type="string">Magento\CatalogSearch\Model\Search\SelectContainer\SelectContainerFactory</argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Amasty\QuickOrder\Plugin\CatalogSearch\Model\Search\SelectContainer\SelectContainerBuilderPlugin">
+        <arguments>
+            <argument name="selectContainerFactory" xsi:type="object">quickOrderSelectContainerBuilder</argument>
+        </arguments>
+    </type>
+
+    <!-- plugin for always search by in stock products in mysql engine -->
+    <type name="Magento\CatalogSearch\Model\Search\SelectContainer\SelectContainerBuilder">
+        <plugin name="Amasty_QuickOrder::SearchInStockOnly"
+                type="Amasty\QuickOrder\Plugin\CatalogSearch\Model\Search\SelectContainer\SelectContainerBuilderPlugin" />
+    </type>
+
+    <virtualType name="Magento\GiftCard\Pricing\Price\Pool" type="Magento\Framework\Pricing\Price\Pool">
+        <arguments>
+            <argument name="prices" xsi:type="array">
+                <item name="quickorder_subtotal" xsi:type="string">Magento\GiftCard\Pricing\Price\FinalPrice</item>
+            </argument>
+        </arguments>
+    </virtualType>
+
+    <type name="Magento\Elasticsearch\Model\Adapter\Index\Builder">
+        <plugin name="Amasty_QuickOrder::add-new-custom-analyzer"
+                type="Amasty\QuickOrder\Plugin\Elasticsearch\Model\Adapter\Index\Builder\CreateNewAnalyzer"
+                sortOrder="999"
+        />
+    </type>
+</config>

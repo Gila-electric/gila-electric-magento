@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * @author Amasty Team
+ * @copyright Copyright (c) Amasty (https://www.amasty.com)
+ * @package Quick Order for Magento 2
+ */-->
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="header.links">
+            <block class="Amasty\QuickOrder\Block\Link" name="amquickorder.header.link" after="authorization-link-login">
+                <arguments>
+                    <argument name="position" xsi:type="const">Amasty\QuickOrder\Model\Source\DisplayPlace::PAGE_HEADER</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+        <referenceBlock name="footer_links">
+            <block class="Amasty\QuickOrder\Block\Link" name="amquickorder.footer.link">
+                <arguments>
+                    <argument name="position" xsi:type="const">Amasty\QuickOrder\Model\Source\DisplayPlace::PAGE_FOOTER</argument>
+                </arguments>
+            </block>
+        </referenceBlock>
+    </body>
+</page>

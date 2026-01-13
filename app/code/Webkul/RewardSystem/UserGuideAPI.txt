@@ -1,0 +1,2144 @@
+Module's blog url: https://webkul.com/blog/magento2-reward-points/
+
+(A): GRAPHQL API
+
+Get Store configuration for the module
+{
+    storeConfig {
+        rewardsystem_enable
+        rewardsystem_reward_value
+        rewardsystem_max_reward_assign
+        rewardsystem_max_reward_used
+        rewardsystem_allow_registration
+        rewardsystem_registration_reward
+        rewardsystem_allow_review
+        rewardsystem_review_reward
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "storeConfig": {
+            "rewardsystem_enable": 1,
+            "rewardsystem_reward_value": 1,
+            "rewardsystem_max_reward_assign": 1000,
+            "rewardsystem_max_reward_used": 1000,
+            "rewardsystem_allow_registration": 1,
+            "rewardsystem_registration_reward": "10",
+            "rewardsystem_allow_review": "1",
+            "rewardsystem_review_reward": "10"
+        }
+    }
+}
+
+
+1. Return query of reward record list (needs admin authorization)
+query{
+    rewardRecordList(
+        filter: {
+            customer_id: {
+                gteq: 1
+            }
+        }
+    ) {
+        total_count
+        items {
+            entity_id
+            customer_id
+            email
+            name
+            total_reward_point
+            remaining_reward_point
+            used_reward_point
+            updated_at
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "rewardRecordList": {
+            "total_count": 1,
+            "items": [
+                {
+                    "entity_id": 1,
+                    "customer_id": 1,
+                    "email": "johndoe@example.com",
+                    "name": "John Doe",
+                    "total_reward_point": 110,
+                    "remaining_reward_point": 110,
+                    "used_reward_point": 0,
+                    "updated_at": "2022-10-03 08:01:39"
+                }
+            ]
+        }
+    }
+}
+
+
+2. Return query of reward individual record list (needs admin authorization)
+query{
+    rewardIndividualList(
+        customerId: 1
+        filter: {
+            reward_point: {
+                gteq: 1
+            }
+        }
+    ) {
+        total_count
+        items {
+            reward_point
+            transaction_at
+            action
+            transaction_note
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "rewardIndividualList": {
+            "total_count": 2,
+            "items": [
+                {
+                    "reward_point": 10,
+                    "transaction_at": "2022-10-03 08:00:35",
+                    "action": "credit",
+                    "transaction_note": "reward points from admin"
+                },
+                {
+                    "reward_point": 100,
+                    "transaction_at": "2022-10-03 08:01:39",
+                    "action": "credit",
+                    "transaction_note": "reward points from admin"
+                }
+            ]
+        }
+    }
+}
+
+
+3. Return query of reward cart list (needs admin authorization)
+query{
+    rewardCartPointsList(
+        filter: {
+            entity_id: {
+                gteq: 1
+            }
+        }
+    ) {
+        total_count
+        items {
+            entity_id
+            points
+            amount_from
+            amount_to
+            start_date
+            end_date
+            status
+            created_at
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "rewardCartPointsList": {
+            "total_count": 5,
+            "items": [
+                {
+                    "entity_id": 4,
+                    "points": 20,
+                    "amount_from": 50,
+                    "amount_to": 150,
+                    "start_date": "2022-10-01",
+                    "end_date": "2022-10-31",
+                    "status": 1,
+                    "created_at": "2022-10-03 13:26:05"
+                },
+                {
+                    "entity_id": 7,
+                    "points": 20,
+                    "amount_from": 201,
+                    "amount_to": 300,
+                    "start_date": "2022-10-01",
+                    "end_date": "2022-10-31",
+                    "status": 0,
+                    "created_at": "2022-10-03 13:26:50"
+                },
+                {
+                    "entity_id": 10,
+                    "points": 30,
+                    "amount_from": 350,
+                    "amount_to": 450,
+                    "start_date": "2022-10-01",
+                    "end_date": "2022-10-31",
+                    "status": 1,
+                    "created_at": "2022-10-04 13:53:06"
+                },
+                {
+                    "entity_id": 13,
+                    "points": 30,
+                    "amount_from": 550,
+                    "amount_to": 650,
+                    "start_date": "2022-10-01",
+                    "end_date": "2022-10-31",
+                    "status": 1,
+                    "created_at": "2022-10-04 13:55:49"
+                },
+                {
+                    "entity_id": 16,
+                    "points": 30,
+                    "amount_from": 750,
+                    "amount_to": 850,
+                    "start_date": "2022-10-01",
+                    "end_date": "2022-10-31",
+                    "status": 1,
+                    "created_at": "2022-10-04 13:56:12"
+                }
+            ]
+        }
+    }
+}
+
+
+4. Return query of reward cart data (needs admin authorization)
+query{
+    rewardCartPointsData(
+        id: 4
+    ) {
+        options {
+            status {
+                label
+                value
+            }
+        }
+        reward_cart {
+            entity_id
+            points
+            amount_from
+            amount_to
+            start_date
+            end_date
+            status
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "rewardCartPointsData": {
+            "options": {
+                "status": [
+                    {
+                        "label": "Enabled",
+                        "value": "1"
+                    },
+                    {
+                        "label": "Disabled",
+                        "value": "0"
+                    }
+                ]
+            },
+            "reward_cart": {
+                "entity_id": 4,
+                "points": 20,
+                "amount_from": 50,
+                "amount_to": 150,
+                "start_date": "2022-10-01",
+                "end_date": "2022-10-31",
+                "status": 1
+            }
+        }
+    }
+}
+
+
+5. Return query of reward attribute list (needs admin authorization)
+query{
+    rewardAttributePointsList(
+        filter: {
+            entity_id: {
+                gteq: 1
+            }
+        }
+    ) {
+        total_count
+        items {
+            entity_id
+            points
+            option_label
+            status
+            created_at
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "rewardAttributePointsList": {
+            "total_count": 3,
+            "items": [
+                {
+                    "entity_id": 1,
+                    "points": 10,
+                    "option_label": "Red",
+                    "status": 1,
+                    "created_at": "2022-10-03 10:50:07"
+                },
+                {
+                    "entity_id": 4,
+                    "points": 12,
+                    "option_label": "Green",
+                    "status": 1,
+                    "created_at": "2022-10-03 13:46:36"
+                },
+                {
+                    "entity_id": 7,
+                    "points": 15,
+                    "option_label": "Black",
+                    "status": 1,
+                    "created_at": "2022-10-04 14:19:55"
+                }
+            ]
+        }
+    }
+}
+
+
+6. Return query of reward attribute data (needs admin authorization)
+query{
+    rewardAttributePointsData(
+        id: 1
+    ) {
+        options {
+            option_id {
+                label
+                value
+            }
+            status {
+                label
+                value
+            }
+        }
+        reward_attribute {
+            entity_id
+            points
+            option_id
+            option_label
+            status
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "rewardAttributePointsData": {
+            "options": {
+                "option_id": [
+                    {
+                        "label": " ",
+                        "value": ""
+                    },
+                    {
+                        "label": "Red",
+                        "value": "10"
+                    },
+                    {
+                        "label": "Green",
+                        "value": "13"
+                    },
+                    {
+                        "label": "Black",
+                        "value": "16"
+                    }
+                ],
+                "status": [
+                    {
+                        "label": "Enabled",
+                        "value": "1"
+                    },
+                    {
+                        "label": "Disabled",
+                        "value": "0"
+                    }
+                ]
+            },
+            "reward_attribute": {
+                "entity_id": 1,
+                "points": 10,
+                "option_id": 10,
+                "option_label": "Red",
+                "status": 1
+            }
+        }
+    }
+}
+
+
+7. Return query of customer reward record list (needs customer authorization)
+query{
+    customerRewardDetail(
+        filter: {
+            type: CREDIT
+            reward_point: ""
+            status: APPROVED
+        }
+    ) {
+        remaining_reward_point
+        reward_details {
+            description
+            type
+            reward_point
+            status
+            expires_at
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "customerRewardDetail": {
+            "remaining_reward_point": 110,
+            "reward_details": [
+                {
+                    "description": "reward points from admin",
+                    "type": "Credit",
+                    "reward_point": 100,
+                    "status": "Approved",
+                    "expires_at": "Monday, October 2, 2023"
+                },
+                {
+                    "description": "reward points from admin",
+                    "type": "Credit",
+                    "reward_point": 10,
+                    "status": "Approved",
+                    "expires_at": "Monday, October 2, 2023"
+                }
+            ]
+        }
+    }
+}
+
+
+8. Manage reward cart points: ENABLE or DISABLE or DELETE (needs admin authorization)
+mutation{
+    manageRewardCartPoints(
+        ids: [4,7]
+        action: DISABLE
+    ) {
+        status
+        message
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "manageRewardCartPoints": {
+            "status": 1,
+            "message": "A total of 2 record(s) have been updated."
+        }
+    }
+}
+
+
+9. Save reward cart points (needs admin authorization)
+mutation{
+    saveRewardCartPoints(
+        input: {
+            entity_id: 4
+            points: 20.00
+            amount_from: 50.00
+            amount_to: 150.00
+            start_date: "2022-10-01"
+            end_date: "2022-10-31"
+            status: 1
+        }
+    ) {
+        status
+        message
+    }
+}
+Notes:
+1. Use entity_id as 0 to create new reward cart point record.
+
+Response (json):
+{
+    "data": {
+        "saveRewardCartPoints": {
+            "status": 1,
+            "message": "Cart Rule successfully saved."
+        }
+    }
+}
+
+
+10. Manage reward attribute points: ENABLE or DISABLE or DELETE (needs admin authorization)
+mutation{
+    manageRewardAttributePoints(
+        ids: [1,4]
+        action: ENABLE
+    ) {
+        status
+        message
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "manageRewardAttributePoints": {
+            "status": 1,
+            "message": "A total of 2 record(s) have been updated."
+        }
+    }
+}
+
+
+11. Save reward attribute points (needs admin authorization)
+mutation{
+    saveRewardAttributePoints(
+        input: {
+            entity_id: 7
+            points: 15.00
+            option_id: 16
+            status: 1
+        }
+    ) {
+        status
+        message
+    }
+}
+Notes:
+1. Use entity_id as 0 to create new reward attribute point record.
+
+Response (json):
+{
+    "data": {
+        "saveRewardAttributePoints": {
+            "status": 1,
+            "message": "Attribute Rule successfully saved."
+        }
+    }
+}
+
+
+12. Add reward transaction (needs admin authorization)
+mutation{
+    addRewardTransaction(
+        input: {
+            action: CREDIT
+            reward_point: 15
+            transaction_note: "admin operation"
+            customerIds: [1,4]
+        }
+    ) {
+        status
+        message
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "addRewardTransaction": {
+            "status": 1,
+            "message": [
+                "Transaction is saved successfully!!"
+            ]
+        }
+    }
+}
+
+
+13. Return query of reward products list (needs admin authorization)
+query{
+    rewardProductList(
+        filter: {
+            status: 1
+        }
+    ) {
+        total_count
+        items {
+            entity_id
+            sku
+            product_name
+            points
+            status
+        }
+        options {
+            status {
+                label
+                value
+            }
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "rewardProductList": {
+            "total_count": 1,
+            "items": [
+                {
+                    "entity_id": 1,
+                    "sku": "AdminSimple1",
+                    "product_name": "AdminSimple1",
+                    "points": 10,
+                    "status": 1
+                }
+            ],
+            "options": {
+                "status": [
+                    {
+                        "label": "Enable",
+                        "value": "1"
+                    },
+                    {
+                        "label": "Disable",
+                        "value": "0"
+                    }
+                ]
+            }
+        }
+    }
+}
+
+
+14. Return query of reward products for specific time list (needs admin authorization)
+query{
+    rewardProductSpecificList(
+        filter: {
+            status: 1
+        }
+    ) {
+        total_count
+        items {
+            entity_id
+            sku
+            product_name
+            points
+            start_time
+            end_time
+            status
+        }
+        options {
+            status {
+                label
+                value
+            }
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "rewardProductSpecificList": {
+            "total_count": 1,
+            "items": [
+                {
+                    "entity_id": 1,
+                    "sku": "AdminSimple1",
+                    "product_name": "AdminSimple1",
+                    "points": 7,
+                    "start_time": "02:54 PM",
+                    "end_time": "05:54 PM",
+                    "status": 1
+                }
+            ],
+            "options": {
+                "status": [
+                    {
+                        "label": "Enable",
+                        "value": "1"
+                    },
+                    {
+                        "label": "Disable",
+                        "value": "0"
+                    }
+                ]
+            }
+        }
+    }
+}
+
+
+15. Return query of reward categories (needs admin authorization)
+query{
+    rewardCategoryList(
+        filter: {
+            status: 1
+        }
+    ) {
+        total_count
+        items {
+            entity_id
+            category_name
+            points
+            status
+        }
+        options {
+            status {
+                label
+                value
+            }
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "rewardCategoryList": {
+            "total_count": 2,
+            "items": [
+                {
+                    "entity_id": 2,
+                    "category_name": "Default Category",
+                    "points": 7,
+                    "status": 1
+                },
+                {
+                    "entity_id": 4,
+                    "category_name": "Subscription Products",
+                    "points": 7,
+                    "status": 1
+                }
+            ],
+            "options": {
+                "status": [
+                    {
+                        "label": "Enable",
+                        "value": "1"
+                    },
+                    {
+                        "label": "Disable",
+                        "value": "0"
+                    }
+                ]
+            }
+        }
+    }
+}
+
+
+16. Return query of reward categories for specific time list (needs admin authorization)
+query{
+    rewardCategorySpecificList(
+        filter: {
+            status: 1
+        }
+    ) {
+        total_count
+        items {
+            entity_id
+            category_name
+            points
+            start_time
+            end_time
+            status
+        }
+        options {
+            status {
+                label
+                value
+            }
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "rewardCategorySpecificList": {
+            "total_count": 2,
+            "items": [
+                {
+                    "entity_id": 2,
+                    "category_name": "Default Category",
+                    "points": 10,
+                    "start_time": "06:48 PM",
+                    "end_time": "09:48 PM",
+                    "status": 1
+                },
+                {
+                    "entity_id": 4,
+                    "category_name": "Subscription Products",
+                    "points": 10,
+                    "start_time": "06:48 PM",
+                    "end_time": "09:48 PM",
+                    "status": 1
+                }
+            ],
+            "options": {
+                "status": [
+                    {
+                        "label": "Enable",
+                        "value": "1"
+                    },
+                    {
+                        "label": "Disable",
+                        "value": "0"
+                    }
+                ]
+            }
+        }
+    }
+}
+
+
+17. Update reward point of products (needs admin authorization)
+mutation{
+    updateProductRewardPoint(
+        input: {
+            rewardpoint: 12
+            status: ENABLE
+            wk_productids: [1,10]
+        }
+    ) {
+        status
+        message
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "updateProductRewardPoint": {
+            "status": 1,
+            "message": "Total of 2 product(s) reward are updated"
+        }
+    }
+}
+
+
+18. Update reward point of products for specific time (needs admin authorization)
+mutation{
+    updateProductSpecificRewardPoint(
+        input: {
+            rewardpoint: 11
+            status: ENABLE
+            start_time: "05:30 PM"
+            end_time: "09:30 PM"
+            wk_productids: [1,10]
+        }
+    ) {
+        status
+        message
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "updateProductSpecificRewardPoint": {
+            "status": 1,
+            "message": "Total of 2 product(s) reward are updated"
+        }
+    }
+}
+
+
+19. Update reward point of categories (needs admin authorization)
+mutation{
+    updateCategoryRewardPoint(
+        input: {
+            rewardpoint: 11
+            status: ENABLE
+            wk_categoryids: [2,4]
+        }
+    ) {
+        status
+        message
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "updateCategoryRewardPoint": {
+            "status": 1,
+            "message": "Total of 2 category(s) reward are updated"
+        }
+    }
+}
+
+
+20. Update reward point of categories for specific time (needs admin authorization)
+mutation{
+    updateCategorySpecificRewardPoint(
+        input: {
+            rewardpoint: 11
+            status: ENABLE
+            start_time: "05:30 PM"
+            end_time: "09:30 PM"
+            wk_categoryids: [2,4]
+        }
+    ) {
+        status
+        message
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "updateCategorySpecificRewardPoint": {
+            "status": 1,
+            "message": "Total of 2 category(s) reward are updated"
+        }
+    }
+}
+
+
+21. Get order details with reward amount data (needs customer authorization)
+query {
+    customer {
+        orders(filter: {number: {eq: "000000013"}}) {
+            total_count
+            items {
+                id
+                number
+                order_date
+                status
+                items {
+                    product_name
+                    product_sku
+                    product_url_key
+                    product_sale_price {
+                        value
+                    }
+                    product_sale_price {
+                        value
+                        currency
+                    }
+                    quantity_ordered
+                    quantity_invoiced
+                    quantity_shipped
+                }
+                carrier
+                shipments {
+                    id
+                    number
+                    items {
+                        product_name
+                        quantity_shipped
+                    }
+                }
+                total {
+                    base_grand_total {
+                        value
+                        currency
+                    }
+                    grand_total {
+                        value
+                        currency
+                    }
+                    total_tax {
+                        value
+                    }
+                    subtotal {
+                        value
+                        currency
+                    }
+                    taxes {
+                        amount {
+                            value
+                            currency
+                        }
+                        title
+                        rate
+                    }
+                    total_shipping {
+                        value
+                    }
+                    shipping_handling {
+                        amount_including_tax {
+                            value
+                        }
+                        amount_excluding_tax {
+                            value
+                        }
+                        total_amount {
+                            value
+                        }
+                        taxes {
+                            amount {
+                                value
+                            }
+                            title
+                            rate
+                        }
+                    }
+                    discounts {
+                        amount {
+                            value
+                            currency
+                        }
+                        label
+                    }
+                    reward_amount {
+                        value
+                        currency
+                    }
+                }
+                invoices {
+                    id
+                    number
+                    total {
+                        base_grand_total {
+                            value
+                            currency
+                        }
+                        grand_total {
+                            value
+                            currency
+                        }
+                        total_tax {
+                            value
+                        }
+                        subtotal {
+                            value
+                            currency
+                        }
+                        taxes {
+                            amount {
+                                value
+                                currency
+                            }
+                            title
+                            rate
+                        }
+                        total_shipping {
+                            value
+                        }
+                        shipping_handling {
+                            amount_including_tax {
+                                value
+                            }
+                            amount_excluding_tax {
+                                value
+                            }
+                            total_amount {
+                                value
+                            }
+                            taxes {
+                                amount {
+                                    value
+                                }
+                                title
+                                rate
+                            }
+                        }
+                        discounts {
+                            amount {
+                                value
+                                currency
+                            }
+                            label
+                        }
+                        reward_amount {
+                            value
+                            currency
+                        }
+                    }
+                }
+                credit_memos {
+                    id
+                    number
+                    total {
+                        base_grand_total {
+                            value
+                            currency
+                        }
+                        grand_total {
+                            value
+                            currency
+                        }
+                        total_tax {
+                            value
+                        }
+                        subtotal {
+                            value
+                            currency
+                        }
+                        taxes {
+                            amount {
+                                value
+                                currency
+                            }
+                            title
+                            rate
+                        }
+                        total_shipping {
+                            value
+                        }
+                        shipping_handling {
+                            amount_including_tax {
+                                value
+                            }
+                            amount_excluding_tax {
+                                value
+                            }
+                            total_amount {
+                                value
+                            }
+                            taxes {
+                                amount {
+                                    value
+                                }
+                                title
+                                rate
+                            }
+                        }
+                        discounts {
+                            amount {
+                                value
+                                currency
+                            }
+                            label
+                        }
+                        adjustment {
+                            value
+                            currency
+                        }
+                        reward_amount {
+                            value
+                            currency
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "customer": {
+            "orders": {
+                "total_count": 1,
+                "items": [
+                    {
+                        "id": "MTM=",
+                        "number": "000000013",
+                        "order_date": "2022-10-12 07:36:11",
+                        "status": "Closed",
+                        "items": [
+                            {
+                                "product_name": "AdminSimple2",
+                                "product_sku": "AdminSimple2",
+                                "product_url_key": "adminsimple2",
+                                "product_sale_price": {
+                                    "value": 10,
+                                    "currency": "USD"
+                                },
+                                "quantity_ordered": 1,
+                                "quantity_invoiced": 1,
+                                "quantity_shipped": 0
+                            }
+                        ],
+                        "carrier": "Flat Rate",
+                        "shipments": [],
+                        "total": {
+                            "base_grand_total": {
+                                "value": 10,
+                                "currency": "USD"
+                            },
+                            "grand_total": {
+                                "value": 10,
+                                "currency": "USD"
+                            },
+                            "total_tax": {
+                                "value": 0
+                            },
+                            "subtotal": {
+                                "value": 10,
+                                "currency": "USD"
+                            },
+                            "taxes": [],
+                            "total_shipping": {
+                                "value": 5
+                            },
+                            "shipping_handling": {
+                                "amount_including_tax": {
+                                    "value": 5
+                                },
+                                "amount_excluding_tax": {
+                                    "value": 5
+                                },
+                                "total_amount": {
+                                    "value": 5
+                                },
+                                "taxes": []
+                            },
+                            "discounts": [],
+                            "reward_amount": {
+                                "value": -5,
+                                "currency": "USD"
+                            }
+                        },
+                        "invoices": [
+                            {
+                                "id": "MTM=",
+                                "number": "000000013",
+                                "total": {
+                                    "base_grand_total": {
+                                        "value": 10,
+                                        "currency": "USD"
+                                    },
+                                    "grand_total": {
+                                        "value": 10,
+                                        "currency": "USD"
+                                    },
+                                    "total_tax": {
+                                        "value": 0
+                                    },
+                                    "subtotal": {
+                                        "value": 10,
+                                        "currency": "USD"
+                                    },
+                                    "taxes": [],
+                                    "total_shipping": {
+                                        "value": 5
+                                    },
+                                    "shipping_handling": {
+                                        "amount_including_tax": {
+                                            "value": 5
+                                        },
+                                        "amount_excluding_tax": {
+                                            "value": 5
+                                        },
+                                        "total_amount": {
+                                            "value": 5
+                                        },
+                                        "taxes": []
+                                    },
+                                    "discounts": [],
+                                    "reward_amount": {
+                                        "value": -5,
+                                        "currency": "USD"
+                                    }
+                                }
+                            }
+                        ],
+                        "credit_memos": [
+                            {
+                                "id": "MQ==",
+                                "number": "000000001",
+                                "total": {
+                                    "base_grand_total": {
+                                        "value": 10,
+                                        "currency": "USD"
+                                    },
+                                    "grand_total": {
+                                        "value": 10,
+                                        "currency": "USD"
+                                    },
+                                    "total_tax": {
+                                        "value": 0
+                                    },
+                                    "subtotal": {
+                                        "value": 10,
+                                        "currency": "USD"
+                                    },
+                                    "taxes": [],
+                                    "total_shipping": {
+                                        "value": 5
+                                    },
+                                    "shipping_handling": {
+                                        "amount_including_tax": {
+                                            "value": 5
+                                        },
+                                        "amount_excluding_tax": {
+                                            "value": 5
+                                        },
+                                        "total_amount": {
+                                            "value": 5
+                                        },
+                                        "taxes": []
+                                    },
+                                    "discounts": [],
+                                    "adjustment": {
+                                        "value": 0,
+                                        "currency": "USD"
+                                    },
+                                    "reward_amount": {
+                                        "value": -5,
+                                        "currency": "USD"
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}
+
+
+22. Get Reward Info For Product
+{
+    products(filter: { sku: { eq: "AdminSimple2" } }) {
+        items {
+            name
+            sku
+            url_key
+            wk_reward_info {
+                reward_use_msg
+                product_reward_msg
+            }
+        }
+        total_count
+        page_info {
+            page_size
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "products": {
+            "items": [
+                {
+                    "name": "AdminSimple2",
+                    "sku": "AdminSimple2",
+                    "url_key": "adminsimple2",
+                    "wk_reward_info": {
+                        "reward_use_msg": "10 Reward Points will be used to purchase this product",
+                        "product_reward_msg": "Buy this product and Earn 11.00 Reward Points"
+                    }
+                }
+            ],
+            "total_count": 1,
+            "page_info": {
+                "page_size": 20
+            }
+        }
+    }
+}
+
+
+23. Get Reward Info For Category
+{
+    categories(
+        filters: {
+            ids: {in: ["7"]}
+        }
+    ) {
+        total_count
+        items {
+            uid
+            level
+            name
+            path
+            wk_reward_info {
+                category_reward_msg
+            }
+        }
+        page_info {
+            current_page
+            page_size
+            total_pages
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "categories": {
+            "total_count": 1,
+            "items": [
+                {
+                    "uid": "Nw==",
+                    "level": 2,
+                    "name": "Admin Products",
+                    "path": "1/2/7",
+                    "wk_reward_info": {
+                        "category_reward_msg": "Buy any product and Earn 7.00 Reward Points"
+                    }
+                }
+            ],
+            "page_info": {
+                "current_page": 1,
+                "page_size": 20,
+                "total_pages": 1
+            }
+        }
+    }
+}
+
+
+24. Apply reward points to cart (needs customer authorization)
+mutation {
+    applyWkRewardToCart(
+        input: {
+            cart_id: "y1Wo4YZ2pLheDOzuNb8AeRBZ5plPrhJs",
+            used_reward_points: 2
+        }
+    ) {
+        cart {
+            items {
+                product {
+                    name
+                }
+                quantity
+            }
+            applied_coupons {
+                code
+            }
+            prices {
+                grand_total {
+                    value
+                    currency
+                }
+            }
+            applied_reward_info {
+                used_reward_points
+                number_of_rewards
+                avail_amount
+                amount
+            }
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "applyWkRewardToCart": {
+            "cart": {
+                "items": [
+                    {
+                        "product": {
+                            "name": "AdminSimple2"
+                        },
+                        "quantity": 1
+                    }
+                ],
+                "applied_coupons": null,
+                "prices": {
+                    "grand_total": {
+                        "value": 230,
+                        "currency": "USD"
+                    }
+                },
+                "applied_reward_info": {
+                    "used_reward_points": 2,
+                    "number_of_rewards": 142,
+                    "avail_amount": 1420,
+                    "amount": 20
+                }
+            }
+        }
+    }
+}
+
+
+25. Remove reward points from cart (needs customer authorization)
+mutation {
+    removeWkRewardFromCart(
+        input: {
+            cart_id: "y1Wo4YZ2pLheDOzuNb8AeRBZ5plPrhJs",
+        }
+    ) {
+        cart {
+            items {
+                product {
+                    name
+                }
+                quantity
+            }
+            applied_coupons {
+                code
+            }
+            prices {
+                grand_total {
+                    value
+                    currency
+                }
+            }
+            applied_reward_info {
+                used_reward_points
+                number_of_rewards
+                avail_amount
+                amount
+            }
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "removeWkRewardFromCart": {
+            "cart": {
+                "items": [
+                    {
+                        "product": {
+                            "name": "AdminSimple2"
+                        },
+                        "quantity": 1
+                    }
+                ],
+                "applied_coupons": null,
+                "prices": {
+                    "grand_total": {
+                        "value": 250,
+                        "currency": "USD"
+                    }
+                },
+                "applied_reward_info": null
+            }
+        }
+    }
+}
+
+
+26. Get information about the cart (needs customer authorization)
+{
+    cart(cart_id: "y1Wo4YZ2pLheDOzuNb8AeRBZ5plPrhJs") {
+        email
+        billing_address {
+            city
+            country {
+                code
+                label
+            }
+            firstname
+            lastname
+            postcode
+            region {
+                code
+                label
+            }
+            street
+            telephone
+        }
+        shipping_addresses {
+            firstname
+            lastname
+            street
+            city
+            region {
+                code
+                label
+            }
+            country {
+                code
+                label
+            }
+            telephone
+            available_shipping_methods {
+                amount {
+                    currency
+                    value
+                }
+                available
+                carrier_code
+                carrier_title
+                error_message
+                method_code
+                method_title
+                price_excl_tax {
+                    value
+                    currency
+                }
+                price_incl_tax {
+                    value
+                    currency
+                }
+            }
+            selected_shipping_method {
+                amount {
+                    value
+                    currency
+                }
+                carrier_code
+                carrier_title
+                method_code
+                method_title
+            }
+        }
+        items {
+            id
+            uid
+            product {
+                name
+                sku
+            }
+            quantity
+            errors {
+                code
+                message
+            }
+        }
+        available_payment_methods {
+            code
+            title
+        }
+        selected_payment_method {
+            code
+            title
+        }
+        applied_coupons {
+            code
+        }
+        prices {
+            grand_total {
+                value
+                currency
+            }
+        }
+        applied_reward_info {
+            used_reward_points
+            number_of_rewards
+            avail_amount
+            amount
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "cart": {
+            "email": "johndoe@example.com",
+            "billing_address": null,
+            "shipping_addresses": [],
+            "items": [
+                {
+                    "id": "91",
+                    "uid": "OTE=",
+                    "product": {
+                        "name": "AdminSimple2",
+                        "sku": "AdminSimple2"
+                    },
+                    "quantity": 1,
+                    "errors": null
+                }
+            ],
+            "available_payment_methods": [
+                {
+                    "code": "checkmo",
+                    "title": "Check / Money order"
+                }
+            ],
+            "selected_payment_method": {
+                "code": "",
+                "title": ""
+            },
+            "applied_coupons": null,
+            "prices": {
+                "grand_total": {
+                    "value": 250,
+                    "currency": "USD"
+                }
+            },
+            "applied_reward_info": null
+        }
+    }
+}
+
+
+
+COMPLETE CHECKOUT PROCESS WITH REWARD SYSTEM
+Note: All the steps from 1 to 10 needs customer authorization.
+
+Step 1. Generate customer token for already registered customer (You have to create a new customer if no customer exists.)
+Request:
+mutation {
+    generateCustomerToken(
+        email: "johndoe@example.com"
+        password: "Admin123"
+    ) {
+        token
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "generateCustomerToken": {
+            "token": "eyJraWQiOiIxIiwiYWxnIjoiSFMyNTYifQ.eyJ1aWQiOjEsInV0eXBpZCI6MywiaWF0IjoxNjY4NTEwMjIzLCJleHAiOjE2Njg1MTM4MjN9.PRXBLvtzU_OxBmq8gRd5LXrtQisPszUm1LpWwvSK9LU"
+        }
+    }
+}
+
+
+Step 2. Create a customer cart
+Request:
+{
+    customerCart {
+        id
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "customerCart": {
+            "id": "y1Wo4YZ2pLheDOzuNb8AeRBZ5plPrhJs"
+        }
+    }
+}
+
+
+Step 3. Add products to the cart (The cart_id value comes from the response of Step 2. Create a customer cart)
+Request:
+mutation {
+    addSimpleProductsToCart(
+        input: {
+            cart_id: "y1Wo4YZ2pLheDOzuNb8AeRBZ5plPrhJs"
+            cart_items: [
+                {
+                    data: {
+                        quantity: 1
+                        sku: "AdminSimple2"
+                    }
+                }
+            ]
+        }
+    ) {
+        cart {
+            items {
+                id
+                uid
+                product {
+                    sku
+                    stock_status
+                }
+                quantity
+            }
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "addSimpleProductsToCart": {
+            "cart": {
+                "items": [
+                    {
+                        "id": "91",
+                        "uid": "OTE=",
+                        "product": {
+                            "sku": "AdminSimple2",
+                            "stock_status": "IN_STOCK"
+                        },
+                        "quantity": 1
+                    }
+                ]
+            }
+        }
+    }
+}
+
+
+Step 4. Apply reward points to cart (The cart_id value comes from the response of Step 2. Create a customer cart)
+Request:
+mutation {
+    applyWkRewardToCart(
+        input: {
+            cart_id: "y1Wo4YZ2pLheDOzuNb8AeRBZ5plPrhJs",
+            used_reward_points: 2
+        }
+    ) {
+        cart {
+            items {
+                product {
+                    name
+                }
+                quantity
+            }
+            applied_coupons {
+                code
+            }
+            prices {
+                grand_total {
+                    value
+                    currency
+                }
+            }
+            applied_reward_info {
+                used_reward_points
+                number_of_rewards
+                avail_amount
+                amount
+            }
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "applyWkRewardToCart": {
+            "cart": {
+                "items": [
+                    {
+                        "product": {
+                            "name": "AdminSimple2"
+                        },
+                        "quantity": 1
+                    }
+                ],
+                "applied_coupons": null,
+                "prices": {
+                    "grand_total": {
+                        "value": 230,
+                        "currency": "USD"
+                    }
+                },
+                "applied_reward_info": {
+                    "used_reward_points": 2,
+                    "number_of_rewards": 142,
+                    "avail_amount": 1420,
+                    "amount": 20
+                }
+            }
+        }
+    }
+}
+
+
+Step 5. Get customer address information
+Request:
+{
+    customer {
+        firstname
+        lastname
+        suffix
+        email
+        addresses {
+            id
+            firstname
+            lastname
+            street
+            city
+            region {
+                region_code
+                region
+            }
+            postcode
+            country_code
+            telephone
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "customer": {
+            "firstname": "John",
+            "lastname": "Doe",
+            "suffix": null,
+            "email": "johndoe@example.com",
+            "addresses": [
+                {
+                    "id": 1,
+                    "firstname": "John",
+                    "lastname": "Doe",
+                    "street": [
+                        "Pratap Vihar"
+                    ],
+                    "city": "Ghaziabad",
+                    "region": {
+                        "region_code": "UP",
+                        "region": "Uttar Pradesh"
+                    },
+                    "postcode": "201009",
+                    "country_code": "IN",
+                    "telephone": "01111111111"
+                }
+            ]
+        }
+    }
+}
+
+
+Step 6. Set the shipping address (The cart_id value comes from the response of Step 2. Create a customer cart. The customer_address_id value comes from the response of Step 5. Get customer address information)
+Request:
+mutation {
+    setShippingAddressesOnCart(
+        input: {
+            cart_id: "y1Wo4YZ2pLheDOzuNb8AeRBZ5plPrhJs"
+            shipping_addresses: [
+                {
+                    customer_address_id: 1
+                }
+            ]
+        }
+    ) {
+        cart {
+            shipping_addresses {
+                firstname
+                lastname
+                company
+                street
+                city
+                region {
+                    code
+                    label
+                }
+                postcode
+                telephone
+                country {
+                    code
+                    label
+                }
+                available_shipping_methods {
+                    carrier_code
+                    carrier_title
+                    method_code
+                    method_title
+                }
+            }
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "setShippingAddressesOnCart": {
+            "cart": {
+                "shipping_addresses": [
+                    {
+                        "firstname": "John",
+                        "lastname": "Doe",
+                        "company": null,
+                        "street": [
+                            "Pratap Vihar"
+                        ],
+                        "city": "Ghaziabad",
+                        "region": {
+                            "code": "UP",
+                            "label": "Uttar Pradesh"
+                        },
+                        "postcode": "201009",
+                        "telephone": "01111111111",
+                        "country": {
+                            "code": "IN",
+                            "label": "IN"
+                        },
+                        "available_shipping_methods": [
+                            {
+                                "carrier_code": "flatrate",
+                                "carrier_title": "Flat Rate",
+                                "method_code": "flatrate",
+                                "method_title": "Fixed"
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}
+
+
+Step 7. Set the billing address (The cart_id value comes from the response of Step 2. Create a customer cart. The customer_address_id value comes from the response of Step 5. Get customer address information)
+Request:
+mutation {
+    setBillingAddressOnCart(
+        input: {
+            cart_id: "y1Wo4YZ2pLheDOzuNb8AeRBZ5plPrhJs"
+            billing_address: {
+                customer_address_id: 1
+            }
+        }
+    ) {
+        cart {
+            billing_address {
+                firstname
+                lastname
+                company
+                street
+                city
+                region{
+                    code
+                    label
+                }
+                postcode
+                telephone
+                country {
+                    code
+                    label
+                }
+            }
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "setBillingAddressOnCart": {
+            "cart": {
+                "billing_address": {
+                    "firstname": "John",
+                    "lastname": "Doe",
+                    "company": null,
+                    "street": [
+                        "Pratap Vihar"
+                    ],
+                    "city": "Ghaziabad",
+                    "region": {
+                        "code": "UP",
+                        "label": "Uttar Pradesh"
+                    },
+                    "postcode": "201009",
+                    "telephone": "01111111111",
+                    "country": {
+                        "code": "IN",
+                        "label": "IN"
+                    }
+                }
+            }
+        }
+    }
+}
+
+
+Step 8. Set the delivery method (The carrier_code and method_code values come from the response of the setShippingAddressesOnCart mutation in Step 6)
+Request:
+mutation {
+    setShippingMethodsOnCart(input: {
+        cart_id: "y1Wo4YZ2pLheDOzuNb8AeRBZ5plPrhJs"
+        shipping_methods: [
+            {
+                carrier_code: "flatrate"
+                method_code: "flatrate"
+            }
+        ]
+    }) {
+        cart {
+            shipping_addresses {
+                selected_shipping_method {
+                    carrier_code
+                    method_code
+                    carrier_title
+                    method_title
+                }
+            }
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "setShippingMethodsOnCart": {
+            "cart": {
+                "shipping_addresses": [
+                    {
+                        "selected_shipping_method": {
+                            "carrier_code": "flatrate",
+                            "method_code": "flatrate",
+                            "carrier_title": "Flat Rate",
+                            "method_title": "Fixed"
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}
+
+
+Step 9. Use the following cart query to determine which payment methods which are available for your order.
+Request:
+query {
+    cart(cart_id: "y1Wo4YZ2pLheDOzuNb8AeRBZ5plPrhJs") {
+        available_payment_methods {
+            code
+            title
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "cart": {
+            "available_payment_methods": [
+                {
+                    "code": "checkmo",
+                    "title": "Check / Money order"
+                }
+            ]
+        }
+    }
+}
+
+
+Step 10. Set the payment method (The code value comes from the response of previous Step 8.)
+Request:
+mutation {
+    setPaymentMethodOnCart(input: {
+            cart_id: "y1Wo4YZ2pLheDOzuNb8AeRBZ5plPrhJs"
+            payment_method: {
+                code: "checkmo"
+            }
+    }) {
+        cart {
+            selected_payment_method {
+                code
+            }
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "setPaymentMethodOnCart": {
+            "cart": {
+                "selected_payment_method": {
+                    "code": "checkmo"
+                }
+            }
+        }
+    }
+}
+
+
+Step 11. Place the order
+Request:
+mutation {
+    placeOrder(input: {cart_id: "y1Wo4YZ2pLheDOzuNb8AeRBZ5plPrhJs"}) {
+        order {
+            order_number
+        }
+    }
+}
+
+Response (json):
+{
+    "data": {
+        "placeOrder": {
+            "order": {
+                "order_number": "000000031"
+            }
+        }
+    }
+}

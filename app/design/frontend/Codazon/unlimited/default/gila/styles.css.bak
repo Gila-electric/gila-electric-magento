@@ -1,0 +1,130 @@
+.brand-container .cover-section .after-cover .thumb-section .brand-img-wrap {
+    display: none;
+}
+.brand-container .cover-section .after-cover .title {
+    display: none;
+}
+
+.cdz-menu li.level0>a.menu-link .menu-icon { 
+ min-width: 0px;
+}
+
+.page-wrapper {
+    background: #fff !important;
+}
+.cdz-slideshow:after {
+    box-shadow: unset;
+}
+.main-slideshow.cdz-slideshow {
+    padding: 0;
+    background: #fff;
+    margin-left: 20px !important;
+}
+.main-slideshow .cdz-slideshow .owl-dots {
+bottom:0;
+}
+.main-slideshow img.owl-lazy {
+    border-radius: 0.3125rem;
+}
+
+.wrapper-adv-style-01 a.item-title {
+    color:  #172B4D;
+    font-family: Tajawal;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    position: static;
+    background: none;
+    display: block;
+}
+
+.tabs-style-01 .box-cate-link .item {
+    border-radius: 1.125rem !important;
+    background: #F3F9FB !important;
+    color:  #42526E !important;
+}
+.tabs-style-01 .box-cate-link .item.active{
+
+background: #167DBF !important;
+}
+.tabs-style-01 .box-cate-link .item.active:after{
+content:unset !important;
+}
+ul.box-cate-link {
+    padding: 0;
+    margin: 0;
+    gap: 16px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.tabs-style-01 .box-cate-link .item.active .tab-title{
+color:#fff !important;
+}
+.product-list-style-01 .product-item-inner .product-item-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.rtl-layout .product-list-style-01 .product-item-actions .actions-primary+.actions-secondary {
+    display: flex;
+}
+
+a.action.tocompare {
+    display: none !important;
+}
+
+.product-list-style-01 .action.primary {
+    color: #167DBF;
+}
+
+.product-list-style-01 .actions-secondary .action {
+    color: #C9C9C9;
+}
+.tabs-style-02 .box-cate-link {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.tabs-style-01 .box-cate-link .item .tab-title {
+    padding: 7px 22px !important;
+    display: block;
+    font-weight: 500;
+}
+.wrapper-adv-style-01 a.item-title {
+    color: #172B4D;
+    font-family: Tajawal;
+    font-size: 1.3rem;
+}    
+.product-view-style-04 .product-info-main .box-tocart .actions .action.primary.tocart, .product-view-style-04 .product-info-main .box-tocart .actions .action.primary.buy-now, .product-view-style-04 .product-info-main .box-tocart .actions .product-addto-links {
+    order: 1;
+    width: auto;
+    padding: 15px, 40px, 15px, 40px;
+    border-radius: 43px;
+    gap: 16px;
+}
+.product-view-style-04 .product-info-main .box-tocart .actions>button:not(.buy-now), .product-view-style-04 .product-info-main .box-tocart .product-addto-links .action {
+    color: #0072bc;
+    border-color: #0072bc;
+    background: #fff;
+    padding: 15px, 16px, 15px, 16px;
+    border-radius: 43px;
+    gap: 10px;
+}
+.checkout-shipping-method {
+    position: relative;
+    display: none;
+}
+.block-shipping-estimation .form-address-edit .block-title {
+    margin: 5px 0px;
+    display: none;
+}
+.block-shipping-estimation {
+    width: 100%;
+    margin-top: 20px;
+    display: none;
+}

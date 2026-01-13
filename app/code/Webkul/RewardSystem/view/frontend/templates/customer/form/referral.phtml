@@ -1,0 +1,28 @@
+<?php
+/**
+ * Webkul Software.
+ *
+ * @category  Webkul
+ * @package   Webkul_RewardSystem
+ * @author    Webkul
+ * @copyright Webkul Software Private Limited (https://webkul.com)
+ * @license   https://store.webkul.com/license.html
+ */
+?>
+<?php
+$rewardViewModel = $block->getRewardViewModel();
+$helper = $rewardViewModel->getRewardDataHelper();
+$enableRewardSystem = $helper->enableRewardSystem();
+$referralStatus = $helper->isReferralEnabled();
+$referralCode = $helper->getReferralRegistrationCode();
+if ($referralStatus == 1 && $enableRewardSystem == 1 && $referralCode) { ?>
+    <input type="hidden" name="referral_code" id="wk_rs_referral_code" value="<?= $block->escapeHtml($referralCode) ?>">
+    <script>
+        require([
+            'jquery',
+            'domReady!'
+        ], function ($) {
+            $('#email_address').parents('div.field').after($('#wk_rs_referral_code'));
+        });
+    </script>
+<?php } ?>
