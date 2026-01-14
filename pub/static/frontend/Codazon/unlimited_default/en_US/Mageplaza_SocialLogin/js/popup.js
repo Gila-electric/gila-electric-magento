@@ -1,1 +1,0 @@
-/home/abanoub/Desktop/Gila/Gila-project/vendor/mageplaza/magento-2-social-login/view/frontend/web/js/popup.js

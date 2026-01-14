@@ -1,1 +1,0 @@
-/home/abanoub/Desktop/Gila/Gila-project/app/code/Codazon/ProductFilter/view/frontend/web/js/firstload.js

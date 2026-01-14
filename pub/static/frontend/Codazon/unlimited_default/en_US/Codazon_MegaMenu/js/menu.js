@@ -1,1 +1,0 @@
-/home/abanoub/Desktop/Gila/Gila-project/app/code/Codazon/MegaMenu/view/frontend/web/js/menu.js

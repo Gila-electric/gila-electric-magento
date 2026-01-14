@@ -1,1 +1,0 @@
-/home/abanoub/Desktop/Gila/Gila-project/vendor/magento/module-checkout/view/frontend/web/js/sidebar.js

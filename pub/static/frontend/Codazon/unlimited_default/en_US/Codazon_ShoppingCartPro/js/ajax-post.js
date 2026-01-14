@@ -1,1 +1,0 @@
-/home/abanoub/Desktop/Gila/Gila-project/app/code/Codazon/ShoppingCartPro/view/frontend/web/js/ajax-post.js

@@ -1,1 +1,0 @@
-/home/abanoub/Desktop/Gila/Gila-project/vendor/magento/module-wishlist/view/frontend/web/js/view/wishlist.js

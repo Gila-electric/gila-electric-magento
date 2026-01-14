@@ -1,1 +1,0 @@
-/home/abanoub/Desktop/Gila/Gila-project/vendor/magento/module-security/view/base/web/js/escaper.js

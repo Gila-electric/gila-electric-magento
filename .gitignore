@@ -1,19 +1,28 @@
 # Magento
 /generated/*
 !/generated/code/Magento/Framework/
+/app/etc/NonComposerComponentRegistration.php
+/app/etc/db_schema.xml
+/app/etc/di.xml
+/app/etc/registration_globlist.php
+/bin/.htaccess
 
 # Ignore dirs but keep .htaccess
 /var/*
-!/var/.htaccess
+/var/.htaccess
+/pub/*
 /pub/media/*
+/pub/static/*
+/pub/errors
+/pub/.user.ini
+/pub/.htaccess
 !/pub/media/.htaccess
 /pub/sitemap/*
-
+/node_modules
 /app/etc/env.php
 /app/etc/config.php
 
 /vendor/
-/node_modules/
 
 # IDE/System
 .idea/
@@ -38,3 +47,9 @@ composer.json.bad.*
 composer.json.bak
 auth.json*
 yarn.lock
+.editorconfig
+.htaccess
+.php-cs-fixer.dist.php
+.user.ini
+dev/*
+post-checkout

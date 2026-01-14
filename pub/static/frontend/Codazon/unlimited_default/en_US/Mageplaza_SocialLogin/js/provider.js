@@ -1,1 +1,0 @@
-/home/abanoub/Desktop/Gila/Gila-project/app/design/frontend/Codazon/unlimited/default/Mageplaza_SocialLogin/web/js/provider.js

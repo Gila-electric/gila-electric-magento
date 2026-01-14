@@ -1,1 +1,0 @@
-/home/abanoub/Desktop/Gila/Gila-project/vendor/magento/module-catalog/view/frontend/web/js/view/image.js
